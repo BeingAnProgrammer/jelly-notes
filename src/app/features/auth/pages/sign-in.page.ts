@@ -75,7 +75,7 @@ export class SignInPage implements AfterViewInit, OnDestroy {
   protected readonly loopSeconds = LOOP_SECONDS;
   protected readonly perspective = PERSPECTIVE;
 
-  protected readonly phrases = ['CAPTURE', 'ORGANIZE', 'RECALL', 'FOCUS', 'CLARITY'] as const;
+  protected readonly phrases = ['NOTES', 'IDEAS', 'THOUGHTS', 'MEMORY', 'KNOWLEDGE'] as const;
   protected readonly phraseSeats = buildPhraseSeats(this.phrases);
 
   protected readonly navLabels = ['NOTES', 'TASKS', 'AI SEARCH'] as const;
