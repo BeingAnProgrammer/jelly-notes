@@ -29,19 +29,11 @@
 }
 
 .mark {
-  width: 52px;
-  height: 52px;
   margin: 0 auto var(--space-20);
-  border-radius: var(--radius-lg);
-  background: var(--logo-gradient);
-  color: #0f0e0b;
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    0 4px 16px rgb(124 135 255 / 35%),
-    inset 0 1px 0 rgb(255 255 255 / 20%),
-    inset 0 -6px 10px rgb(0 0 0 / 12%);
 }
 
 .eyebrow {
