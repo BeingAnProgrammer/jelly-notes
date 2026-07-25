@@ -1,0 +1,40 @@
+<div class="shell">
+  @if (editable()) {
+    <button type="button" class="remove-block" title="Remove table" (click)="removed.emit()">
+      <app-icon name="x" [size]="13" [strokeWidth]="2" />
+    </button>
+  }
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          @for (header of block().headers; track $index; let c = $index) {
+            <th>
+              @if (editable()) {
+                <input type="text" [value]="header" (input)="onHeaderInput(c, $event)" />
+              } @else {
+                {{ header }}
+              }
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of block().rows; track $index; let r = $index) {
+          <tr>
+            @for (cell of row; track $index; let c = $index) {
+              <td>
+                @if (editable()) {
+                  <input type="text" [value]="cell" (input)="onCellInput(r, c, $event)" />
+                } @else {
+                  {{ cell }}
+                }
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

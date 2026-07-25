@@ -1,0 +1,59 @@
+<div class="glow" aria-hidden="true"></div>
+
+<div class="greeting">
+  <p class="eyebrow">{{ eyebrow }}</p>
+  <h1>{{ greeting() }}</h1>
+  <p class="subtext">{{ subtext() }}</p>
+</div>
+
+<app-digest-card />
+
+<div class="insights-row">
+  <app-insight-card
+    label="Total notes"
+    [value]="notesService.totalCount().toString()"
+    delta="Across all folders"
+    link="/notes"
+  />
+  <app-insight-card
+    label="Assignments"
+    [value]="assignmentsService.openCount().toString()"
+    delta="Open now"
+    deltaColor="var(--accent)"
+    link="/assignments"
+  />
+  <app-insight-card
+    label="Favorites"
+    [value]="notesService.favoriteCount().toString()"
+    delta="Starred notes"
+    deltaColor="var(--ochre)"
+    link="/notes"
+    [queryParams]="{ filter: 'favorites' }"
+  />
+  <app-insight-card
+    label="Archived"
+    [value]="notesService.archivedCount().toString()"
+    delta="Stored away"
+    link="/notes"
+    [queryParams]="{ filter: 'archive' }"
+  />
+</div>
+
+<div class="two-column">
+  <app-recent-notes-list />
+  <app-upcoming-tasks-widget />
+</div>
+
+<div class="deadlines-section">
+  <div class="header">
+    <span class="title">Assignment deadlines</span>
+    <a routerLink="/assignments" class="view-all">All assignments</a>
+  </div>
+  @if (deadlines().length) {
+    <div class="deadlines-grid">
+      @for (assignment of deadlines(); track assignment.id) {
+        <app-deadline-card [assignment]="assignment" />
+      }
+    </div>
+  }
+</div>

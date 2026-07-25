@@ -1,0 +1,41 @@
+// Typography tokens. Font files are loaded via <link> tags in index.html (Google Fonts:
+// Instrument Serif, Inter Tight, JetBrains Mono) so they're discoverable/preloadable by the browser
+// ahead of any CSS parsing.
+
+:root {
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --weight-regular: 400;
+  --weight-medium: 450;
+  --weight-input: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  // Exact type scale used across the design — named by pixel size so component styles
+  // stay traceable to the source design instead of forcing bespoke sizes onto a generic scale.
+  --text-11: 11px;
+  --text-11-5: 11.5px;
+  --text-12: 12px;
+  --text-12-5: 12.5px;
+  --text-13: 13px;
+  --text-13-5: 13.5px;
+  --text-14: 14px;
+  --text-14-5: 14.5px;
+  --text-15: 15px;
+  --text-15-5: 15.5px;
+  --text-16: 16px;
+  --text-18: 18px;
+  --text-20: 20px;
+  --text-22: 22px;
+  --text-23: 23px;
+  --text-24: 24px;
+  --text-26: 26px;
+  --text-30: 30px;
+  --text-34: 34px;
+  --text-36: 36px;
+  --text-44: 44px;
+  --text-46: 46px;
+  --text-60: 60px;
+}

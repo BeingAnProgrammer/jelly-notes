@@ -1,0 +1,63 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  height: 56px;
+  flex: 0 0 56px;
+}
+
+.topbar {
+  height: 100%;
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  gap: var(--space-14);
+  padding: 0 var(--space-20);
+  background: var(--topbar-bg);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  position: relative;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.crumb-root {
+  font-size: var(--text-14);
+  color: var(--ink-4);
+}
+
+.actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.icon-btn {
+  @include icon-button;
+  position: relative;
+  text-decoration: none;
+}
+
+.menu-btn {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: flex;
+  }
+}
+
+.notif-dot {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--rust);
+}

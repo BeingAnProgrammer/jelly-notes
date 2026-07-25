@@ -1,0 +1,93 @@
+@use 'mixins' as *;
+
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--canvas);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 960px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--accent-glow-strong), transparent 70%);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-32);
+  max-width: 640px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-40);
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background: var(--logo-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f0e0b;
+  box-shadow: 0 4px 16px rgb(124 135 255 / 35%);
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: var(--text-30);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-60);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-weight: 400;
+  max-width: 16ch;
+  text-wrap: balance;
+  margin: 0 0 var(--space-20);
+}
+
+.subtext {
+  font-size: var(--text-18);
+  color: var(--ink-3);
+  max-width: 52ch;
+  line-height: 1.6;
+  margin: 0 0 var(--space-32);
+}
+
+.sign-in-btn {
+  @include primary-button;
+  padding: var(--space-14) var(--space-28);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-16);
+  box-shadow: 0 8px 28px rgb(124 135 255 / 35%);
+}
+
+.footnote {
+  margin: var(--space-16) 0 0;
+  font-size: var(--text-13);
+  color: var(--ink-4);
+}

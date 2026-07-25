@@ -1,0 +1,123 @@
+@use 'mixins' as *;
+
+.scrim {
+  @include modal-scrim;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+  z-index: 300;
+}
+
+.card {
+  width: 640px;
+  max-width: calc(100vw - var(--space-32));
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: rgb(28 26 21 / 96%);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 32px 80px -16px rgb(0 0 0 / 80%);
+  animation: m-pop var(--duration-moderate) var(--ease-standard);
+  overflow: hidden;
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  padding: var(--space-16);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink-4);
+  flex: 0 0 auto;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-16);
+    outline: none;
+
+    &::placeholder {
+      color: var(--ink-4);
+    }
+  }
+}
+
+.esc {
+  @include kbd-chip;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-6);
+  @include custom-scrollbar;
+}
+
+.group-label {
+  padding: var(--space-8) var(--space-10) var(--space-4);
+  font-size: var(--text-11);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-4);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  width: 100%;
+  padding: var(--space-9) var(--space-10);
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-14);
+  text-align: left;
+  cursor: pointer;
+
+  &.highlighted {
+    background: var(--surface-alt);
+  }
+}
+
+.meta {
+  margin-left: auto;
+  font-size: var(--text-12);
+  color: var(--ink-4);
+}
+
+.hint {
+  @include kbd-chip;
+  margin-left: auto;
+}
+
+.empty {
+  padding: var(--space-24);
+  text-align: center;
+  color: var(--ink-4);
+  font-size: var(--text-13);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-10) var(--space-16);
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-4);
+  font-size: var(--text-11-5);
+  flex: 0 0 auto;
+}
+
+.spacer {
+  margin-left: auto;
+}

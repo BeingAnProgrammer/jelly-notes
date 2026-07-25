@@ -1,0 +1,18 @@
+<div class="wrap" appClickOutside (clickOutside)="open.set(false)">
+  <button type="button" class="trigger" title="Move to folder" (click)="open.set(!open())">
+    <app-icon name="folder" [size]="15" [strokeWidth]="1.8" />
+    Move
+  </button>
+
+  @if (open()) {
+    <div class="menu" role="menu">
+      <div class="menu-label">Move to folder</div>
+      @for (folder of foldersService.folders(); track folder.name) {
+        <button type="button" role="menuitem" (click)="moveTo(folder.name)">
+          <app-icon name="folder" [size]="14" [strokeWidth]="1.8" />
+          {{ folder.name }}
+        </button>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,54 @@
+@use 'mixins' as *;
+
+.wrap {
+  position: relative;
+}
+
+.trigger {
+  @include ghost-button;
+  height: 34px;
+  padding: 0 var(--space-11);
+}
+
+.menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 40;
+  min-width: 186px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+  padding: var(--space-6);
+  animation: m-pop var(--duration-base) var(--ease-standard);
+}
+
+.menu-label {
+  padding: var(--space-6) var(--space-10) var(--space-4);
+  font-size: var(--text-11);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-4);
+}
+
+.menu button[role='menuitem'] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-9);
+  width: 100%;
+  padding: var(--space-8) var(--space-10);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-13-5);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    background: var(--surface-alt);
+  }
+}

@@ -1,0 +1,21 @@
+<div class="header">
+  <span class="title">Recent notes</span>
+  <a routerLink="/notes" class="view-all">View all</a>
+</div>
+
+@if (notesService.recentNotes().length) {
+  <div class="list">
+    @for (note of notesService.recentNotes(); track note.id) {
+      <a class="row" [routerLink]="['/notes', note.id]">
+        <span class="dot" [style.background]="note.dot"></span>
+        <div class="text">
+          <div class="note-title">{{ note.title }}</div>
+          <div class="note-folder">{{ note.folder }}</div>
+        </div>
+        <span class="updated">{{ relativeTime(note.updatedAt) }}</span>
+      </a>
+    }
+  </div>
+} @else {
+  <app-empty-state icon="file" title="No notes yet" description="Create your first note to see it here." />
+}

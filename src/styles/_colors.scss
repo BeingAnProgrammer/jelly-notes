@@ -1,0 +1,79 @@
+// Design tokens reverse-engineered from the Claude Design handoff (Memora.dc.html).
+// Dark is the default theme (matches the shipped design's default state); light overrides
+// via the `data-theme="light"` attribute set on <html> by AppearanceService.
+
+:root {
+  --canvas: #0b0b0f;
+  --canvas-sub: #111117;
+  --surface: #16161d;
+  --surface-alt: #1d1d26;
+
+  --ink: #f4f4f7;
+  --ink-2: #c9c9d4;
+  --ink-3: #8b8b99;
+  --ink-4: #5e5e6b;
+  --ink-5: #33333d;
+
+  --hairline: #242430;
+  --hairline-2: #1b1b24;
+
+  --accent: #7c87ff;
+  --accent-hover: #909aff;
+  --accent-soft: #1c1e32;
+  --accent-ink: #c3c9ff;
+  --accent-fg: #0b0b0f;
+
+  --ochre: #e0a15e;
+  --rust: #f27a6e;
+  --ink-blue: #7ca8ff;
+
+  --accent-glow-weak: rgb(124 135 255 / 10%);
+  --accent-glow: rgb(124 135 255 / 14%);
+  --accent-glow-strong: rgb(124 135 255 / 24%);
+  --selection-bg: rgb(124 135 255 / 25%);
+  --selection-fg: var(--ink);
+
+  --scrollbar-thumb: #2a2620;
+  --scrollbar-thumb-hover: #3f3b33;
+
+  --logo-gradient: linear-gradient(150deg, #7c87ff, #4a52d8);
+  --logo-gradient-hover: linear-gradient(150deg, #909aff, #4a52d8);
+
+  --topbar-bg: rgb(11 11 15 / 75%);
+}
+
+:root[data-theme='light'] {
+  --canvas: #fbfbfd;
+  --canvas-sub: #f3f3f7;
+  --surface: #ffffff;
+  --surface-alt: #f7f7fb;
+
+  --ink: #16161d;
+  --ink-2: #3c3c48;
+  --ink-3: #6b6b78;
+  --ink-4: #9a9aa6;
+  --ink-5: #d0d0da;
+
+  --hairline: #e6e6ee;
+  --hairline-2: #efeff4;
+
+  --accent: #5b63e6;
+  --accent-hover: #4a52d8;
+  --accent-soft: #ecedfc;
+  --accent-ink: #2e338c;
+  --accent-fg: #ffffff;
+
+  --ochre: #b8894a;
+  --rust: #c4483a;
+  --ink-blue: #3b57c4;
+
+  --accent-glow-weak: rgb(91 99 230 / 8%);
+  --accent-glow: rgb(91 99 230 / 12%);
+  --accent-glow-strong: rgb(91 99 230 / 20%);
+  --selection-bg: rgb(91 99 230 / 18%);
+
+  --scrollbar-thumb: #d8d8e2;
+  --scrollbar-thumb-hover: #c2c2ce;
+
+  --topbar-bg: rgb(251 251 253 / 75%);
+}

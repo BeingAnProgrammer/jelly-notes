@@ -1,0 +1,81 @@
+@if (paletteService.isOpen()) {
+  <div class="scrim">
+    <div class="card" appClickOutside (clickOutside)="paletteService.close()" role="dialog" aria-label="Command palette">
+      <div class="search-row">
+        <app-icon name="search" [size]="16" [strokeWidth]="1.9" />
+        <input
+          #searchInput
+          type="text"
+          placeholder="Search notes, run a command, or ask AI"
+          [value]="query()"
+          (input)="onQueryInput($event)"
+          (keydown)="onKeydown($event)"
+        />
+        <kbd class="esc">esc</kbd>
+      </div>
+
+      <div class="body">
+        @if (filteredActions().length) {
+          <div class="group-label">Actions</div>
+          @for (action of filteredActions(); track action.label; let i = $index) {
+            <button
+              type="button"
+              class="item"
+              [class.highlighted]="highlightedIndex() === i"
+              (mouseenter)="highlightedIndex.set(i)"
+              (click)="activate({ kind: 'action', action })"
+            >
+              <app-icon [name]="action.icon" [size]="15" [strokeWidth]="1.8" />
+              <span>{{ action.label }}</span>
+              @if (action.hint) {
+                <kbd class="hint">{{ action.hint }}</kbd>
+              }
+            </button>
+          }
+        }
+
+        @if (noteItems().length) {
+          <div class="group-label">Jump to</div>
+          @for (note of noteItems(); track note.id; let i = $index) {
+            <button
+              type="button"
+              class="item"
+              [class.highlighted]="highlightedIndex() === notesStartIndex() + i"
+              (mouseenter)="highlightedIndex.set(notesStartIndex() + i)"
+              (click)="activate({ kind: 'note', note })"
+            >
+              <app-icon name="file" [size]="15" [strokeWidth]="1.8" />
+              <span>{{ note.label }}</span>
+              <span class="meta">{{ note.meta }}</span>
+            </button>
+          }
+        }
+
+        @if (askAiQuery()) {
+          <div class="group-label">Ask AI</div>
+          <button
+            type="button"
+            class="item"
+            [class.highlighted]="highlightedIndex() === askAiIndex()"
+            (mouseenter)="highlightedIndex.set(askAiIndex())"
+            (click)="activate({ kind: 'ask-ai', query: askAiQuery() })"
+          >
+            <app-icon name="sparkles" [size]="15" [strokeWidth]="1.8" />
+            <span>Ask AI: "{{ askAiQuery() }}"</span>
+          </button>
+        }
+
+        @if (!flatItems().length) {
+          <p class="empty">No matches.</p>
+        }
+      </div>
+
+      <div class="footer">
+        <span>↑↓ navigate</span>
+        <span>↵ open</span>
+        <span class="spacer"></span>
+        <span>Ask AI for anything</span>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,64 @@
+@use 'mixins' as *;
+
+.shell {
+  position: relative;
+  margin: 0 0 var(--space-20);
+}
+
+.remove-block {
+  @include block-remove-button;
+  top: calc(-1 * var(--space-8));
+  right: calc(-1 * var(--space-8));
+}
+
+.table-wrap {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-14);
+}
+
+thead tr {
+  background: var(--canvas-sub);
+}
+
+th {
+  text-align: left;
+  padding: var(--space-10) var(--space-14);
+  color: var(--ink-3);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-12);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+td {
+  padding: var(--space-10) var(--space-14);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+tr:not(:first-child) td,
+tbody tr {
+  border-top: 1px solid var(--hairline);
+}
+
+th input,
+td input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+
+  &:focus {
+    text-decoration: underline;
+  }
+}

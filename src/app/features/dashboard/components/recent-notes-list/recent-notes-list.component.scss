@@ -1,0 +1,73 @@
+@use 'mixins' as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-12);
+}
+
+.title {
+  font-size: var(--text-13);
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.view-all {
+  margin-left: auto;
+  font-size: var(--text-12-5);
+  color: var(--ink-4);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.row {
+  @include interactive-card(-1px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-13) var(--space-15);
+  text-decoration: none;
+  transition-duration: var(--duration-fast);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-xs);
+  flex: 0 0 auto;
+}
+
+.text {
+  min-width: 0;
+  flex: 1;
+}
+
+.note-title {
+  font-size: var(--text-14);
+  color: var(--ink);
+  font-weight: var(--weight-input);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-folder {
+  font-size: var(--text-12);
+  color: var(--ink-4);
+}
+
+.updated {
+  font-family: var(--font-mono);
+  font-size: var(--text-11-5);
+  color: var(--ink-4);
+  flex: 0 0 auto;
+}

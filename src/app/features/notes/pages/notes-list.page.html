@@ -1,0 +1,51 @@
+<div class="header">
+  <div>
+    <h1>{{ notesTitle() }}</h1>
+    <p class="subtext">{{ notesCount() }} notes · sorted by last edited</p>
+  </div>
+
+  <div class="view-toggle" role="group" aria-label="Note view">
+    <button
+      type="button"
+      [class.active]="view() === 'grid'"
+      [attr.aria-pressed]="view() === 'grid'"
+      title="Grid view"
+      (click)="setView('grid')"
+    >
+      <app-icon name="grid" [size]="15" [strokeWidth]="1.9" />
+    </button>
+    <button
+      type="button"
+      [class.active]="view() === 'list'"
+      [attr.aria-pressed]="view() === 'list'"
+      title="List view"
+      (click)="setView('list')"
+    >
+      <app-icon name="list" [size]="15" [strokeWidth]="1.9" />
+    </button>
+  </div>
+</div>
+
+@if (showPinned()) {
+  <div class="section-label">
+    <app-icon name="pin" [size]="13" [strokeWidth]="1.9" />
+    <span>Pinned</span>
+  </div>
+  <div class="grid" [style.grid-template-columns]="gridCols()">
+    @for (note of pinnedNotes(); track note.id) {
+      <app-note-card [note]="note" />
+    }
+  </div>
+
+  <div class="section-label"><span>All notes</span></div>
+}
+
+@if (mainNotes().length) {
+  <div class="grid" [style.grid-template-columns]="gridCols()">
+    @for (note of mainNotes(); track note.id) {
+      <app-note-card [note]="note" />
+    }
+  </div>
+} @else if (!showPinned()) {
+  <app-empty-state icon="file" [title]="'No notes in ' + notesTitle()" description="Notes you create will show up here." />
+}

@@ -1,0 +1,123 @@
+@use 'mixins' as *;
+
+.section-label {
+  display: block;
+  margin-bottom: var(--space-12);
+  font-size: var(--text-12);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-4);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  padding: var(--space-20);
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--hairline);
+  }
+}
+
+.row-label {
+  width: 160px;
+  flex: 0 0 auto;
+}
+
+.row-title {
+  font-size: var(--text-14);
+  color: var(--ink);
+  font-weight: var(--weight-input);
+}
+
+.row-hint {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-12);
+  color: var(--ink-4);
+}
+
+.row-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  flex: 1;
+  min-width: 0;
+}
+
+.swatches {
+  display: flex;
+  gap: var(--space-10);
+}
+
+.swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  &.selected {
+    box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+  }
+
+  @include focus-ring;
+}
+
+.name-form {
+  display: flex;
+  gap: var(--space-10);
+  width: 100%;
+  max-width: 360px;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    background: var(--canvas-sub);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-14);
+    padding: var(--space-8) var(--space-12);
+    outline: none;
+
+    &:focus {
+      border-color: var(--accent);
+    }
+  }
+
+  button {
+    @include ghost-button;
+    padding: var(--space-8) var(--space-16);
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .row-label {
+    width: auto;
+  }
+}

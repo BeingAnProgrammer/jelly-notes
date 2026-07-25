@@ -1,0 +1,119 @@
+@use 'mixins' as *;
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin: 0 0 var(--space-20);
+  position: relative;
+
+  &.editable {
+    border: 1px dashed var(--hairline);
+    border-radius: var(--radius-md);
+    padding: var(--space-10) var(--space-36) var(--space-10) var(--space-10);
+  }
+}
+
+.remove-block {
+  @include block-remove-button;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-11);
+}
+
+.check {
+  width: 19px;
+  height: 19px;
+  border-radius: var(--radius-sm);
+  border: 1.7px solid var(--ink-5);
+  background: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  cursor: pointer;
+  color: var(--accent-fg);
+
+  &.done {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  @include focus-ring;
+}
+
+.item-label {
+  &.done {
+    text-decoration: line-through;
+    color: var(--ink-4);
+  }
+}
+
+.item-text {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-16);
+  padding: var(--space-2) 0;
+  outline: none;
+
+  &:focus {
+    border-color: var(--accent);
+  }
+}
+
+.remove-item {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-4);
+  cursor: pointer;
+  flex: 0 0 auto;
+
+  &:hover {
+    background: var(--surface-alt);
+    color: var(--rust);
+  }
+}
+
+.add-item {
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-sm);
+    background: var(--canvas-sub);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-13-5);
+    padding: var(--space-6) var(--space-9);
+    outline: none;
+
+    &:focus {
+      border-color: var(--accent);
+    }
+  }
+
+  button {
+    @include ghost-button;
+    padding: var(--space-6) var(--space-12);
+    font-size: var(--text-13);
+  }
+}

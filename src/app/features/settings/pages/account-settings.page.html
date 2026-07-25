@@ -1,0 +1,42 @@
+<h1 class="section-label">Account</h1>
+
+<div class="card">
+  <div class="row">
+    <div class="row-label">
+      <div class="row-title">Profile photo</div>
+      <p class="row-hint">Choose an avatar color.</p>
+    </div>
+    <div class="row-content">
+      @if (auth.currentUser(); as user) {
+        <app-avatar [initials]="initialsOf(user.displayName)" [gradient]="user.avatar" [size]="56" />
+        <div class="swatches" role="radiogroup" aria-label="Avatar color">
+          @for (option of avatarOptions; track option) {
+            <button
+              type="button"
+              class="swatch"
+              role="radio"
+              [attr.aria-checked]="user.avatar === option"
+              [attr.aria-label]="'Avatar color ' + option"
+              [class.selected]="user.avatar === option"
+              [style.background]="avatarGradientCss(option)"
+              (click)="selectAvatar(option)"
+            ></button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-label">
+      <div class="row-title">Display name</div>
+      <p class="row-hint">Shown across your workspace.</p>
+    </div>
+    <div class="row-content">
+      <form class="name-form" (ngSubmit)="saveName()">
+        <input type="text" [formControl]="nameControl" aria-label="Display name" />
+        <button type="submit" [disabled]="nameControl.invalid">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

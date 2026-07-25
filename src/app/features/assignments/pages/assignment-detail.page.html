@@ -1,0 +1,50 @@
+@if (assignment(); as assignment) {
+  <a routerLink="/assignments" class="back-link">
+    <app-icon name="chevron-right" [size]="14" [strokeWidth]="2" class="back-chevron" />
+    All assignments
+  </a>
+
+  <div class="header">
+    <div class="header-main">
+      <div class="meta-row">
+        <app-pill [bg]="assignment.tagBg" [color]="assignment.tagColor" [bordered]="false">
+          {{ assignment.context }}
+        </app-pill>
+        <span class="due">Due {{ dueLabel() }}</span>
+      </div>
+      <h1>{{ assignment.title }}</h1>
+    </div>
+
+    <div class="stat-card">
+      <div class="pct" [style.color]="assignment.barColor">{{ assignment.percentComplete }}%</div>
+      <div class="done-label">{{ assignment.taskCountLabel }} done</div>
+      <app-progress-bar [percent]="assignment.percentComplete" [color]="assignment.barColor" [label]="'Overall progress'" />
+    </div>
+  </div>
+
+  <div class="add-task">
+    <app-icon name="plus" [size]="15" [strokeWidth]="2" />
+    <input
+      #newTaskInput
+      type="text"
+      placeholder="Add a task and press Enter — it starts in To do"
+      (keydown.enter)="addTask(newTaskInput)"
+    />
+    <button type="button" (click)="addTask(newTaskInput)">Add task</button>
+  </div>
+
+  <div class="kanban">
+    <app-kanban-column title="To do" color="var(--ink-4)" [tasks]="columns().todo" (advance)="advanceTask($event)" />
+    <app-kanban-column
+      title="In progress"
+      color="var(--ink-blue)"
+      [tasks]="columns().progress"
+      (advance)="advanceTask($event)"
+    />
+    <app-kanban-column title="Done" color="var(--accent)" [tasks]="columns().done" (advance)="advanceTask($event)" />
+  </div>
+} @else {
+  <div class="not-found">
+    <app-empty-state icon="cap" title="Assignment not found" description="This assignment may have been removed." />
+  </div>
+}

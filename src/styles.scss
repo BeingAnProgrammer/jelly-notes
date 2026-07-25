@@ -1,1 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'colors';
+@use 'typography';
+@use 'spacing';
+@use 'motion';
+@use 'mixins' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-15);
+  -webkit-font-smoothing: antialiased;
+  @include custom-scrollbar;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--accent-hover);
+  }
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+.sr-only {
+  @include visually-hidden;
+}
+
+.skip-link {
+  @include visually-hidden;
+
+  &:focus {
+    position: fixed;
+    top: var(--space-12);
+    left: var(--space-12);
+    width: auto;
+    height: auto;
+    clip: auto;
+    z-index: 1000;
+    padding: var(--space-10) var(--space-16);
+    border-radius: var(--radius-md);
+    background: var(--accent);
+    color: var(--accent-fg);
+    font-family: var(--font-sans);
+    font-weight: var(--weight-semibold);
+  }
+}
+

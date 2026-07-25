@@ -1,0 +1,71 @@
+<div class="header">
+  <div class="badge">
+    <app-icon name="sparkles" [size]="14" [strokeWidth]="1.8" />
+    AI search across {{ notesService.totalCount() }} notes
+  </div>
+  <h1>Ask your notes anything.</h1>
+</div>
+
+<div class="search-bar">
+  <app-icon name="search" [size]="19" [strokeWidth]="1.9" />
+  <input
+    type="text"
+    placeholder="What changed in our pricing thinking since August?"
+    [value]="query()"
+    (input)="onQueryInput($event)"
+    (keydown.enter)="submit()"
+  />
+  <button type="button" (click)="submit()">
+    Ask
+    <app-icon name="arrow-right" [size]="14" [strokeWidth]="2" />
+  </button>
+</div>
+
+@if (answer(); as answer) {
+  <div class="answer-card">
+    <div class="answer-header">
+      <span class="icon-chip">
+        <app-icon name="sparkles" [size]="13" [strokeWidth]="1.8" />
+      </span>
+      <span class="title">Answer</span>
+      <span class="synth">Synthesized from {{ answer.sourceNoteIds.length }} note{{ answer.sourceNoteIds.length === 1 ? '' : 's' }}</span>
+    </div>
+    <p class="answer-text">{{ answer.text }}</p>
+    @if (answer.sourceNoteIds.length) {
+      <div class="sources">
+        @for (noteId of answer.sourceNoteIds; track noteId) {
+          <a class="source-chip" [routerLink]="['/notes', noteId]">
+            <app-icon name="file" [size]="12" [strokeWidth]="1.8" />
+            {{ sourceTitle(noteId) }}
+          </a>
+        }
+      </div>
+    }
+  </div>
+}
+
+@if (hasSearched()) {
+  @if (results().length) {
+    <div class="results-label">Matching notes</div>
+    <div class="results">
+      @for (result of results(); track result.id) {
+        <a class="result-row" [routerLink]="['/notes', result.id]">
+          <span class="dot" [style.background]="result.dot"></span>
+          <div class="text">
+            <div class="title-line">
+              <span class="title">{{ result.title }}</span>
+              <span class="folder">· {{ result.folder }}</span>
+            </div>
+            <p class="excerpt">{{ result.excerpt }}</p>
+          </div>
+          <div class="side">
+            <span class="match">{{ result.matchScore }}% match</span>
+            <span class="updated">{{ relativeTime(result.updatedAt) }}</span>
+          </div>
+        </a>
+      }
+    </div>
+  } @else {
+    <app-empty-state icon="search" title="No matching notes" description="Try a different word or phrase." />
+  }
+}

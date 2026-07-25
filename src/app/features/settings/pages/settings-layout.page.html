@@ -1,0 +1,16 @@
+<div class="settings-grid">
+  <nav class="settings-nav" aria-label="Settings">
+    <a routerLink="account" routerLinkActive="active" class="nav-item">
+      <app-icon name="home" [size]="15" [strokeWidth]="1.8" />
+      Account
+    </a>
+    <a routerLink="appearance" routerLinkActive="active" class="nav-item">
+      <app-icon name="sun" [size]="15" [strokeWidth]="1.8" />
+      Appearance
+    </a>
+  </nav>
+
+  <div class="settings-content">
+    <router-outlet />
+  </div>
+</div>

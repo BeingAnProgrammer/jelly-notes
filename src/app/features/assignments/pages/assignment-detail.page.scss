@@ -1,0 +1,142 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-40) var(--space-80);
+  animation: m-fade-up var(--duration-moderate) var(--ease-standard);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-20);
+  color: var(--ink-4);
+  font-size: var(--text-13);
+
+  &:hover {
+    color: var(--ink);
+  }
+}
+
+.back-chevron {
+  transform: rotate(180deg);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-24);
+  margin-bottom: var(--space-24);
+}
+
+.header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  margin-bottom: var(--space-10);
+}
+
+.due {
+  font-family: var(--font-mono);
+  font-size: var(--text-12);
+  color: var(--ink-4);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-34);
+  color: var(--ink);
+  margin: 0;
+  font-weight: 400;
+}
+
+.stat-card {
+  width: 224px;
+  flex: 0 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: var(--space-16);
+}
+
+.pct {
+  font-family: var(--font-mono);
+  font-size: var(--text-30);
+  font-weight: var(--weight-input);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+}
+
+.done-label {
+  font-size: var(--text-12);
+  color: var(--ink-4);
+  margin-bottom: var(--space-10);
+}
+
+.add-task {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-14);
+  margin-bottom: var(--space-20);
+  color: var(--ink-4);
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-14);
+    outline: none;
+
+    &::placeholder {
+      color: var(--ink-4);
+    }
+  }
+
+  button {
+    @include ghost-button;
+    padding: var(--space-6) var(--space-14);
+    flex: 0 0 auto;
+  }
+}
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-14);
+}
+
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .stat-card {
+    width: 100%;
+  }
+
+  .kanban {
+    grid-template-columns: 1fr;
+  }
+}

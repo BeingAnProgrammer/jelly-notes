@@ -1,0 +1,35 @@
+<h1 class="section-label">Appearance</h1>
+
+<div class="card">
+  <div class="row">
+    <div class="row-label">
+      <div class="row-title">Theme</div>
+      <p class="row-hint">Applies instantly, everywhere.</p>
+    </div>
+    <div class="row-content" role="radiogroup" aria-label="Theme">
+      <button
+        type="button"
+        class="theme-tile"
+        role="radio"
+        [attr.aria-checked]="appearance.theme() === 'dark'"
+        [class.selected]="appearance.theme() === 'dark'"
+        (click)="setTheme('dark')"
+      >
+        <div class="preview dark-preview"></div>
+        <span><app-icon name="moon" [size]="13" [strokeWidth]="1.8" /> Dark</span>
+      </button>
+
+      <button
+        type="button"
+        class="theme-tile"
+        role="radio"
+        [attr.aria-checked]="appearance.theme() === 'light'"
+        [class.selected]="appearance.theme() === 'light'"
+        (click)="setTheme('light')"
+      >
+        <div class="preview light-preview"></div>
+        <span><app-icon name="sun" [size]="13" [strokeWidth]="1.8" /> Light</span>
+      </button>
+    </div>
+  </div>
+</div>

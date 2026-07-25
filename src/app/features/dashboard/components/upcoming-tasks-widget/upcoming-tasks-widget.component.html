@@ -1,0 +1,20 @@
+<div class="header">
+  <span class="title">Upcoming tasks</span>
+  <a routerLink="/assignments" class="view-all">Assignments</a>
+</div>
+
+@if (assignmentsService.upcomingTasks().length) {
+  <div class="card">
+    @for (task of assignmentsService.upcomingTasks(); track task.taskId) {
+      <div class="row">
+        <span class="checkbox" [style.border-color]="task.hot ? 'var(--rust)' : 'var(--ink-5)'"></span>
+        <div class="text">{{ task.title }}</div>
+        <span class="due" [style.color]="task.hot ? 'var(--rust)' : 'var(--ink-4)'">
+          {{ formatDue(task.due) }}
+        </span>
+      </div>
+    }
+  </div>
+} @else {
+  <app-empty-state icon="cap" title="Nothing due soon" description="You're all caught up on tasks." />
+}

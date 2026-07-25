@@ -1,0 +1,40 @@
+<div class="shell" [class.editable]="editable()">
+  @if (editable()) {
+    <button type="button" class="remove-block" title="Remove checklist" (click)="removed.emit()">
+      <app-icon name="x" [size]="13" [strokeWidth]="2" />
+    </button>
+  }
+
+  @for (item of block().items; track item.id; let i = $index) {
+    <div class="item">
+      <button
+        type="button"
+        class="check"
+        [class.done]="item.done"
+        [attr.aria-pressed]="item.done"
+        [attr.aria-label]="item.done ? 'Mark as not done' : 'Mark as done'"
+        (click)="toggleItem.emit({ blockId: block().id, itemId: item.id })"
+      >
+        @if (item.done) {
+          <app-icon name="checkmark" [size]="12" [strokeWidth]="3" />
+        }
+      </button>
+
+      @if (editable()) {
+        <input class="item-text" type="text" [value]="item.text" (input)="onItemTextInput(i, $event)" />
+        <button type="button" class="remove-item" title="Remove item" (click)="onRemoveItem(i)">
+          <app-icon name="x" [size]="12" [strokeWidth]="2" />
+        </button>
+      } @else {
+        <span class="item-label" [class.done]="item.done">{{ item.text }}</span>
+      }
+    </div>
+  }
+
+  @if (editable()) {
+    <div class="add-item">
+      <input #newItemInput type="text" placeholder="Add item…" (keydown.enter)="onAddItem(newItemInput)" />
+      <button type="button" (click)="onAddItem(newItemInput)">Add</button>
+    </div>
+  }
+</div>

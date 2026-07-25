@@ -1,0 +1,81 @@
+@if (mobileNav.isOpen()) {
+  <div class="mobile-scrim" (click)="mobileNav.close()"></div>
+}
+
+<aside class="sidebar" [class.mobile-open]="mobileNav.isOpen()">
+  <div class="brand">
+    <div class="brand-mark">
+      <app-icon name="logo" [size]="17" [strokeWidth]="2.4" />
+    </div>
+    <span class="brand-name">Memora</span>
+    <app-pill class="pro-pill" bg="var(--accent-soft)" color="var(--accent-ink)" [bordered]="false" weight="600">PRO</app-pill>
+  </div>
+
+  <button type="button" class="new-note-btn" (click)="createNote()">
+    <app-icon name="plus" [size]="17" [strokeWidth]="2" />
+    New note
+  </button>
+
+  <button type="button" class="search-btn" (click)="paletteService.open()">
+    <app-icon name="search" [size]="15" [strokeWidth]="1.9" />
+    Search or ask
+    <span class="kbd-group">
+      <kbd class="kbd">⌘</kbd>
+      <kbd class="kbd">K</kbd>
+    </span>
+  </button>
+
+  <nav class="main-nav" aria-label="Main">
+    @for (item of navItems(); track item.id) {
+      <a
+        class="nav-item"
+        [class.active]="item.active"
+        [routerLink]="item.link"
+        [queryParams]="item.queryParams ?? null"
+      >
+        <app-icon [name]="item.icon" [size]="16" [strokeWidth]="1.8" />
+        <span>{{ item.label }}</span>
+        @if (item.badge) {
+          <span class="badge">{{ item.badge }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <div class="folders-header">
+    <span class="section-label">Folders</span>
+    <button type="button" class="icon-btn-ghost" title="New folder" (click)="folderModalOpen.set(true)">
+      <app-icon name="plus" [size]="14" [strokeWidth]="2" />
+    </button>
+  </div>
+
+  <nav class="folders-list" aria-label="Folders">
+    @for (folder of foldersService.foldersWithCounts(); track folder.name) {
+      <a
+        class="folder-item"
+        [class.active]="isFolderActive(folder.name)"
+        routerLink="/notes"
+        [queryParams]="{ filter: 'folder', folder: folder.name }"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" [attr.fill]="folder.color" stroke="none" aria-hidden="true">
+          <path d="M4 20a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2z" />
+        </svg>
+        <span>{{ folder.name }}</span>
+        <span class="folder-count">{{ folder.count }}</span>
+      </a>
+    }
+  </nav>
+
+  <a routerLink="/settings" class="profile-row">
+    <app-avatar [initials]="userInitials()" [gradient]="auth.currentUser()?.avatar ?? 'gradient-1'" />
+    <div class="profile-text">
+      <div class="profile-name">{{ auth.currentUser()?.displayName }}</div>
+      <div class="profile-meta">{{ auth.currentUser()?.role }} · {{ auth.currentUser()?.organization }}</div>
+    </div>
+    <app-icon name="settings" [size]="16" [strokeWidth]="1.8" />
+  </a>
+</aside>
+
+@if (folderModalOpen()) {
+  <app-new-folder-modal (closed)="folderModalOpen.set(false)" />
+}

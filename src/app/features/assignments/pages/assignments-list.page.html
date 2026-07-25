@@ -1,0 +1,14 @@
+<div class="header">
+  <h1>Assignments</h1>
+  <p class="subtext">{{ assignmentsService.assignmentsDecorated().length }} assignments</p>
+</div>
+
+@if (assignmentsService.assignmentsDecorated().length) {
+  <div class="list">
+    @for (assignment of assignmentsService.assignmentsDecorated(); track assignment.id) {
+      <app-assignment-row [assignment]="assignment" />
+    }
+  </div>
+} @else {
+  <app-empty-state icon="cap" title="No assignments yet" description="Assignments you create will show up here." />
+}

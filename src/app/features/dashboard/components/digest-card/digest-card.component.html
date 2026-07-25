@@ -1,0 +1,15 @@
+<div class="glow" aria-hidden="true"></div>
+
+<div class="header">
+  <span class="icon-chip">
+    <app-icon name="sparkles" [size]="15" [strokeWidth]="1.8" />
+  </span>
+  <span class="title">AI daily digest</span>
+  <span class="generated-at">Generated {{ generatedAt }}</span>
+</div>
+
+<p class="body">{{ digest() }}</p>
+
+<div class="actions">
+  <button type="button" class="pill-action" (click)="chat.openChat()">Ask a follow-up</button>
+</div>

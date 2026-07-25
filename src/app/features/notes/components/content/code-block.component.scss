@@ -1,0 +1,68 @@
+@use 'mixins' as *;
+
+.shell {
+  position: relative;
+  margin: 0 0 var(--space-20);
+  border: 1px dashed var(--hairline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-36) var(--space-10) var(--space-10);
+}
+
+.remove-block {
+  @include block-remove-button;
+}
+
+.language-input {
+  display: block;
+  width: 160px;
+  margin-bottom: var(--space-6);
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-12);
+  padding: var(--space-2) 0;
+  outline: none;
+}
+
+.code-input {
+  width: 100%;
+  border: none;
+  background: var(--canvas-sub);
+  border-radius: var(--radius-sm);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-13-5);
+  padding: var(--space-10);
+  resize: vertical;
+  outline: none;
+}
+
+.code-wrap {
+  position: relative;
+  margin: 0 0 var(--space-20);
+  background: var(--canvas-sub);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.lang-tag {
+  padding: var(--space-6) var(--space-16) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  color: var(--ink-4);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+pre {
+  margin: 0;
+  padding: var(--space-14) var(--space-16);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-13-5);
+  line-height: 1.6;
+  color: var(--ink-2);
+}

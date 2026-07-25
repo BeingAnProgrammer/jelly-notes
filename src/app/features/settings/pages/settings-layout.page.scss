@@ -1,0 +1,64 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-40) var(--space-80);
+  animation: m-fade-up var(--duration-moderate) var(--ease-standard);
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-32);
+}
+
+.settings-nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-self: start;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  padding: var(--space-8) var(--space-10);
+  border-radius: var(--radius-md);
+  font-size: var(--text-14);
+  color: var(--ink-3);
+  font-weight: var(--weight-input);
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    background: var(--surface-alt);
+  }
+
+  &.active {
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    font-weight: var(--weight-semibold);
+  }
+
+  @include focus-ring;
+}
+
+.settings-content {
+  min-width: 0;
+}
+
+@media (max-width: 720px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-nav {
+    position: static;
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,22 @@
+<a class="card" [routerLink]="['/notes', note().id]">
+  <div class="top-row">
+    <span class="dot" [style.background]="note().dot"></span>
+    <span class="folder">{{ note().folder }}</span>
+    @if (note().pinned) {
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.5" class="pin" aria-hidden="true">
+        <path d="M12 17v5" />
+        <path d="M9 10.8V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6.8l2 3.2H7z" />
+      </svg>
+    }
+  </div>
+
+  <div class="title">{{ note().title }}</div>
+  <p class="excerpt">{{ note().excerpt }}</p>
+
+  <div class="footer">
+    @for (tag of note().tags; track tag) {
+      <app-pill>{{ tag }}</app-pill>
+    }
+    <span class="updated">{{ relativeTime(note().updatedAt) }}</span>
+  </div>
+</a>

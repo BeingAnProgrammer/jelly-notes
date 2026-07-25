@@ -1,0 +1,49 @@
+@if (chat.isOpen()) {
+  <div class="panel" role="dialog" aria-label="Memora AI chat">
+    <div class="header">
+      <span class="icon-chip">
+        <app-icon name="sparkles" [size]="13" [strokeWidth]="1.8" />
+      </span>
+      <div class="titles">
+        <div class="title">Memora AI</div>
+        <div class="subtitle">Reading your notes</div>
+      </div>
+      <button type="button" class="close" title="Close" (click)="chat.closeChat()">
+        <app-icon name="x" [size]="15" [strokeWidth]="2" />
+      </button>
+    </div>
+
+    <div class="messages">
+      @for (message of chat.messages(); track message.id) {
+        <div class="message-row" [class.user]="message.role === 'user'">
+          <div class="bubble" [class.user]="message.role === 'user'">
+            {{ message.text }}
+          </div>
+          @if (message.sourceNoteId) {
+            <button type="button" class="source-chip" (click)="openSource(message.sourceNoteId)">
+              <app-icon name="file" [size]="11" [strokeWidth]="1.8" />
+              {{ sourceTitle(message.sourceNoteId) }}
+            </button>
+          }
+        </div>
+      }
+      @if (chat.sending()) {
+        <div class="message-row">
+          <div class="bubble">Thinking…</div>
+        </div>
+      }
+    </div>
+
+    <div class="footer">
+      <input #chatInput type="text" placeholder="Ask about your notes" (keydown.enter)="send(chatInput)" />
+      <button type="button" title="Send" (click)="send(chatInput)">
+        <app-icon name="arrow-right" [size]="15" [strokeWidth]="2" />
+      </button>
+    </div>
+  </div>
+}
+
+<button type="button" class="fab" title="Ask Memora AI" (click)="chat.toggleChat()">
+  <span class="ring" aria-hidden="true"></span>
+  <app-icon name="sparkles" [size]="20" [strokeWidth]="1.9" />
+</button>

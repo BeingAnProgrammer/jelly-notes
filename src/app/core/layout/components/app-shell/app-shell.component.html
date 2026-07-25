@@ -1,0 +1,16 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="shell">
+  <app-sidebar />
+
+  <main class="main-column">
+    <app-topbar />
+    <div id="main-content" class="scroll-area" tabindex="-1">
+      <router-outlet />
+    </div>
+    <app-ai-chat-panel />
+  </main>
+</div>
+
+<app-toast-host />
+<app-command-palette />

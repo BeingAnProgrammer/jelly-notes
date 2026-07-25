@@ -1,0 +1,22 @@
+@if (editable()) {
+  <div class="shell">
+    <button type="button" class="remove-block" title="Remove code block" (click)="removed.emit()">
+      <app-icon name="x" [size]="13" [strokeWidth]="2" />
+    </button>
+    <input
+      class="language-input"
+      type="text"
+      placeholder="language (optional)"
+      [value]="block().language ?? ''"
+      (input)="onLanguageInput($event)"
+    />
+    <textarea class="code-input" rows="4" spellcheck="false" [value]="block().code" (input)="onCodeInput($event)"></textarea>
+  </div>
+} @else {
+  <div class="code-wrap">
+    @if (block().language) {
+      <div class="lang-tag">{{ block().language }}</div>
+    }
+    <pre><code>{{ block().code }}</code></pre>
+  </div>
+}

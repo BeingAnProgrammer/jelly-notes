@@ -1,0 +1,108 @@
+@if (note(); as note) {
+  <div class="container" [style.max-width.px]="editorWidth()" [style.padding]="editorPad()">
+    <div class="toolbar">
+      <app-pill>{{ note.folder }}</app-pill>
+      <span class="edited">Edited {{ relativeTime(note.updatedAt) }}</span>
+
+      <div class="actions">
+        <button
+          type="button"
+          class="icon-btn"
+          [class.active]="note.fav"
+          title="Favorite"
+          [attr.aria-pressed]="note.fav"
+          (click)="toggleFavorite()"
+        >
+          <app-icon name="star" [size]="16" [strokeWidth]="1.8" [filled]="note.fav" />
+        </button>
+
+        <app-folder-move-menu [noteId]="note.id" />
+
+        <button type="button" class="icon-btn" title="Archive" (click)="toggleArchive()">
+          <app-icon name="archive" [size]="16" [strokeWidth]="1.8" />
+        </button>
+
+        <button type="button" class="icon-btn danger" title="Delete" (click)="showDeleteConfirm.set(true)">
+          <app-icon name="trash" [size]="16" [strokeWidth]="1.8" />
+        </button>
+
+        <button
+          type="button"
+          class="icon-btn"
+          [class.active]="focusMode()"
+          title="Focus mode"
+          [attr.aria-pressed]="focusMode()"
+          (click)="toggleFocusMode()"
+        >
+          <app-icon name="focus" [size]="16" [strokeWidth]="1.8" />
+        </button>
+
+        @if (!editing()) {
+          <button type="button" class="btn-primary" (click)="startEdit()">
+            Edit
+          </button>
+        } @else {
+          <button type="button" class="btn-primary" (click)="saveNote()">
+            Save
+          </button>
+        }
+      </div>
+    </div>
+
+    <input
+      class="title-input"
+      type="text"
+      [value]="editing() ? draftTitle() : note.title"
+      [readOnly]="!editing()"
+      (input)="onTitleInput($event)"
+      aria-label="Note title"
+    />
+
+    <div class="tags-row">
+      @for (tag of note.tags; track tag) {
+        <app-pill>
+          {{ tag }}
+          <button type="button" class="tag-remove" [attr.aria-label]="'Remove tag ' + tag" (click)="notesService.removeTag(note.id, tag)">
+            <app-icon name="x" [size]="10" [strokeWidth]="2.4" />
+          </button>
+        </app-pill>
+      }
+      @if (addingTag()) {
+        <input #tagInput class="tag-input" type="text" placeholder="Tag name" (keydown.enter)="addTag(tagInput)" (blur)="addTag(tagInput)" />
+      } @else {
+        <button type="button" class="add-tag" (click)="addingTag.set(true)">
+          <app-icon name="plus" [size]="11" [strokeWidth]="2.2" />
+          Tag
+        </button>
+      }
+    </div>
+
+    <div class="hint-bar">
+      <span class="hint-chip">+</span>
+      Use "Add block" below (in Edit mode) to insert headings, checklists, tables, and more.
+    </div>
+
+    <article>
+      @if (!editing()) {
+        <app-note-content-renderer [blocks]="note.content" (toggleItem)="onToggleItem($event)" />
+      } @else {
+        <app-note-content-renderer [blocks]="draftContent()" [editable]="true" (blocksChange)="draftContent.set($event)" (toggleItem)="onToggleItem($event)" />
+        <app-add-block-menu (add)="draftContent.update(blocks => [...blocks, $event])" />
+      }
+    </article>
+  </div>
+
+  @if (showDeleteConfirm()) {
+    <app-confirm-dialog
+      title="Delete this note?"
+      [message]="deleteMessage(note.title)"
+      confirmLabel="Delete"
+      (confirmed)="confirmDelete()"
+      (cancelled)="showDeleteConfirm.set(false)"
+    />
+  }
+} @else {
+  <div class="not-found">
+    <app-empty-state icon="file" title="Note not found" description="This note may have been deleted or never existed." />
+  </div>
+}

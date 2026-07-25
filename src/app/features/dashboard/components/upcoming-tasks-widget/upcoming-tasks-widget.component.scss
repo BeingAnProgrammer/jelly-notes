@@ -1,0 +1,67 @@
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-12);
+}
+
+.title {
+  font-size: var(--text-13);
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.view-all {
+  margin-left: auto;
+  font-size: var(--text-12-5);
+  color: var(--ink-4);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-11);
+  padding: var(--space-10) var(--space-11);
+  border-radius: var(--radius-md);
+  transition: background var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    background: var(--surface-alt);
+  }
+}
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+  border-radius: var(--radius-sm);
+  border-width: 1.6px;
+  border-style: solid;
+  flex: 0 0 auto;
+}
+
+.text {
+  min-width: 0;
+  flex: 1;
+  font-size: var(--text-13-5);
+  color: var(--ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.due {
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  flex: 0 0 auto;
+}

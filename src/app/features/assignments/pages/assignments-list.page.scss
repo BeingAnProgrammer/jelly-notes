@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-40) var(--space-80);
+  animation: m-fade-up var(--duration-moderate) var(--ease-standard);
+}
+
+.header {
+  margin-bottom: var(--space-24);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-36);
+  color: var(--ink);
+  margin: 0 0 var(--space-4);
+  font-weight: 400;
+}
+
+.subtext {
+  font-size: var(--text-14);
+  color: var(--ink-4);
+  margin: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
