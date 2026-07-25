@@ -11,7 +11,6 @@ import {
 import { Router } from '@angular/router';
 import gsap from 'gsap';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
-import { AuthService } from '../../../core/auth/services/auth.service';
 import { SeoService } from '../../../core/seo/seo.service';
 import { JellyfishSceneComponent } from '../components/jellyfish-scene/jellyfish-scene.component';
 
@@ -66,7 +65,6 @@ interface DriftMark {
   styleUrl: './sign-in.page.scss',
 })
 export class SignInPage implements AfterViewInit, OnDestroy {
-  private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly host = inject(ElementRef<HTMLElement>);
@@ -110,9 +108,8 @@ export class SignInPage implements AfterViewInit, OnDestroy {
     );
   }
 
-  signIn(): void {
-    this.auth.signIn();
-    this.router.navigate(['/dashboard']);
+  continueToSignIn(): void {
+    this.router.navigate(['/sign-in']);
   }
 
   ngAfterViewInit(): void {

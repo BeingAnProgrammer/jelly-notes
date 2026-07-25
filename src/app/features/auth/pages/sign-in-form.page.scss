@@ -1,0 +1,228 @@
+@use 'mixins' as *;
+
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--canvas);
+  overflow: hidden;
+  padding: var(--space-24);
+}
+
+.glow {
+  position: absolute;
+  top: -12%;
+  left: 50%;
+  width: 900px;
+  height: 640px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--accent-glow-strong), transparent 65%);
+  pointer-events: none;
+}
+
+.card {
+  @include modal-card;
+  position: relative;
+  width: min(440px, 100%);
+  padding: var(--space-40) var(--space-36);
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  margin-bottom: var(--space-24);
+  color: var(--accent);
+
+  span {
+    font-family: var(--font-display);
+    font-size: var(--text-18);
+    color: var(--ink-3);
+  }
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-34);
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 var(--space-8);
+}
+
+.subtext {
+  font-size: var(--text-14-5);
+  color: var(--ink-3);
+  margin: 0 0 var(--space-32);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  text-align: left;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.field-label {
+  font-size: var(--text-13);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-2);
+}
+
+.field-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.forgot-link {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-12-5);
+  color: var(--ink-4);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.hint {
+  font-size: var(--text-12);
+  color: var(--ink-4);
+  margin-top: var(--space-2);
+}
+
+.field input,
+.password-input input {
+  width: 100%;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas-sub);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-14-5);
+  padding: var(--space-12) var(--space-14);
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+
+  &:focus {
+    border-color: var(--accent);
+  }
+}
+
+.password-input {
+  position: relative;
+  display: block;
+
+  input {
+    padding-right: var(--space-40);
+  }
+}
+
+.toggle-visibility {
+  position: absolute;
+  top: 50%;
+  right: var(--space-10);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-4);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--ink);
+    background: var(--surface-alt);
+  }
+
+  @include focus-ring;
+}
+
+.submit-btn {
+  @include primary-button;
+  width: 100%;
+  justify-content: center;
+  padding: var(--space-13) var(--space-20);
+  font-size: var(--text-15);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-4);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin: var(--space-28) 0;
+
+  span {
+    flex: 0 0 auto;
+    font-size: var(--text-11-5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+  }
+}
+
+.google-btn {
+  @include ghost-button;
+  width: 100%;
+  justify-content: center;
+  gap: var(--space-10);
+  padding: var(--space-12);
+  font-size: var(--text-14-5);
+  background: var(--canvas-sub);
+}
+
+.guest-row {
+  margin: var(--space-24) 0 0;
+  font-size: var(--text-13);
+  color: var(--ink-4);
+}
+
+.guest-link {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: inherit;
+  font-weight: var(--weight-semibold);
+  color: var(--ink-2);
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-28) var(--space-20);
+  }
+}

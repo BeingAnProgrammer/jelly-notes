@@ -23,7 +23,9 @@ export type IconName =
   | 'sun'
   | 'moon'
   | 'menu'
-  | 'x';
+  | 'x'
+  | 'eye'
+  | 'eye-off';
 
 export type IconShape =
   | { readonly kind: 'path'; readonly d: string }
@@ -120,5 +122,21 @@ export const ICONS: Record<IconName, IconShape[]> = {
   folder: [{ kind: 'path', d: 'M4 20a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2z' }],
   focus: [
     { kind: 'path', d: 'M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3' },
+  ],
+  eye: [
+    {
+      kind: 'path',
+      d: 'M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0',
+    },
+    { kind: 'circle', cx: 12, cy: 12, r: 3 },
+  ],
+  'eye-off': [
+    { kind: 'path', d: 'M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49' },
+    { kind: 'path', d: 'M14.084 14.158a3 3 0 0 1-4.242-4.242' },
+    {
+      kind: 'path',
+      d: 'M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143',
+    },
+    { kind: 'path', d: 'm2 2 20 20' },
   ],
 };
