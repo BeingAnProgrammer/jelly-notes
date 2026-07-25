@@ -19,7 +19,7 @@
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
-  box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+  box-shadow: var(--shadow-md);
   padding: var(--space-6);
   animation: m-pop var(--duration-base) var(--ease-standard);
 }

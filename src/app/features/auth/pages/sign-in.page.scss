@@ -92,7 +92,7 @@ h1 {
   padding: var(--space-14) var(--space-28);
   border-radius: var(--radius-xl);
   font-size: var(--text-16);
-  box-shadow: 0 8px 28px rgb(124 135 255 / 35%);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .footnote {
@@ -231,8 +231,8 @@ h1 {
   position: absolute;
   bottom: -4vh;
   border-radius: 50%;
-  background: rgb(124 135 255 / 28%);
-  box-shadow: 0 0 6px rgb(124 135 255 / 35%);
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--accent) 35%, transparent);
   z-index: 15;
   animation-name: jelly-bubble;
   animation-timing-function: linear;

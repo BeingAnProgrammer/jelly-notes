@@ -19,7 +19,7 @@
     display: block;
     position: fixed;
     inset: 0;
-    background: rgb(10 9 7 / 60%);
+    background: var(--scrim);
     z-index: 90;
     animation: m-fade-up var(--duration-fast) var(--ease-standard);
   }
@@ -42,7 +42,7 @@
     width: 280px;
     transform: translateX(-100%);
     transition: transform var(--duration-moderate) var(--ease-standard);
-    box-shadow: 0 0 40px rgb(0 0 0 / 50%);
+    box-shadow: var(--shadow-lg);
 
     &.mobile-open {
       transform: translateX(0);

@@ -5,7 +5,7 @@
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-xl);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 16%);
+  box-shadow: var(--shadow-xs);
 }
 
 @mixin interactive-card($lift: -2px) {
@@ -21,7 +21,7 @@
     border-color: var(--ink-5);
     background: var(--surface-alt);
     transform: translateY(#{$lift});
-    box-shadow: 0 10px 24px -8px rgb(0 0 0 / 40%);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -131,7 +131,7 @@
 @mixin modal-scrim {
   position: fixed;
   inset: 0;
-  background: rgb(10 9 7 / 60%);
+  background: var(--scrim);
   backdrop-filter: blur(3px);
 }
 
@@ -139,7 +139,7 @@
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-2xl);
-  box-shadow: 0 32px 80px -16px rgb(0 0 0 / 80%);
+  box-shadow: var(--shadow-lg);
   animation: m-pop var(--duration-moderate) var(--ease-standard);
 }
 

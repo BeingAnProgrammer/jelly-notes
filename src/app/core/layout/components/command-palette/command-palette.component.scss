@@ -19,7 +19,7 @@
   backdrop-filter: blur(20px);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-2xl);
-  box-shadow: 0 32px 80px -16px rgb(0 0 0 / 80%);
+  box-shadow: var(--shadow-lg);
   animation: m-pop var(--duration-moderate) var(--ease-standard);
   overflow: hidden;
 }

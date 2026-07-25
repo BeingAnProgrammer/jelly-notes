@@ -43,37 +43,53 @@
 }
 
 :root[data-theme='light'] {
-  --canvas: #fbfbfd;
-  --canvas-sub: #f3f3f7;
+  // Surface hierarchy is deliberately NOT a naive inversion of the dark ramp. Dark mode gets
+  // its depth from surfaces getting *lighter* as they rise (canvas -> surface -> surface-alt).
+  // Light mode gets depth from the reverse cue that actually reads as premium on a light
+  // ground: a softly toned page canvas with a still-more-recessed sidebar tone, and cards
+  // that pop as the brightest, whitest layer — reinforced by --shadow-* (see _elevation.scss),
+  // not by a flat white-on-white wash like the previous canvas/surface pair (#fbfbfd vs
+  // #ffffff — a 4% lightness difference that's essentially invisible).
+  --canvas: #f5f6f9;
+  --canvas-sub: #f0f1f5;
   --surface: #ffffff;
-  --surface-alt: #f7f7fb;
+  --surface-alt: #f8f9fc;
 
   --ink: #16161d;
   --ink-2: #3c3c48;
   --ink-3: #6b6b78;
-  --ink-4: #9a9aa6;
+  // Was #9a9aa6 (2.78:1 on white — fails WCAG AA even for large text). This token is used as
+  // real small-text color in ~30 places (timestamps, counts, metadata), not decoration, so it
+  // has to clear 4.5:1. At that floor there's very little room left below --ink-3 on a light
+  // ground — the two tiers necessarily read as much closer to each other here than they do in
+  // dark mode, where there's plenty of headroom. That's a real constraint, not an oversight.
+  --ink-4: #6c6c76;
   --ink-5: #d0d0da;
 
   --hairline: #e6e6ee;
   --hairline-2: #efeff4;
 
-  --accent: #5b63e6;
-  --accent-hover: #4a52d8;
+  // Deepened from #5b63e6 — same hue, slightly richer, so it clears 4.5:1 as small text on
+  // --canvas (was 4.65:1, borderline) and reads less "candy bright" against white cards.
+  --accent: #5158d9;
+  --accent-hover: #4047cb;
   --accent-soft: #ecedfc;
   --accent-ink: #2e338c;
   --accent-fg: #ffffff;
 
-  --ochre: #b8894a;
+  // Was #b8894a (3.13:1 on white — fails AA; this color is used as live text, e.g. the
+  // Favorites insight-card delta, not just as a decorative dot).
+  --ochre: #96622a;
   --rust: #c4483a;
   --ink-blue: #3b57c4;
 
-  --accent-glow-weak: rgb(91 99 230 / 8%);
-  --accent-glow: rgb(91 99 230 / 12%);
-  --accent-glow-strong: rgb(91 99 230 / 20%);
-  --selection-bg: rgb(91 99 230 / 18%);
+  --accent-glow-weak: rgb(81 88 217 / 8%);
+  --accent-glow: rgb(81 88 217 / 12%);
+  --accent-glow-strong: rgb(81 88 217 / 20%);
+  --selection-bg: rgb(81 88 217 / 18%);
 
   --scrollbar-thumb: #d8d8e2;
   --scrollbar-thumb-hover: #c2c2ce;
 
-  --topbar-bg: rgb(251 251 253 / 75%);
+  --topbar-bg: rgb(245 246 249 / 75%);
 }

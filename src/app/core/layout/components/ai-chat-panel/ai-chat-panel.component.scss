@@ -53,7 +53,7 @@
   backdrop-filter: blur(16px);
   border: 1px solid rgb(124 135 255 / 22%);
   border-radius: var(--radius-2xl);
-  box-shadow: 0 24px 64px -12px rgb(0 0 0 / 70%);
+  box-shadow: var(--shadow-md);
   animation: m-pop var(--duration-moderate) var(--ease-standard);
   overflow: hidden;
 }

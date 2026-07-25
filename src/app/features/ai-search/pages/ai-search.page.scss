@@ -20,7 +20,7 @@
   padding: var(--space-5) var(--space-14);
   border-radius: var(--radius-full);
   background: var(--accent-glow);
-  border: 1px solid rgb(124 135 255 / 24%);
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
   color: var(--accent-ink);
   font-size: var(--text-12-5);
   font-weight: var(--weight-input);
@@ -43,7 +43,7 @@ h1 {
   padding: var(--space-14) var(--space-18);
   border-radius: var(--radius-2xl);
   background: var(--surface);
-  border: 1px solid rgb(124 135 255 / 30%);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   box-shadow: 0 0 0 4px var(--accent-glow-weak);
   margin-bottom: var(--space-28);
   color: var(--accent);
@@ -74,8 +74,8 @@ h1 {
   border-radius: var(--radius-2xl);
   padding: var(--space-22) var(--space-24);
   margin-bottom: var(--space-24);
-  background: linear-gradient(150deg, var(--accent-glow-weak), rgb(28 26 21 / 50%));
-  border: 1px solid rgb(124 135 255 / 22%);
+  background: linear-gradient(150deg, var(--accent-glow-weak), color-mix(in srgb, var(--canvas) 55%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 .answer-header {
