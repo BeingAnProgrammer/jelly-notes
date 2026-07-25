@@ -82,7 +82,7 @@ export class SignInPage implements AfterViewInit, OnDestroy {
   protected readonly tickLabels = ['AI', 'NOTES', 'TASKS', 'SEARCH'] as const;
 
   protected readonly manifesto =
-    'MEMORA BRINGS YOUR NOTES, TASKS, AND KNOWLEDGE INTO ONE CALM, AI-POWERED WORKSPACE.';
+    'JELLY NOTES BRINGS YOUR NOTES, TASKS, AND KNOWLEDGE INTO ONE CALM, AI-POWERED WORKSPACE.';
 
   protected readonly captions = [
     'EVERYTHING YOU KNOW, IN ONE CALM WORKSPACE',
@@ -106,7 +106,7 @@ export class SignInPage implements AfterViewInit, OnDestroy {
   constructor() {
     inject(SeoService).update(
       'Welcome',
-      'Memora is an AI-powered note-taking and personal knowledge management app.',
+      'Jelly Notes is an AI-powered note-taking and personal knowledge management app.',
     );
   }
 

@@ -2,8 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <title>Memora — Notes that remember everything</title>
-  <meta name="description" content="Memora is an AI-powered note-taking and personal knowledge management app — notes, folders, tasks, assignments, and AI search over everything you've written.">
+  <title>Jelly Notes — Notes that remember everything</title>
+  <meta name="description" content="Jelly Notes is an AI-powered note-taking and personal knowledge management app — notes, folders, tasks, assignments, and AI search over everything you've written.">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -15,7 +15,7 @@
     // flash of the default (dark) theme. Mutates <html data-theme>, which lives outside the
     // Angular-rendered tree, so it can't cause a hydration mismatch.
     try {
-      var savedTheme = localStorage.getItem('memora.theme');
+      var savedTheme = localStorage.getItem('jelly-notes.theme');
       if (savedTheme === 'light' || savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', savedTheme);
       }

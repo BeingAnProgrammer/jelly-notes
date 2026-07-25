@@ -37,10 +37,17 @@ export type IconShape =
       readonly rx?: number;
     };
 
-// Path data reverse-engineered verbatim from the design's `ICONS` dictionary (Memora.dc.html)
-// so every icon matches the source pixel-for-pixel.
+// Path data reverse-engineered verbatim from the design's `ICONS` dictionary so every icon
+// matches the source pixel-for-pixel. `logo` is the exception: the Jelly Notes brand mark
+// (dome + three tapered tentacles, from the approved brand identity) — always render it with
+// `[filled]="true"`, since it's a solid glyph rather than a stroked line icon like the rest.
 export const ICONS: Record<IconName, IconShape[]> = {
-  logo: [{ kind: 'path', d: 'M15 8a5 5 0 1 0 0 8' }],
+  logo: [
+    { kind: 'path', d: 'M4.5,12.5 Q4.5,3.5 12,3.5 Q19.5,3.5 19.5,12.5 Q16,11.25 12,11.25 Q8,11.25 4.5,12.5 Z' },
+    { kind: 'path', d: 'M7.5,12.5 Q6.6,16 7.25,19.5 Q8.25,16.5 8.75,12.5 Z' },
+    { kind: 'path', d: 'M11.25,12.5 Q10.65,17 11.75,21.5 Q12.85,17 12.25,12.5 Z' },
+    { kind: 'path', d: 'M15.25,12.5 Q14.25,16.5 15.25,19.5 Q15.9,16 16.5,12.5 Z' },
+  ],
   plus: [{ kind: 'path', d: 'M12 5v14M5 12h14' }],
   search: [
     { kind: 'circle', cx: 11, cy: 11, r: 8 },

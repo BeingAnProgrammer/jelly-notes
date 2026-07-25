@@ -205,11 +205,11 @@ h1 {
   place-items: center;
   font-family: var(--font-sans);
   font-weight: var(--weight-bold);
-  font-size: 17vh;
+  font-size: 14vh;
   line-height: 1;
   letter-spacing: -0.04em;
   white-space: nowrap;
-  color: var(--ink);
+  color: var(--ink-2);
   opacity: 0;
   backface-visibility: hidden;
   animation-name: jelly-fade;
@@ -518,7 +518,7 @@ h1 {
   }
 
   .jelly-phrase {
-    font-size: 15vw;
+    font-size: 12vw;
   }
 
   .jellyfish-stage {

@@ -151,6 +151,28 @@
     color: var(--accent-fg);
     border-radius: var(--radius-lg) var(--radius-lg) var(--radius-xs) var(--radius-lg);
   }
+
+  &.thinking {
+    display: flex;
+    align-items: center;
+    gap: var(--space-7);
+    color: var(--ink-3);
+  }
+}
+
+.thinking-mark {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .thinking-mark {
+    animation: chat-breathe 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes chat-breathe {
+  0%, 100% { opacity: .55; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.08); }
 }
 
 .source-chip {

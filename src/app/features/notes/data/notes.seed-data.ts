@@ -43,7 +43,7 @@ export const NOTES_SEED: Note[] = [
       {
         id: 'n1-b5',
         type: 'blockquote',
-        text: 'Memora is the first notes app where the AI has read every note you’ve ever written.',
+        text: 'Jelly Notes is the first notes app where the AI has read every note you’ve ever written.',
       },
       {
         id: 'n1-b6',

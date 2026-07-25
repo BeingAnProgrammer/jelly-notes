@@ -2,14 +2,14 @@ import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 /**
- * Thin, SSR-safe wrapper around window.localStorage. Every key is namespaced under `memora.`
- * so the app never collides with other data a browser tab might hold, and every read/write
- * is a no-op on the server (guest data only ever exists client-side).
+ * Thin, SSR-safe wrapper around window.localStorage. Every key is namespaced under
+ * `jelly-notes.` so the app never collides with other data a browser tab might hold, and
+ * every read/write is a no-op on the server (guest data only ever exists client-side).
  */
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private static readonly PREFIX = 'memora.';
+  private static readonly PREFIX = 'jelly-notes.';
 
   get<T>(key: string): T | null {
     if (!this.isBrowser) return null;

@@ -1,11 +1,11 @@
 @if (chat.isOpen()) {
-  <div class="panel" role="dialog" aria-label="Memora AI chat">
+  <div class="panel" role="dialog" aria-label="Jelly Notes AI chat">
     <div class="header">
       <span class="icon-chip">
         <app-icon name="sparkles" [size]="13" [strokeWidth]="1.8" />
       </span>
       <div class="titles">
-        <div class="title">Memora AI</div>
+        <div class="title">Jelly Notes AI</div>
         <div class="subtitle">Reading your notes</div>
       </div>
       <button type="button" class="close" title="Close" (click)="chat.closeChat()">
@@ -29,7 +29,10 @@
       }
       @if (chat.sending()) {
         <div class="message-row">
-          <div class="bubble">Thinking…</div>
+          <div class="bubble thinking">
+            <app-icon name="logo" [size]="14" [filled]="true" class="thinking-mark" />
+            Thinking…
+          </div>
         </div>
       }
     </div>
@@ -43,7 +46,7 @@
   </div>
 }
 
-<button type="button" class="fab" title="Ask Memora AI" (click)="chat.toggleChat()">
+<button type="button" class="fab" title="Ask Jelly Notes AI" (click)="chat.toggleChat()">
   <span class="ring" aria-hidden="true"></span>
   <app-icon name="sparkles" [size]="20" [strokeWidth]="1.9" />
 </button>

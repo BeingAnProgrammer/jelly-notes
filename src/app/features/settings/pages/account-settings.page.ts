@@ -23,7 +23,7 @@ export class AccountSettingsPage {
   protected readonly initialsOf = initialsOf;
 
   constructor() {
-    inject(SeoService).update('Account', 'Manage your Memora profile.');
+    inject(SeoService).update('Account', 'Manage your Jelly Notes profile.');
 
     effect(() => {
       const user = this.auth.currentUser();

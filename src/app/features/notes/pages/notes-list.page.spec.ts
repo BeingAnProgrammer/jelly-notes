@@ -97,6 +97,6 @@ describe('NotesListPage', () => {
     page.setView('list');
     expect(page['view']()).toBe('list');
     expect(page['gridCols']()).toBe('1fr');
-    expect(localStorage.getItem('memora.notesView')).toBe('"list"');
+    expect(localStorage.getItem('jelly-notes.notesView')).toBe('"list"');
   });
 });

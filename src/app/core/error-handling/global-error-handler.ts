@@ -9,6 +9,6 @@ import { ErrorHandler, Injectable } from '@angular/core';
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: unknown): void {
-    console.error('[Memora] Unhandled error:', error);
+    console.error('[Jelly Notes] Unhandled error:', error);
   }
 }

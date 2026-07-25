@@ -22,7 +22,7 @@ describe('LocalStorageService', () => {
 
   it('namespaces keys so they do not collide with unrelated localStorage entries', () => {
     service.set('theme', 'dark');
-    expect(localStorage.getItem('memora.theme')).toBe('"dark"');
+    expect(localStorage.getItem('jelly-notes.theme')).toBe('"dark"');
     expect(localStorage.getItem('theme')).toBeNull();
   });
 
@@ -33,7 +33,7 @@ describe('LocalStorageService', () => {
   });
 
   it('treats invalid JSON already in storage as absent rather than throwing', () => {
-    localStorage.setItem('memora.corrupt', 'not json{');
+    localStorage.setItem('jelly-notes.corrupt', 'not json{');
     expect(service.get('corrupt')).toBeNull();
   });
 });

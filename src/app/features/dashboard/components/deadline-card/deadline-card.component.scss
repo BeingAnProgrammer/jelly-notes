@@ -1,9 +1,14 @@
+@use 'mixins' as *;
+
 :host {
+  @include surface-card;
   display: block;
-  background: var(--surface);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-xl);
   padding: var(--space-16);
+  transition: border-color var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    border-color: var(--ink-5);
+  }
 }
 
 .top-row {

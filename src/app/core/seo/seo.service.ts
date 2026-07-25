@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
-const SITE_NAME = 'Memora';
+const SITE_NAME = 'Jelly Notes';
 
 /** Thin wrapper over Angular's Title/Meta services so every page sets title + description + OG tags consistently. */
 @Injectable({ providedIn: 'root' })

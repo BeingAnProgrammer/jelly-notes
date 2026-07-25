@@ -54,7 +54,7 @@ export class NoteEditorPage {
   constructor() {
     effect(() => {
       const note = this.note();
-      this.seo.update(note?.title ?? 'Note', note?.excerpt || 'A note in Memora.');
+      this.seo.update(note?.title ?? 'Note', note?.excerpt || 'A note in Jelly Notes.');
     });
   }
 

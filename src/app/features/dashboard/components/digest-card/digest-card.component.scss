@@ -4,8 +4,9 @@
   border-radius: var(--radius-2xl);
   padding: var(--space-22) var(--space-24);
   margin-bottom: var(--space-24);
-  background: linear-gradient(150deg, var(--accent-glow), rgb(28 26 21 / 50%));
+  background: linear-gradient(150deg, var(--accent-glow), rgb(22 22 29 / 50%));
   border: 1px solid rgb(124 135 255 / 24%);
+  box-shadow: 0 12px 32px -14px rgb(0 0 0 / 55%);
   overflow: hidden;
 }
 

@@ -16,7 +16,7 @@ export class AppearanceSettingsPage {
   private readonly toast = inject(ToastService);
 
   constructor() {
-    inject(SeoService).update('Appearance', 'Choose how Memora looks.');
+    inject(SeoService).update('Appearance', 'Choose how Jelly Notes looks.');
   }
 
   setTheme(theme: Theme): void {

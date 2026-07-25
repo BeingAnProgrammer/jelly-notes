@@ -26,7 +26,7 @@ describe('AppearanceService', () => {
     TestBed.tick();
     expect(service.theme()).toBe('light');
     expect(document.documentElement.getAttribute('data-theme')).toBe('light');
-    expect(localStorage.getItem('memora.theme')).toBe('"light"');
+    expect(localStorage.getItem('jelly-notes.theme')).toBe('"light"');
   });
 
   it('toggleTheme flips between dark and light', () => {

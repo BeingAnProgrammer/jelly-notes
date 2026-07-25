@@ -7,12 +7,41 @@
   align-items: center;
   justify-content: center;
   background: var(--canvas);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 720px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+  pointer-events: none;
 }
 
 .content {
+  position: relative;
   text-align: center;
   max-width: 440px;
   padding: var(--space-32);
+}
+
+.mark {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto var(--space-20);
+  border-radius: var(--radius-lg);
+  background: var(--logo-gradient);
+  color: #0f0e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 16px rgb(124 135 255 / 35%),
+    inset 0 1px 0 rgb(255 255 255 / 20%),
+    inset 0 -6px 10px rgb(0 0 0 / 12%);
 }
 
 .eyebrow {
