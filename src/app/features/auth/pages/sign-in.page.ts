@@ -1,5 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnDestroy,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import gsap from 'gsap';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { SeoService } from '../../../core/seo/seo.service';
@@ -55,9 +65,12 @@ interface DriftMark {
   templateUrl: './sign-in.page.html',
   styleUrl: './sign-in.page.scss',
 })
-export class SignInPage {
+export class SignInPage implements AfterViewInit, OnDestroy {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly host = inject(ElementRef<HTMLElement>);
+  private matchMedia?: ReturnType<typeof gsap.matchMedia>;
 
   protected readonly loopSeconds = LOOP_SECONDS;
   protected readonly perspective = PERSPECTIVE;
@@ -100,5 +113,34 @@ export class SignInPage {
   signIn(): void {
     this.auth.signIn();
     this.router.navigate(['/dashboard']);
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
+    const root = this.host.nativeElement;
+
+    // One orchestrated page-load moment: the nav settles, then the ask (headline, subtext,
+    // button, footnote) rises in as a sequence, while the atmosphere (word-ring + jellyfish,
+    // already looping on its own) fades into view alongside it. Skipped entirely — not just
+    // shortened — when the visitor prefers reduced motion, since matchMedia's setup callback
+    // simply never runs for a query that doesn't match.
+    this.matchMedia = gsap.matchMedia();
+    this.matchMedia.add('(prefers-reduced-motion: no-preference)', () => {
+      const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      timeline
+        .from(root.querySelectorAll('.top-nav > *'), { autoAlpha: 0, y: -8, duration: 0.5, stagger: 0.08 })
+        .from(
+          root.querySelectorAll('.text-column > *'),
+          { autoAlpha: 0, y: 18, duration: 0.7, stagger: 0.12 },
+          '-=0.25',
+        )
+        .from(root.querySelector('.visual-stage'), { autoAlpha: 0, duration: 1.2 }, '-=0.9');
+
+      return () => timeline.kill();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.matchMedia?.revert();
   }
 }

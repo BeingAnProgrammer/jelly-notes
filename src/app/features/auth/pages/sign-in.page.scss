@@ -1,23 +1,14 @@
 @use 'mixins' as *;
 
 :host {
+  --text-col: 38vw;
+
   position: fixed;
   inset: 0;
   z-index: 500;
   display: block;
   background: var(--canvas);
   overflow: hidden;
-}
-
-.glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 960px;
-  height: 520px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, var(--accent-glow-strong), transparent 70%);
-  pointer-events: none;
 }
 
 .top-nav {
@@ -65,6 +56,129 @@
   color: var(--ink-3);
 }
 
+// The calm ask — its own quiet column, clear of the creature entirely.
+.text-column {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--text-col);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0 4vw 0 5vw;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-44);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-weight: 400;
+  max-width: 16ch;
+  text-wrap: balance;
+  margin: 0 0 var(--space-16);
+}
+
+.subtext {
+  font-size: var(--text-15-5);
+  color: var(--ink-3);
+  max-width: 38ch;
+  line-height: 1.6;
+  margin: 0 0 var(--space-28);
+}
+
+.sign-in-btn {
+  @include primary-button;
+  padding: var(--space-14) var(--space-28);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-16);
+  box-shadow: 0 8px 28px rgb(124 135 255 / 35%);
+}
+
+.footnote {
+  margin: var(--space-14) 0 0;
+  font-size: var(--text-12-5);
+  color: var(--ink-4);
+}
+
+// The seam — a labelled divider marking where the ask ends and the atmosphere begins.
+.side-ruler {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1vh;
+  height: 56vh;
+  justify-content: center;
+  pointer-events: none;
+
+  &--left {
+    left: var(--text-col);
+
+    .ruler-label {
+      left: -2.4vh;
+      transform: rotate(180deg);
+    }
+  }
+
+  &--right {
+    right: 1.4vh;
+  }
+}
+
+.tick {
+  width: 0.7vh;
+  height: 1px;
+  background: var(--hairline);
+
+  &--major {
+    width: 1.4vh;
+  }
+}
+
+.ruler-label {
+  position: absolute;
+  writing-mode: vertical-rl;
+  font-size: 0.95vh;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.35em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+}
+
+// The atmosphere — the kinetic word-ring and the jellyfish, boxed into their own stage.
+// The left edge (the seam) fades to transparent instead of hard-cropping, so exiting
+// words dissolve into the divider rather than getting guillotined mid-letter.
+.visual-stage {
+  position: absolute;
+  left: var(--text-col);
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 14%);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 14%);
+}
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--accent-glow-strong), transparent 70%);
+  pointer-events: none;
+}
+
 .word-ring-viewport {
   position: absolute;
   inset: 0;
@@ -91,7 +205,7 @@
   place-items: center;
   font-family: var(--font-sans);
   font-weight: var(--weight-bold);
-  font-size: 22vh;
+  font-size: 17vh;
   line-height: 1;
   letter-spacing: -0.04em;
   white-space: nowrap;
@@ -134,21 +248,20 @@
 .jellyfish-stage {
   position: absolute;
   left: 50%;
-  top: 44%;
+  top: 46%;
   transform: translate(-50%, -50%);
-  width: min(58vh, 70vw);
-  height: 78vh;
+  width: min(56vh, 82%);
+  height: 76vh;
   z-index: 20;
   pointer-events: none;
 }
 
 .manifesto {
   position: absolute;
-  right: 4vw;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 4%;
+  top: 14vh;
   z-index: 38;
-  width: min(22vw, 30vh);
+  width: min(20vw, 55%);
   text-align: right;
   pointer-events: none;
   animation-name: jelly-manifesto;
@@ -166,111 +279,13 @@
   }
 }
 
-.side-ruler {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 30;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.1vh;
-  height: 56vh;
-  justify-content: center;
-  pointer-events: none;
-
-  &--left {
-    left: 1.4vh;
-
-    .ruler-label {
-      left: -2.4vh;
-      transform: rotate(180deg);
-    }
-  }
-
-  &--right {
-    right: 1.4vh;
-
-    .ruler-label {
-      right: -2.4vh;
-    }
-  }
-}
-
-.tick {
-  width: 0.7vh;
-  height: 1px;
-  background: var(--hairline);
-
-  &--major {
-    width: 1.4vh;
-  }
-}
-
-.ruler-label {
-  position: absolute;
-  writing-mode: vertical-rl;
-  font-size: 0.95vh;
-  font-weight: var(--weight-semibold);
-  letter-spacing: 0.35em;
-  color: var(--ink-4);
-  text-transform: uppercase;
-}
-
-.cta {
-  position: absolute;
-  left: 50%;
-  bottom: 10vh;
-  transform: translateX(-50%);
-  z-index: 45;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 46ch;
-  padding: 0 var(--space-24);
-}
-
-h1 {
-  font-family: var(--font-display);
-  font-size: var(--text-34);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  font-weight: 400;
-  text-wrap: balance;
-  margin: 0 0 var(--space-12);
-}
-
-.subtext {
-  font-size: var(--text-14-5);
-  color: var(--ink-3);
-  max-width: 46ch;
-  line-height: 1.6;
-  margin: 0 0 var(--space-20);
-}
-
-.sign-in-btn {
-  @include primary-button;
-  padding: var(--space-14) var(--space-28);
-  border-radius: var(--radius-xl);
-  font-size: var(--text-16);
-  box-shadow: 0 8px 28px rgb(124 135 255 / 35%);
-}
-
-.footnote {
-  margin: var(--space-14) 0 0;
-  font-size: var(--text-12-5);
-  color: var(--ink-4);
-}
-
 .bottom-caption {
   position: absolute;
   bottom: 3.4vh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 40;
-  width: 60vw;
+  width: 80%;
   text-align: center;
   height: 3.4vh;
 
@@ -309,7 +324,7 @@ h1 {
   }
 
   &--right {
-    right: 2.6vw;
+    right: 3%;
     display: grid;
     place-items: center;
     width: 3.4vh;
@@ -401,17 +416,17 @@ h1 {
   0%,
   74% {
     opacity: 0;
-    transform: translateY(-50%) translateX(2vw);
+    transform: translateX(2vw);
   }
   81%,
   92% {
     opacity: 1;
-    transform: translateY(-50%) translateX(0);
+    transform: translateX(0);
   }
   98%,
   100% {
     opacity: 0;
-    transform: translateY(-50%) translateX(2vw);
+    transform: translateX(2vw);
   }
 }
 
@@ -456,10 +471,15 @@ h1 {
   }
 }
 
-// Below this width the vh/vw-tuned editorial chrome (rulers, manifesto, nav labels,
-// drifting marks) has no room to breathe and starts overlapping the CTA card — drop it
-// and keep only the core hero: jellyfish, kinetic word, sign-in.
+// Below this width there's no room for a side-by-side split — stack the ask above the
+// atmosphere instead, and drop the chrome that only made sense as desktop framing.
 @media (max-width: 720px) {
+  :host {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
   .nav-labels,
   .side-ruler,
   .manifesto,
@@ -470,7 +490,31 @@ h1 {
   }
 
   .top-nav {
+    position: static;
     padding: var(--space-16) var(--space-20);
+  }
+
+  .text-column {
+    position: static;
+    width: auto;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-8) var(--space-20) var(--space-24);
+  }
+
+  h1,
+  .subtext {
+    max-width: 32ch;
+  }
+
+  .visual-stage {
+    position: relative;
+    left: 0;
+    height: 58vh;
+    flex: 1 0 auto;
+    // No seam to protect once the layout stacks — the edge fade would just clip the scene.
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 
   .jelly-phrase {
@@ -478,17 +522,12 @@ h1 {
   }
 
   .jellyfish-stage {
-    width: 80vw;
-    height: 58vh;
-  }
-
-  .cta {
-    bottom: 8vh;
-    max-width: 90vw;
+    width: 80%;
+    height: 90%;
   }
 
   .bottom-caption {
-    width: 88vw;
+    width: 92%;
   }
 }
 
