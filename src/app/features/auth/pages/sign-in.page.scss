@@ -4,9 +4,7 @@
   position: fixed;
   inset: 0;
   z-index: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   background: var(--canvas);
   overflow: hidden;
 }
@@ -22,21 +20,22 @@
   pointer-events: none;
 }
 
-.content {
-  position: relative;
+.top-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: var(--space-32);
-  max-width: 640px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--space-24) var(--space-32);
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: var(--space-12);
-  margin-bottom: var(--space-40);
 }
 
 .brand-mark {
@@ -53,29 +52,202 @@
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: var(--text-30);
+  font-size: var(--text-24);
   color: var(--ink);
-  letter-spacing: -0.01em;
+}
+
+.nav-labels {
+  display: flex;
+  gap: var(--space-24);
+  font-size: var(--text-11);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.18em;
+  color: var(--ink-3);
+}
+
+.word-ring-viewport {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  perspective-origin: 50% 46%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.jelly-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation-name: jelly-orbit;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.jelly-phrase {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  font-size: 22vh;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0;
+  backface-visibility: hidden;
+  animation-name: jelly-fade;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: opacity;
+}
+
+.jelly-rise {
+  display: inline-block;
+  animation-name: jelly-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.jelly-condense {
+  display: inline-block;
+  transform: scaleX(0.86);
+  transform-origin: center;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -4vh;
+  border-radius: 50%;
+  background: rgb(124 135 255 / 28%);
+  box-shadow: 0 0 6px rgb(124 135 255 / 35%);
+  z-index: 15;
+  animation-name: jelly-bubble;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  pointer-events: none;
+}
+
+.jellyfish-stage {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  width: min(58vh, 70vw);
+  height: 78vh;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.manifesto {
+  position: absolute;
+  right: 4vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 38;
+  width: min(22vw, 30vh);
+  text-align: right;
+  pointer-events: none;
+  animation-name: jelly-manifesto;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+  p {
+    margin: 0;
+    font-size: var(--text-13);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+    color: var(--ink-2);
+    text-transform: uppercase;
+  }
+}
+
+.side-ruler {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1vh;
+  height: 56vh;
+  justify-content: center;
+  pointer-events: none;
+
+  &--left {
+    left: 1.4vh;
+
+    .ruler-label {
+      left: -2.4vh;
+      transform: rotate(180deg);
+    }
+  }
+
+  &--right {
+    right: 1.4vh;
+
+    .ruler-label {
+      right: -2.4vh;
+    }
+  }
+}
+
+.tick {
+  width: 0.7vh;
+  height: 1px;
+  background: var(--hairline);
+
+  &--major {
+    width: 1.4vh;
+  }
+}
+
+.ruler-label {
+  position: absolute;
+  writing-mode: vertical-rl;
+  font-size: 0.95vh;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.35em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+}
+
+.cta {
+  position: absolute;
+  left: 50%;
+  bottom: 10vh;
+  transform: translateX(-50%);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 46ch;
+  padding: 0 var(--space-24);
 }
 
 h1 {
   font-family: var(--font-display);
-  font-size: var(--text-60);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: var(--text-34);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: var(--ink);
   font-weight: 400;
-  max-width: 16ch;
   text-wrap: balance;
-  margin: 0 0 var(--space-20);
+  margin: 0 0 var(--space-12);
 }
 
 .subtext {
-  font-size: var(--text-18);
+  font-size: var(--text-14-5);
   color: var(--ink-3);
-  max-width: 52ch;
+  max-width: 46ch;
   line-height: 1.6;
-  margin: 0 0 var(--space-32);
+  margin: 0 0 var(--space-20);
 }
 
 .sign-in-btn {
@@ -87,7 +259,252 @@ h1 {
 }
 
 .footnote {
-  margin: var(--space-16) 0 0;
-  font-size: var(--text-13);
+  margin: var(--space-14) 0 0;
+  font-size: var(--text-12-5);
   color: var(--ink-4);
+}
+
+.bottom-caption {
+  position: absolute;
+  bottom: 3.4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  width: 60vw;
+  text-align: center;
+  height: 3.4vh;
+
+  p {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    font-size: var(--text-11-5);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    color: var(--ink-3);
+    opacity: 0;
+    animation: jelly-caption 18s ease-in-out infinite;
+  }
+}
+
+.corner-chip {
+  position: absolute;
+  bottom: 3vh;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--text-11);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.15em;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+
+  &--left {
+    left: 2.6vw;
+    padding: var(--space-7) var(--space-12);
+    border-radius: var(--radius-full);
+  }
+
+  &--right {
+    right: 2.6vw;
+    display: grid;
+    place-items: center;
+    width: 3.4vh;
+    height: 3.4vh;
+    border-radius: 50%;
+  }
+}
+
+.dot {
+  width: 1vh;
+  height: 1vh;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.drift-mark {
+  position: absolute;
+  background: var(--ink-4);
+  z-index: 35;
+  animation: jelly-mark ease-in-out infinite;
+}
+
+.micro-label {
+  position: absolute;
+  top: 6.5vh;
+  left: 2.6vw;
+  z-index: 35;
+  font-size: 0.85vh;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.22em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+@keyframes jelly-orbit {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+@keyframes jelly-fade {
+  0%,
+  10% {
+    opacity: 1;
+  }
+  21%,
+  79% {
+    opacity: 0;
+  }
+  90%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes jelly-rise {
+  0%,
+  21% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(32vh);
+  }
+  78% {
+    transform: translateY(32vh);
+    animation-timing-function: ease-out;
+  }
+  87%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes jelly-manifesto {
+  0%,
+  74% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(2vw);
+  }
+  81%,
+  92% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+  98%,
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(2vw);
+  }
+}
+
+@keyframes jelly-mark {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-1.4vw, 2vh);
+  }
+}
+
+@keyframes jelly-bubble {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-108vh) translateX(2vh);
+    opacity: 0;
+  }
+}
+
+@keyframes jelly-caption {
+  0% {
+    opacity: 0;
+  }
+  4%,
+  28% {
+    opacity: 1;
+  }
+  33%,
+  100% {
+    opacity: 0;
+  }
+}
+
+// Below this width the vh/vw-tuned editorial chrome (rulers, manifesto, nav labels,
+// drifting marks) has no room to breathe and starts overlapping the CTA card — drop it
+// and keep only the core hero: jellyfish, kinetic word, sign-in.
+@media (max-width: 720px) {
+  .nav-labels,
+  .side-ruler,
+  .manifesto,
+  .drift-mark,
+  .micro-label,
+  .corner-chip {
+    display: none;
+  }
+
+  .top-nav {
+    padding: var(--space-16) var(--space-20);
+  }
+
+  .jelly-phrase {
+    font-size: 15vw;
+  }
+
+  .jellyfish-stage {
+    width: 80vw;
+    height: 58vh;
+  }
+
+  .cta {
+    bottom: 8vh;
+    max-width: 90vw;
+  }
+
+  .bottom-caption {
+    width: 88vw;
+  }
+}
+
+// The global reduced-motion rule (styles/_motion.scss) already zeroes every animation's
+// duration/iteration-count; these overrides just settle the leftover transform/opacity
+// end-states into one calm, readable composition (first word centred, ring frozen).
+@media (prefers-reduced-motion: reduce) {
+  .jelly-stage {
+    transform: rotateY(0deg);
+  }
+
+  .jelly-phrase {
+    opacity: 0;
+
+    &:first-of-type {
+      opacity: 1;
+    }
+  }
 }

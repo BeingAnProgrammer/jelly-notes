@@ -1,22 +1,119 @@
 <div class="glow" aria-hidden="true"></div>
 
-<div class="content">
+<!-- Top nav -->
+<header class="top-nav">
   <div class="brand">
     <div class="brand-mark">
       <app-icon name="logo" [size]="20" [strokeWidth]="2.2" />
     </div>
     <span class="brand-name">Memora</span>
   </div>
+  <div class="nav-labels" aria-hidden="true">
+    @for (label of navLabels; track label) {
+      <span>[ {{ label }} ]</span>
+    }
+  </div>
+</header>
 
+<!-- Giant headline — a rigid word-ring the "camera" orbits via jelly-orbit. -->
+<div class="word-ring-viewport" [style.perspective.px]="perspective" aria-hidden="true">
+  <div class="jelly-stage" [style.animation-duration.s]="loopSeconds">
+    @for (seat of phraseSeats; track seat.text) {
+      <span
+        class="jelly-phrase"
+        [style.transform]="seat.transform"
+        [style.animation-duration.s]="loopSeconds"
+        [style.animation-delay]="seat.delay"
+      >
+        <span class="jelly-rise" [style.animation-duration.s]="loopSeconds" [style.animation-delay]="seat.delay">
+          <span class="jelly-condense">{{ seat.text }}</span>
+        </span>
+      </span>
+    }
+  </div>
+</div>
+
+<!-- Floating bubbles -->
+@for (bubble of bubbles; track bubble.left) {
+  <span
+    class="bubble"
+    aria-hidden="true"
+    [style.left]="bubble.left"
+    [style.width]="bubble.size"
+    [style.height]="bubble.size"
+    [style.animation-duration]="bubble.duration"
+    [style.animation-delay]="bubble.delay"
+  ></span>
+}
+
+<!-- The procedural 3D jellyfish -->
+<div class="jellyfish-stage">
+  <app-jellyfish-scene [loopSeconds]="loopSeconds" />
+</div>
+
+<!-- Manifesto -->
+<div class="manifesto" [style.animation-duration.s]="loopSeconds" aria-hidden="true">
+  <p>{{ manifesto }}</p>
+</div>
+
+<!-- Side rulers -->
+<div class="side-ruler side-ruler--left" aria-hidden="true">
+  @for (tick of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track $index) {
+    <span class="tick" [class.tick--major]="$index % 4 === 0"></span>
+  }
+  <span class="ruler-label">{{ tickLabels.join(' · ') }}</span>
+</div>
+<div class="side-ruler side-ruler--right" aria-hidden="true">
+  @for (tick of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track $index) {
+    <span class="tick" [class.tick--major]="$index % 4 === 0"></span>
+  }
+  <span class="ruler-label">{{ tickLabels.join(' · ') }}</span>
+</div>
+
+<!-- Sign-in CTA, overlaid on the scene -->
+<div class="cta">
   <h1>Everything you know, in one calm workspace.</h1>
   <p class="subtext">
     Notes, folders, tasks, and assignments — with an AI that has actually read everything you've written.
   </p>
-
   <button type="button" class="sign-in-btn" (click)="signIn()">
     Sign in
     <app-icon name="arrow-right" [size]="16" [strokeWidth]="2" />
   </button>
-
   <p class="footnote">No account needed for this preview.</p>
 </div>
+
+<!-- Rotating bottom caption -->
+<div class="bottom-caption">
+  @for (caption of captions; track caption; let i = $index) {
+    <p [style.animation-delay.s]="i * 6">{{ caption }}</p>
+  }
+</div>
+
+<!-- Corner accents -->
+<div class="corner-chip corner-chip--left" aria-hidden="true">
+  <span class="dot"></span>
+  PREVIEW MODE
+</div>
+<div class="corner-chip corner-chip--right" aria-hidden="true">
+  <app-icon name="sparkles" [size]="14" [strokeWidth]="2" />
+</div>
+
+<!-- Micro-graphics: drifting marks -->
+@for (mark of marks; track mark.left) {
+  <span
+    class="drift-mark"
+    aria-hidden="true"
+    [style.left]="mark.left"
+    [style.top]="mark.top"
+    [style.width.px]="mark.size"
+    [style.height.px]="mark.size"
+    [style.animation-duration]="mark.duration"
+    [style.animation-delay]="mark.delay"
+  ></span>
+}
+
+<div class="micro-label" aria-hidden="true">Memora — Preview Build</div>
+
+<!-- Film grain overlay -->
+<div class="grain" aria-hidden="true"></div>
