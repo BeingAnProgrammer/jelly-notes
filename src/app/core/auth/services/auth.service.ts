@@ -6,11 +6,10 @@ const USER_KEY = 'auth.user';
 const SIGNED_IN_KEY = 'auth.signedIn';
 
 const DEFAULT_USER: AppUser = {
-  id: 'guest',
+  id: 'demo-user',
   displayName: 'Alex Rivera',
-  role: 'Founder',
-  organization: 'Northwind',
   avatar: 'gradient-1',
+  isGuest: false,
 };
 
 /**
@@ -28,6 +27,18 @@ export class AuthService {
 
   signIn(): void {
     const user = this.storage.get<AppUser>(USER_KEY) ?? DEFAULT_USER;
+    this.storage.set(USER_KEY, user);
+    this.storage.set(SIGNED_IN_KEY, true);
+    this._user.set(user);
+  }
+
+  signInAsGuest(name: string): void {
+    const user: AppUser = {
+      id: 'guest-user',
+      displayName: name.trim() || 'Guest',
+      avatar: 'gradient-1',
+      isGuest: true,
+    };
     this.storage.set(USER_KEY, user);
     this.storage.set(SIGNED_IN_KEY, true);
     this._user.set(user);

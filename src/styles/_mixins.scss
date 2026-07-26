@@ -143,6 +143,63 @@
   animation: m-pop var(--duration-moderate) var(--ease-standard);
 }
 
+// Shared by every step of the sign-in flow (sign-in-form, guest-name, …) — a deliberately
+// fixed-dark branded surface, like the command palette and AI chat panel elsewhere, rather
+// than theme-reactive: a first-run visitor hasn't set an in-app light/dark preference yet.
+// Re-declaring these token names (not touching the global :root values) means the rest of
+// each page's stylesheet can keep reading var(--ink), var(--hairline), etc. as normal and
+// resolve to the dark palette regardless of the site's active theme.
+@mixin auth-shell-host {
+  --canvas: #0b0b0f;
+  --canvas-sub: #111117;
+  --surface: #16161d;
+  --ink: #f4f4f7;
+  --ink-2: #c9c9d4;
+  --ink-3: #8b8b99;
+  --ink-4: #5e5e6b;
+  --hairline: #242430;
+  --accent: #7c87ff;
+  --accent-fg: #0b0b0f;
+  --shadow-lg: 0 32px 80px -16px rgb(0 0 0 / 80%);
+
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // A large (125%/125%) radial ellipse anchored just above center, solid dark through the
+  // middle 40%, opening out into the brand's indigo at the edges.
+  background: radial-gradient(125% 125% at 50% 10%, var(--canvas) 40%, #4a52d8 100%);
+  overflow: hidden;
+  padding: var(--space-24);
+}
+
+@mixin auth-card {
+  @include modal-card;
+  position: relative;
+  width: min(440px, 100%);
+  padding: var(--space-40) var(--space-36);
+  text-align: center;
+}
+
+@mixin auth-input {
+  width: 100%;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas-sub);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-14-5);
+  padding: var(--space-12) var(--space-14);
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+
+  &:focus {
+    border-color: var(--accent);
+  }
+}
+
 @mixin line-clamp($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;

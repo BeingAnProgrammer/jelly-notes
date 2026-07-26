@@ -1,0 +1,23 @@
+<div class="card">
+  <button type="button" class="back-link" (click)="goBack()">
+    <app-icon name="chevron-right" [size]="14" [strokeWidth]="2" class="back-icon" />
+    Back
+  </button>
+
+  <div class="brand">
+    <app-icon name="logo" [size]="22" [filled]="true" />
+    <span>Jelly Notes</span>
+  </div>
+
+  <h1>What should we call you?</h1>
+  <p class="subtext">This name will show up across your workspace — nothing else is needed.</p>
+
+  <form class="form" #form (submit)="onSubmit($event, nameInput)">
+    <label class="field">
+      <span class="field-label">Your name</span>
+      <input #nameInput type="text" name="name" placeholder="Jordan" autocomplete="given-name" autofocus />
+    </label>
+
+    <button type="submit" class="submit-btn">Continue as guest</button>
+  </form>
+</div>

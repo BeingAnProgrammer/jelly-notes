@@ -39,4 +39,8 @@ export class SignInFormPage {
     this.auth.signIn();
     this.router.navigate(['/dashboard']);
   }
+
+  goToGuestName(): void {
+    this.router.navigate(['/guest']);
+  }
 }

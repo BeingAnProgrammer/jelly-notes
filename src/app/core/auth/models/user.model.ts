@@ -7,7 +7,6 @@ export type AvatarGradient =
 export interface AppUser {
   readonly id: string;
   displayName: string;
-  role: string;
-  organization: string;
   avatar: AvatarGradient;
+  isGuest: boolean;
 }

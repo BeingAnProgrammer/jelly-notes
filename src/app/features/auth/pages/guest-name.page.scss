@@ -1,0 +1,103 @@
+@use 'mixins' as *;
+
+:host {
+  @include auth-shell-host;
+}
+
+.card {
+  @include auth-card;
+}
+
+.back-link {
+  position: absolute;
+  top: var(--space-20);
+  left: var(--space-20);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-12-5);
+  color: var(--ink-4);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--ink);
+  }
+
+  @include focus-ring;
+}
+
+.back-icon {
+  transform: rotate(180deg);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  margin-bottom: var(--space-24);
+  color: var(--accent);
+
+  span {
+    font-family: var(--font-display);
+    font-size: var(--text-18);
+    color: var(--ink-3);
+  }
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-34);
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 var(--space-8);
+}
+
+.subtext {
+  font-size: var(--text-14-5);
+  color: var(--ink-3);
+  margin: 0 0 var(--space-32);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  text-align: left;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.field-label {
+  font-size: var(--text-13);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-2);
+}
+
+.field input {
+  @include auth-input;
+}
+
+.submit-btn {
+  @include primary-button;
+  width: 100%;
+  justify-content: center;
+  padding: var(--space-13) var(--space-20);
+  font-size: var(--text-15);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-28) var(--space-20);
+  }
+}

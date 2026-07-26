@@ -42,6 +42,11 @@ export const routes: Routes = [
     canActivate: [redirectIfSignedInGuard],
   },
   {
+    path: 'guest',
+    loadComponent: () => import('./features/auth/pages/guest-name.page').then((m) => m.GuestNamePage),
+    canActivate: [redirectIfSignedInGuard],
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/not-found/pages/not-found.page').then((m) => m.NotFoundPage),
   },

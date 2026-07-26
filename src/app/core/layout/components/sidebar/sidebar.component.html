@@ -70,7 +70,9 @@
     <app-avatar [initials]="userInitials()" [gradient]="auth.currentUser()?.avatar ?? 'gradient-1'" />
     <div class="profile-text">
       <div class="profile-name">{{ auth.currentUser()?.displayName }}</div>
-      <div class="profile-meta">{{ auth.currentUser()?.role }} · {{ auth.currentUser()?.organization }}</div>
+      @if (auth.currentUser()?.isGuest && auth.currentUser()?.displayName !== 'Guest') {
+        <div class="profile-meta">Guest</div>
+      }
     </div>
     <app-icon name="settings" [size]="16" [strokeWidth]="1.8" />
   </a>
