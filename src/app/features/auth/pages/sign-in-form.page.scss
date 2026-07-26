@@ -1,26 +1,36 @@
 @use 'mixins' as *;
 
 :host {
+  // This screen is a deliberately fixed-dark branded moment (like the command palette and AI
+  // chat panel elsewhere in the app) rather than a theme-reactive page — a first-run sign-in
+  // screen isn't somewhere a visitor has set an in-app light/dark preference yet. Re-declaring
+  // the token names below (not touching the global :root values) means everything further down
+  // this file that already reads var(--ink), var(--hairline), etc. resolves to the dark palette
+  // here regardless of the site's active theme, with zero other changes required.
+  --canvas: #0b0b0f;
+  --canvas-sub: #111117;
+  --surface: #16161d;
+  --ink: #f4f4f7;
+  --ink-2: #c9c9d4;
+  --ink-3: #8b8b99;
+  --ink-4: #5e5e6b;
+  --hairline: #242430;
+  --accent: #7c87ff;
+  --accent-fg: #0b0b0f;
+  --shadow-lg: 0 32px 80px -16px rgb(0 0 0 / 80%);
+
   position: fixed;
   inset: 0;
   z-index: 500;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--canvas);
+  // Same shape as the approved reference: a large (125%/125%) radial ellipse anchored just
+  // above center, solid dark through the middle 40%, opening out into the brand's indigo at
+  // the edges — swapped from the reference's generic violet (#63e) for the actual brand hue.
+  background: radial-gradient(125% 125% at 50% 10%, var(--canvas) 40%, #4a52d8 100%);
   overflow: hidden;
   padding: var(--space-24);
-}
-
-.glow {
-  position: absolute;
-  top: -12%;
-  left: 50%;
-  width: 900px;
-  height: 640px;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, var(--accent-glow-strong), transparent 65%);
-  pointer-events: none;
 }
 
 .card {
