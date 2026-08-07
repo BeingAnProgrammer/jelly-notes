@@ -53,10 +53,10 @@ import { ModalComponent } from '../modal/modal.component';
     .btn-danger {
       @include primary-button;
       padding: var(--space-8) var(--space-14);
-      background: var(--rust);
+      background: var(--warm);
 
       &:hover {
-        background: var(--rust);
+        background: var(--warm);
         opacity: 0.9;
       }
     }

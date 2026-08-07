@@ -4,24 +4,20 @@
 @mixin surface-card {
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-xs);
+  border-radius: var(--radius-2xl-plus);
+  box-shadow: var(--shadow-sm);
 }
 
-@mixin interactive-card($lift: -2px) {
+@mixin interactive-card($lift: -3px) {
   @include surface-card;
   cursor: pointer;
   transition:
-    border-color var(--duration-base) var(--ease-standard),
-    background var(--duration-base) var(--ease-standard),
     transform var(--duration-base) var(--ease-standard),
     box-shadow var(--duration-base) var(--ease-standard);
 
   &:hover {
-    border-color: var(--ink-5);
-    background: var(--surface-alt);
     transform: translateY(#{$lift});
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
   }
 }
 
@@ -51,8 +47,8 @@
 
 @mixin icon-button-destructive-hover {
   &:hover {
-    border-color: var(--rust);
-    color: var(--rust);
+    border-color: var(--warm);
+    color: var(--warm);
   }
 }
 
@@ -61,17 +57,18 @@
   align-items: center;
   gap: var(--space-7);
   border: none;
-  border-radius: var(--radius-md);
-  background: var(--accent);
+  border-radius: var(--radius-lg-plus);
+  background: var(--cta-gradient);
   color: var(--accent-fg);
   font-family: var(--font-sans);
   font-size: var(--text-14);
   font-weight: var(--weight-semibold);
   cursor: pointer;
-  transition: background var(--duration-fast) var(--ease-standard);
+  box-shadow: 0 6px 20px var(--accent-glow-strong);
+  transition: filter var(--duration-fast) var(--ease-standard);
 
   &:hover {
-    background: var(--accent-hover);
+    filter: brightness(1.08);
   }
 
   &:active {
@@ -273,7 +270,7 @@
 
   &:hover {
     background: var(--surface-alt);
-    color: var(--rust);
+    color: var(--warm);
   }
 }
 

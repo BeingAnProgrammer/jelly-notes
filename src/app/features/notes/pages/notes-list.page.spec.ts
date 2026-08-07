@@ -73,11 +73,16 @@ describe('NotesListPage', () => {
     expect(page['notesTitle']()).toBe('All notes');
   });
 
-  it('"favorites" filter shows only fav notes with no pinned split', () => {
+  it('"favorites" filter shows only fav notes, still splitting pinned notes out', () => {
     const page = create('favorites');
-    expect(page['showPinned']()).toBe(false);
-    expect(page['mainNotes']().map((n: Note) => n.id)).toEqual(['n1', 'n2']);
+    expect(page['pinnedNotes']().map((n: Note) => n.id)).toEqual(['n1']);
+    expect(page['mainNotes']().map((n: Note) => n.id)).toEqual(['n2']);
     expect(page['notesTitle']()).toBe('Favorites');
+  });
+
+  it('"archive" filter never splits out a pinned section', () => {
+    const page = create('archive');
+    expect(page['showPinned']()).toBe(false);
   });
 
   it('"archive" filter shows only archived notes', () => {

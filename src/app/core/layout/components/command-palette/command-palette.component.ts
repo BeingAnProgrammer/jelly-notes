@@ -5,6 +5,7 @@ import { IconName } from '../../../../shared/ui/icon/icon.types';
 import { ClickOutsideDirective } from '../../../../shared/directives/click-outside.directive';
 import { CommandPaletteService } from '../../services/command-palette.service';
 import { NotesService } from '../../../../features/notes/services/notes.service';
+import { NOTES_FILTER_LINK } from '../../../../features/notes/models/note.model';
 import { AppearanceService } from '../../../appearance/services/appearance.service';
 
 interface ActionItem {
@@ -45,10 +46,23 @@ export class CommandPaletteComponent implements AfterViewInit {
 
   private readonly actions = computed<ActionItem[]>(() => [
     { label: 'New note', icon: 'plus', hint: 'N', run: () => this.createNote() },
-    { label: 'Go to Dashboard', icon: 'home', run: () => this.router.navigate(['/dashboard']) },
-    { label: 'Go to All notes', icon: 'file', run: () => this.router.navigate(['/notes'], { queryParams: { filter: 'all' } }) },
-    { label: 'Go to Favorites', icon: 'star', run: () => this.router.navigate(['/notes'], { queryParams: { filter: 'favorites' } }) },
-    { label: 'Go to Archive', icon: 'archive', run: () => this.router.navigate(['/notes'], { queryParams: { filter: 'archive' } }) },
+    { label: 'Go to Home', icon: 'home', run: () => this.router.navigate(['/dashboard']) },
+    {
+      label: 'Go to All notes',
+      icon: 'file',
+      run: () => this.router.navigate([NOTES_FILTER_LINK.all.link], { queryParams: NOTES_FILTER_LINK.all.queryParams }),
+    },
+    {
+      label: 'Go to Favorites',
+      icon: 'star',
+      run: () =>
+        this.router.navigate([NOTES_FILTER_LINK.favorites.link], { queryParams: NOTES_FILTER_LINK.favorites.queryParams }),
+    },
+    {
+      label: 'Go to Archive',
+      icon: 'archive',
+      run: () => this.router.navigate([NOTES_FILTER_LINK.archive.link], { queryParams: NOTES_FILTER_LINK.archive.queryParams }),
+    },
     { label: 'Go to Assignments', icon: 'cap', run: () => this.router.navigate(['/assignments']) },
     { label: 'Toggle theme', icon: 'sun', run: () => this.appearance.toggleTheme() },
   ]);

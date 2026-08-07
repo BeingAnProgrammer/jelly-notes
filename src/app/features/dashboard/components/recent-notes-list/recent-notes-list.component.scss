@@ -1,73 +1,91 @@
 @use 'mixins' as *;
 
+.card {
+  @include surface-card;
+  display: block;
+}
+
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: var(--space-12);
+  justify-content: space-between;
+  padding: var(--space-16) var(--space-22);
+  border-bottom: 1px solid var(--hairline-2);
 }
 
 .title {
-  font-size: var(--text-13);
+  margin: 0;
+  font-size: var(--text-14);
   font-weight: var(--weight-semibold);
+  letter-spacing: -0.2px;
   color: var(--ink);
-  letter-spacing: -0.01em;
 }
 
 .view-all {
-  margin-left: auto;
+  background: none;
+  border: 0;
   font-size: var(--text-12-5);
-  color: var(--ink-4);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-3);
+  text-decoration: none;
 
   &:hover {
     color: var(--accent);
   }
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
 .row {
-  @include interactive-card(-1px);
   display: flex;
   align-items: center;
-  gap: var(--space-12);
-  padding: var(--space-13) var(--space-15);
+  gap: var(--space-13);
+  width: 100%;
+  padding: var(--space-13) var(--space-22);
+  border-bottom: 1px solid var(--hairline-2);
   text-decoration: none;
-  transition-duration: var(--duration-fast);
+  transition: background var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    background: var(--surface-alt);
+  }
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
 }
 
 .dot {
   width: 8px;
   height: 8px;
-  border-radius: var(--radius-xs);
+  border-radius: 50%;
   flex: 0 0 auto;
 }
 
-.text {
-  min-width: 0;
-  flex: 1;
-}
-
 .note-title {
+  flex: 1;
+  min-width: 0;
   font-size: var(--text-14);
+  font-weight: var(--weight-medium);
   color: var(--ink);
-  font-weight: var(--weight-input);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .note-folder {
-  font-size: var(--text-12);
-  color: var(--ink-4);
+  font-size: var(--text-12-5);
+  color: var(--ink-3);
+  flex: 0 0 auto;
 }
 
 .updated {
   font-family: var(--font-mono);
   font-size: var(--text-11-5);
-  color: var(--ink-4);
+  color: var(--ink-3);
   flex: 0 0 auto;
+  width: 66px;
+  text-align: right;
+}
+
+.empty-wrap {
+  padding: var(--space-22);
 }

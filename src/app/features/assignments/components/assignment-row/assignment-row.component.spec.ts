@@ -19,10 +19,17 @@ function makeAssignment(due: string): DecoratedAssignment {
     taskCountLabel: '1/4',
     tagBg: 'var(--accent-soft)',
     tagColor: 'var(--accent-ink)',
-    statusBg: 'var(--accent-soft)',
-    statusColor: 'var(--accent-ink)',
+    statusBg: 'var(--mint-soft)',
+    statusColor: 'var(--mint)',
+    statusLine: 'var(--mint-line)',
     barColor: 'var(--accent)',
+    trackColor: 'var(--accent-soft)',
     dueColor: 'var(--ink-4)',
+    atRisk: false,
+    badgeBg: 'var(--accent-soft)',
+    badgeColor: 'var(--accent-ink)',
+    riskLabel: 'On track',
+    riskColor: 'var(--ink-3)',
   };
 }
 

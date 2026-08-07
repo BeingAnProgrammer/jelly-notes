@@ -79,7 +79,7 @@ describe('CommandPaletteComponent', () => {
     const palette = create();
     palette['query'].set('pricing');
 
-    expect(palette['filteredActions']().map((a) => a.label)).not.toContain('Go to Dashboard');
+    expect(palette['filteredActions']().map((a) => a.label)).not.toContain('Go to Home');
     expect(palette['noteItems']().map((n) => n.id)).toEqual(['n1']);
     expect(palette['askAiQuery']()).toBe('pricing');
     expect(palette['flatItems']().at(-1)).toEqual(jasmine.objectContaining({ kind: 'ask-ai' }));
@@ -107,7 +107,7 @@ describe('CommandPaletteComponent', () => {
   it('activating an action runs it and closes the palette', () => {
     const palette = create();
     const navigateSpy = spyOn(router, 'navigate');
-    const dashboardAction = palette['filteredActions']().find((a) => a.label === 'Go to Dashboard')!;
+    const dashboardAction = palette['filteredActions']().find((a) => a.label === 'Go to Home')!;
 
     palette['activate']({ kind: 'action', action: dashboardAction });
 

@@ -1,15 +1,36 @@
 <div class="glow" aria-hidden="true"></div>
 
-<div class="header">
-  <span class="icon-chip">
-    <app-icon name="sparkles" [size]="15" [strokeWidth]="1.8" />
-  </span>
-  <span class="title">AI daily digest</span>
-  <span class="generated-at">Generated {{ generatedAt }}</span>
-</div>
+<div class="layout" [class.no-panel]="!atRisk()">
+  <div class="main">
+    <div class="header" data-digest>
+      <app-icon name="sparkles" [size]="15" [strokeWidth]="1.8" class="header-icon" [filled]="true" />
+      <span class="title">AI daily digest</span>
+      <span class="generated-at">generated {{ generatedAt }}</span>
+    </div>
 
-<p class="body">{{ digest() }}</p>
+    <p class="headline" data-digest>{{ digest() }}</p>
 
-<div class="actions">
-  <button type="button" class="pill-action" (click)="chat.openChat()">Ask a follow-up</button>
+    <div class="actions" data-digest>
+      <button type="button" class="btn-primary" (click)="chat.openChat()">
+        Ask a follow-up
+        <app-icon name="arrow-right" [size]="12" [strokeWidth]="2.4" />
+      </button>
+      @if (atRisk(); as risk) {
+        <a [routerLink]="['/assignments', risk.id]" class="link-action">Open the assignment</a>
+      }
+    </div>
+  </div>
+
+  @if (atRisk(); as risk) {
+    <div class="risk-panel" data-digest>
+      <div class="risk-label">AT RISK</div>
+      <div class="risk-title">{{ risk.title }}</div>
+      <div class="risk-meta">Due {{ risk.due | date: 'd MMM' }} · {{ risk.taskCountLabel }} done</div>
+      <app-progress-bar [percent]="risk.percentComplete" color="var(--warm)" trackColor="var(--warm-soft)" [label]="risk.title" />
+      <div class="risk-footer">
+        <span>{{ risk.percentComplete }}%</span>
+        <span>{{ daysLeft() }} day{{ daysLeft() === 1 ? '' : 's' }} left</span>
+      </div>
+    </div>
+  }
 </div>

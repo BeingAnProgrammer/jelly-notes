@@ -1,0 +1,45 @@
+<div class="eyebrow">
+  <span class="bars" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </span>
+  <span class="eyebrow-text">
+    Jelly has read every note you've written · {{ notesService.totalCount() }} notes ·
+    {{ assignmentsService.assignments().length }} assignments
+  </span>
+</div>
+
+<h1>Ask anything<br /><span class="dim">you've ever written down.</span></h1>
+
+<form class="ask-field" (ngSubmit)="ask()">
+  <div class="input-row">
+    <app-icon name="sparkles" [size]="22" [strokeWidth]="0" [filled]="true" class="sparkle" />
+    <input
+      type="text"
+      placeholder="What did I decide about the Acme deal?"
+      [value]="query()"
+      (input)="query.set($any($event.target).value)"
+      aria-label="Ask Jelly a question about your notes"
+    />
+    <button type="submit" class="ask-btn">
+      Ask Jelly
+      <app-icon name="arrow-right" [size]="15" [strokeWidth]="2.4" />
+    </button>
+  </div>
+
+  <div class="suggestions">
+    <span class="try-label">TRY</span>
+    @for (chip of suggestions; track chip.label) {
+      <button
+        type="button"
+        class="chip"
+        [style.background]="chip.bg"
+        [style.border-color]="chip.line"
+        [style.color]="chip.color"
+        (click)="ask(chip.label)"
+      >
+        <span class="chip-dot" [style.background]="chip.color"></span>
+        {{ chip.label }}
+      </button>
+    }
+  </div>
+</form>

@@ -1,116 +1,66 @@
 :host {
   display: block;
-  position: relative;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: var(--space-36) var(--space-40) var(--space-80);
   animation: m-fade-up var(--duration-slow) var(--ease-standard);
 }
 
-.greeting {
-  position: relative;
-  margin-bottom: var(--space-32);
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-14);
 }
 
-.glow {
-  position: absolute;
-  inset: -40px -60px auto;
-  height: 220px;
-  background: radial-gradient(600px 200px at 15% 0%, var(--accent-glow), transparent 70%);
-  pointer-events: none;
-}
-
-.eyebrow {
-  font-size: var(--text-12);
-  font-weight: var(--weight-semibold);
+.date-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-11);
+  letter-spacing: 1.6px;
+  color: var(--ink-3);
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--accent);
+}
+
+.date-line {
+  height: 1px;
+  width: 34px;
+  background: var(--hairline);
+}
+
+.date-caption {
+  font-size: var(--text-12-5);
+  color: var(--ink-3);
+}
+
+.greeting {
+  font-family: var(--font-display);
+  font-size: var(--text-34);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -1.1px;
+  line-height: 1.1;
+  color: var(--ink);
   margin: 0 0 var(--space-10);
 }
 
-h1 {
-  font-family: var(--font-display);
-  font-size: var(--text-44);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-  color: var(--ink);
-  margin: 0 0 var(--space-8);
-  font-weight: 400;
-}
-
 .subtext {
-  font-size: var(--text-16);
-  color: var(--ink-3);
-  margin: 0;
-  max-width: 60ch;
-}
-
-.insights-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-14);
-  margin-bottom: var(--space-24);
+  margin: 0 0 var(--space-24);
+  font-size: var(--text-15);
+  color: var(--ink-2);
+  max-width: 620px;
+  text-wrap: pretty;
 }
 
 .two-column {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: var(--space-20);
-  margin-bottom: var(--space-24);
-}
-
-.deadlines-section .header {
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--space-12);
-}
-
-.title {
-  font-size: var(--text-13);
-  font-weight: var(--weight-semibold);
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-
-.view-all {
-  margin-left: auto;
-  font-size: var(--text-12-5);
-  color: var(--ink-4);
-
-  &:hover {
-    color: var(--accent);
-  }
-}
-
-.deadlines-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-14);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--space-16);
 }
 
 @media (max-width: 1024px) {
-  .insights-row,
-  .deadlines-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .two-column {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  :host {
-    padding: var(--space-24) var(--space-16) var(--space-64);
-  }
-
-  .insights-row,
-  .deadlines-grid {
-    grid-template-columns: 1fr;
-  }
-
-  h1 {
-    font-size: var(--text-34);
+  .greeting {
+    font-size: var(--text-26);
   }
 }

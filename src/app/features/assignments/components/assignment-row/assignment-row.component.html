@@ -1,35 +1,42 @@
-<a class="row" [routerLink]="[assignment().id]">
-  <div class="date-badge" [style.background]="assignment().tagBg">
-    <span class="day" [style.color]="assignment().tagColor">{{ day() }}</span>
-    <span class="month" [style.color]="assignment().tagColor">{{ month() }}</span>
+<a class="row" [class.at-risk]="assignment().atRisk" [routerLink]="[assignment().id]">
+  <div class="date-badge" [style.background]="assignment().badgeBg">
+    <span class="day" [style.color]="assignment().badgeColor">{{ day() }}</span>
+    <span class="month">{{ month() }}</span>
   </div>
 
   <div class="meta">
     <div class="title">{{ assignment().title }}</div>
-    <div class="pills">
-      <app-pill [bg]="assignment().tagBg" [color]="assignment().tagColor" [bordered]="false">
-        {{ assignment().context }}
-      </app-pill>
-      <app-pill [bg]="assignment().statusBg" [color]="assignment().statusColor" [bordered]="false">
-        {{ assignment().status }}
-      </app-pill>
-      <span class="task-count">{{ assignment().taskCountLabel }}</span>
+    <div class="context-row">
+      <span class="dot" [style.background]="assignment().tagColor"></span>
+      <span class="context">{{ assignment().context }}</span>
+      <span class="task-count">· {{ assignment().taskCountLabel }} sub-tasks</span>
     </div>
   </div>
 
+  <span
+    class="status-pill"
+    [style.color]="assignment().statusColor"
+    [style.background]="assignment().statusBg"
+    [style.border-color]="assignment().statusLine"
+  >
+    <span class="status-dot" [style.background]="assignment().statusColor"></span>
+    {{ assignment().status }}
+  </span>
+
   <div class="progress-block">
     <div class="progress-header">
-      <span>Progress</span>
-      <span>{{ assignment().percentComplete }}%</span>
+      <span class="risk-label" [style.color]="assignment().riskColor">{{ assignment().riskLabel }}</span>
+      <span class="pct">{{ assignment().percentComplete }}%</span>
     </div>
     <app-progress-bar
       [percent]="assignment().percentComplete"
       [color]="assignment().barColor"
+      [trackColor]="assignment().trackColor"
       [label]="assignment().title + ' progress'"
     />
   </div>
 
   <span class="due" [style.color]="assignment().dueColor">{{ dueLabel() }}</span>
 
-  <app-icon name="chevron-right" [size]="16" [strokeWidth]="1.8" />
+  <app-icon name="chevron-right" [size]="15" [strokeWidth]="2" class="chevron" />
 </a>

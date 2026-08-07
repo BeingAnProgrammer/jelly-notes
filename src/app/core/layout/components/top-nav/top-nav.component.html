@@ -1,0 +1,146 @@
+<header class="top-nav-header">
+  <div class="bar">
+    <a routerLink="/dashboard" class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Jelly Notes</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main" #nav>
+      <div class="ink" aria-hidden="true" #ink></div>
+
+      @for (item of navItems(); track item.id) {
+        <span class="nav-item-group">
+          <a
+            class="nav-item"
+            [class.active]="item.active"
+            [attr.data-nav]="item.id"
+            [routerLink]="item.link"
+            [queryParams]="item.queryParams ?? null"
+          >
+            {{ item.label }}
+            @if (item.badge) {
+              <app-pill
+                class="nav-badge"
+                [bg]="item.active ? 'rgb(255 255 255 / 22%)' : 'var(--accent-soft)'"
+                [color]="item.active ? '#ffffff' : 'var(--accent-ink)'"
+                [bordered]="false"
+                weight="600"
+              >
+                {{ item.badge }}
+              </app-pill>
+            }
+          </a>
+          @if (item.id === 'all') {
+            <button
+              type="button"
+              class="folder-caret"
+              [class.active]="item.active"
+              title="Folders"
+              aria-haspopup="true"
+              [attr.aria-expanded]="foldersOpen()"
+              (click)="foldersOpen.set(!foldersOpen())"
+            >
+              <app-icon name="chevron-down" [size]="11" [strokeWidth]="2.6" class="caret-icon" [class.open]="foldersOpen()" />
+            </button>
+
+            @if (foldersOpen()) {
+              <app-folders-menu
+                [activeFolder]="activeFolder()"
+                (select)="selectFolder($event)"
+                (clear)="clearFolder()"
+                (newFolder)="foldersOpen.set(false); folderModalOpen.set(true)"
+                (dismiss)="foldersOpen.set(false)"
+              />
+            }
+          }
+        </span>
+      }
+    </nav>
+
+    <button type="button" class="icon-only search-btn" title="Search" (click)="paletteService.open()">
+      <app-icon name="search" [size]="14" [strokeWidth]="2.2" />
+      <span class="kbd-hint">⌘K</span>
+    </button>
+
+    <div class="right-actions">
+      <button type="button" class="new-note-btn" (click)="createNote()">
+        <app-icon name="plus" [size]="12" [strokeWidth]="2.8" />
+        New note
+      </button>
+
+      <button
+        type="button"
+        class="icon-only theme-btn"
+        title="Toggle theme"
+        [attr.aria-label]="'Switch to ' + (appearance.theme() === 'dark' ? 'light' : 'dark') + ' theme'"
+        (click)="appearance.toggleTheme()"
+      >
+        @if (appearance.theme() === 'dark') {
+          <app-icon name="moon" [size]="15" [strokeWidth]="1.9" />
+        } @else {
+          <app-icon name="sun" [size]="15" [strokeWidth]="1.9" />
+        }
+      </button>
+
+      <a routerLink="/settings" class="icon-only settings-btn" title="Settings">
+        <app-icon name="settings" [size]="15" [strokeWidth]="1.8" />
+      </a>
+
+      <div class="divider"></div>
+
+      <a routerLink="/settings" class="profile">
+        <app-avatar [initials]="userInitials()" [gradient]="auth.currentUser()?.avatar ?? 'gradient-1'" [size]="28" />
+        <span class="profile-name">{{ auth.currentUser()?.displayName }}</span>
+      </a>
+    </div>
+
+    <button
+      type="button"
+      class="icon-only mobile-menu-btn"
+      title="Menu"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      (click)="mobileMenuOpen.set(!mobileMenuOpen())"
+    >
+      <app-icon name="menu" [size]="17" [strokeWidth]="1.9" />
+    </button>
+  </div>
+
+  @if (mobileMenuOpen()) {
+    <div class="mobile-sheet" appClickOutside (clickOutside)="mobileMenuOpen.set(false)">
+      @for (item of navItems(); track item.id) {
+        <a
+          class="mobile-item"
+          [class.active]="item.active"
+          [routerLink]="item.link"
+          [queryParams]="item.queryParams ?? null"
+          (click)="mobileMenuOpen.set(false)"
+        >
+          {{ item.label }}
+          @if (item.badge) {
+            <app-pill bg="var(--accent-soft)" color="var(--accent-ink)" [bordered]="false" weight="600">{{
+              item.badge
+            }}</app-pill>
+          }
+        </a>
+      }
+      <div class="mobile-divider"></div>
+      @for (folder of foldersService.foldersWithCounts(); track folder.name) {
+        <button type="button" class="mobile-item" [class.active]="isFolderActive(folder.name)" (click)="selectFolder(folder.name)">
+          <span class="folder-dot" [style.background]="folder.color"></span>
+          {{ folder.name }}
+          <span class="folder-count">{{ folder.count }}</span>
+        </button>
+      }
+      <div class="mobile-divider"></div>
+      <button type="button" class="mobile-item" (click)="createNote()">New note</button>
+      <button type="button" class="mobile-item" (click)="appearance.toggleTheme()">
+        Toggle theme ({{ appearance.theme() === 'dark' ? 'dark' : 'light' }})
+      </button>
+      <a routerLink="/settings" class="mobile-item" (click)="mobileMenuOpen.set(false)">Settings</a>
+    </div>
+  }
+</header>
+
+@if (folderModalOpen()) {
+  <app-new-folder-modal (closed)="folderModalOpen.set(false)" />
+}

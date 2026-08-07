@@ -1,18 +1,25 @@
 @use 'mixins' as *;
 
+$grid: 62px minmax(200px, 1.7fr) minmax(120px, 0.85fr) minmax(160px, 1.15fr) minmax(72px, 0.5fr) 18px;
+
 .row {
-  @include interactive-card(-1px);
-  display: flex;
+  @include interactive-card(-2px);
+  display: grid;
+  grid-template-columns: $grid;
+  gap: var(--space-18);
   align-items: center;
-  gap: var(--space-16);
-  padding: var(--space-18) var(--space-20);
+  padding: var(--space-18) var(--space-22);
   text-decoration: none;
   color: inherit;
+
+  &.at-risk {
+    border-color: var(--warm-line);
+  }
 }
 
 .date-badge {
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
@@ -22,62 +29,140 @@
 }
 
 .day {
-  font-family: var(--font-mono);
-  font-size: var(--text-16);
+  font-size: var(--text-19);
   font-weight: var(--weight-semibold);
-  line-height: 1.1;
+  line-height: 1;
+  letter-spacing: -0.5px;
 }
 
 .month {
+  font-family: var(--font-mono);
   font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 1px;
+  color: var(--ink-3);
+  margin-top: 3px;
 }
 
 .meta {
   min-width: 0;
-  flex: 1;
 }
 
 .title {
   font-size: var(--text-15-5);
   font-weight: var(--weight-semibold);
+  letter-spacing: -0.3px;
   color: var(--ink);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.pills {
+.context-row {
   display: flex;
   align-items: center;
   gap: var(--space-8);
 }
 
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.context {
+  font-size: var(--text-12-5);
+  color: var(--ink-2);
+}
+
 .task-count {
   font-family: var(--font-mono);
   font-size: var(--text-11-5);
-  color: var(--ink-4);
+  color: var(--ink-3);
 }
 
-.progress-block {
-  width: 160px;
-  flex: 0 0 auto;
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-7);
+  font-size: var(--text-12);
+  font-weight: var(--weight-semibold);
+  border: 1px solid;
+  border-radius: var(--radius-full);
+  padding: var(--space-4) var(--space-11);
+  width: fit-content;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 
 .progress-header {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
   font-size: var(--text-11-5);
-  color: var(--ink-4);
+}
+
+.risk-label {
+  font-weight: var(--weight-semibold);
+}
+
+.pct {
+  font-family: var(--font-mono);
+  font-size: var(--text-12-5);
+  color: var(--ink);
 }
 
 .due {
   font-family: var(--font-mono);
   font-size: var(--text-12);
-  flex: 0 0 auto;
-  width: 56px;
   text-align: right;
+}
+
+.chevron {
+  color: var(--ink-3);
+}
+
+@media (max-width: 900px) {
+  .row {
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    grid-template-areas:
+      'badge meta chevron'
+      'status status status'
+      'progress progress progress'
+      'due due due';
+  }
+
+  .date-badge {
+    grid-area: badge;
+  }
+
+  .meta {
+    grid-area: meta;
+  }
+
+  .chevron {
+    grid-area: chevron;
+  }
+
+  .status-pill {
+    grid-area: status;
+    margin-top: var(--space-10);
+  }
+
+  .progress-block {
+    grid-area: progress;
+    margin-top: var(--space-10);
+  }
+
+  .due {
+    grid-area: due;
+    text-align: left;
+    margin-top: var(--space-6);
+  }
 }

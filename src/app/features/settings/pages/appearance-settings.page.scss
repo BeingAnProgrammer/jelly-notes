@@ -79,13 +79,13 @@
 }
 
 .dark-preview {
-  background: linear-gradient(150deg, #16161d, #0b0b0f);
-  border-color: #242430;
+  background: linear-gradient(150deg, #14141c, #0a0a0f);
+  border-color: rgb(255 255 255 / 8%);
 }
 
 .light-preview {
-  background: linear-gradient(150deg, #ffffff, #fbfbfd);
-  border-color: #e6e6ee;
+  background: linear-gradient(150deg, #ffffff, #f4f3f7);
+  border-color: #e6e4ec;
 }
 
 @media (max-width: 560px) {

@@ -24,8 +24,15 @@ export interface DecoratedAssignment extends Assignment {
   readonly tagColor: string;
   readonly statusBg: string;
   readonly statusColor: string;
+  readonly statusLine: string;
   readonly barColor: string;
+  readonly trackColor: string;
   readonly dueColor: string;
+  readonly atRisk: boolean;
+  readonly badgeBg: string;
+  readonly badgeColor: string;
+  readonly riskLabel: string;
+  readonly riskColor: string;
 }
 
 export interface UpcomingTask {

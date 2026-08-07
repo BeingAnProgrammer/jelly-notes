@@ -22,13 +22,14 @@ describe('ProgressBarComponent', () => {
     expect(track.getAttribute('aria-valuemax')).toBe('100');
   });
 
-  it('sets the fill width to match the percent', async () => {
+  it('animates the fill to a scaleX matching the percent', async () => {
     const fixture = TestBed.createComponent(ProgressBarComponent);
     fixture.componentRef.setInput('percent', 75);
     fixture.detectChanges();
     await fixture.whenStable();
 
-    const fill = fixture.nativeElement.querySelector('.fill');
-    expect(fill.style.width).toBe('75%');
+    const fill: HTMLElement = fixture.nativeElement.querySelector('.fill');
+    await new Promise((resolve) => setTimeout(resolve, 1100));
+    expect(getComputedStyle(fill).transform).toContain('0.75');
   });
 });

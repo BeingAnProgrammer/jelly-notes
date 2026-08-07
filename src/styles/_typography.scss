@@ -1,20 +1,23 @@
 // Typography tokens. Font files are loaded via <link> tags in index.html (Google Fonts:
-// Instrument Serif, Inter Tight, JetBrains Mono) so they're discoverable/preloadable by the browser
-// ahead of any CSS parsing.
+// Bricolage Grotesque, Schibsted Grotesk, IBM Plex Mono) so they're discoverable/preloadable by
+// the browser ahead of any CSS parsing.
 
 :root {
-  --font-sans: 'Inter Tight', system-ui, sans-serif;
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Schibsted Grotesk', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 
   --weight-regular: 400;
-  --weight-medium: 450;
+  --weight-medium: 500;
   --weight-input: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
 
   // Exact type scale used across the design — named by pixel size so component styles
   // stay traceable to the source design instead of forcing bespoke sizes onto a generic scale.
+  // A handful of sizes from the previous scale (16/18/24/30/44/46) are kept alongside v4's own
+  // sizes because pages not yet rebuilt in this pass still reference them — prune once every
+  // consumer is migrated (tracked in the rebuild plan's final-audit step).
   --text-11: 11px;
   --text-11-5: 11.5px;
   --text-12: 12px;
@@ -26,10 +29,12 @@
   --text-15: 15px;
   --text-15-5: 15.5px;
   --text-16: 16px;
+  --text-16-5: 16.5px;
+  --text-17-5: 17.5px;
   --text-18: 18px;
+  --text-19: 19px;
   --text-20: 20px;
   --text-22: 22px;
-  --text-23: 23px;
   --text-24: 24px;
   --text-26: 26px;
   --text-30: 30px;
@@ -37,5 +42,5 @@
   --text-36: 36px;
   --text-44: 44px;
   --text-46: 46px;
-  --text-60: 60px;
+  --text-64: 64px;
 }

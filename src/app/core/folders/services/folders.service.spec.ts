@@ -24,7 +24,7 @@ function makeNote(folder: string, archived = false): Note {
 }
 
 class FakeFoldersRepository extends FoldersRepository {
-  folders: Folder[] = [{ name: 'Growth', color: 'var(--ochre)' }];
+  folders: Folder[] = [{ name: 'Growth', color: 'var(--gold)' }];
   getAll(): Observable<Folder[]> {
     return of(this.folders);
   }
@@ -73,8 +73,8 @@ describe('FoldersService', () => {
   });
 
   it('create() adds a new folder and persists it through the repository', () => {
-    const created = service.create('Legal', 'var(--rust)');
-    expect(created).toEqual({ name: 'Legal', color: 'var(--rust)' });
+    const created = service.create('Legal', 'var(--warm)');
+    expect(created).toEqual({ name: 'Legal', color: 'var(--warm)' });
     expect(service.folders().map((f) => f.name)).toContain('Legal');
     expect(repo.folders.map((f) => f.name)).toContain('Legal');
   });

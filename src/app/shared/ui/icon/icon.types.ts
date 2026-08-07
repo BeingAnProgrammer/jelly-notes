@@ -13,6 +13,7 @@ export type IconName =
   | 'check'
   | 'checkmark'
   | 'chevron-right'
+  | 'chevron-down'
   | 'arrow-right'
   | 'grid'
   | 'list'
@@ -93,6 +94,7 @@ export const ICONS: Record<IconName, IconShape[]> = {
     { kind: 'path', d: 'M10.3 21a1.94 1.94 0 0 0 3.4 0' },
   ],
   'chevron-right': [{ kind: 'path', d: 'm9 18 6-6-6-6' }],
+  'chevron-down': [{ kind: 'path', d: 'M5 9l7 7 7-7' }],
   'arrow-right': [{ kind: 'path', d: 'M5 12h14M12 5l7 7-7 7' }],
   grid: [
     { kind: 'rect', x: 3, y: 3, width: 7, height: 7, rx: 1 },

@@ -1,60 +1,86 @@
 @use 'mixins' as *;
 
+.card {
+  @include surface-card;
+  display: block;
+}
+
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: var(--space-12);
+  justify-content: space-between;
+  padding: var(--space-16) var(--space-22);
+  border-bottom: 1px solid var(--hairline-2);
 }
 
 .title {
-  font-size: var(--text-13);
+  margin: 0;
+  font-size: var(--text-14);
   font-weight: var(--weight-semibold);
+  letter-spacing: -0.2px;
   color: var(--ink);
-  letter-spacing: -0.01em;
 }
 
 .view-all {
-  margin-left: auto;
+  background: none;
+  border: 0;
   font-size: var(--text-12-5);
-  color: var(--ink-4);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-3);
+  text-decoration: none;
 
   &:hover {
     color: var(--accent);
   }
 }
 
-.card {
-  @include surface-card;
-  padding: var(--space-6);
-}
-
 .row {
   display: flex;
   align-items: center;
-  gap: var(--space-11);
-  padding: var(--space-10) var(--space-11);
-  border-radius: var(--radius-md);
+  gap: var(--space-12);
+  width: 100%;
+  text-align: left;
+  padding: var(--space-13) var(--space-22);
+  border: 0;
+  border-bottom: 1px solid var(--hairline-2);
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
   transition: background var(--duration-fast) var(--ease-standard);
 
   &:hover {
     background: var(--surface-alt);
   }
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+
+  @include focus-ring;
 }
 
 .checkbox {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   border-radius: var(--radius-sm);
-  border-width: 1.6px;
-  border-style: solid;
+  border: 1.5px solid var(--hairline);
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.tick {
+  opacity: 0;
 }
 
 .text {
-  min-width: 0;
   flex: 1;
-  font-size: var(--text-13-5);
-  color: var(--ink-2);
+  min-width: 0;
+  font-size: var(--text-14);
+  font-weight: var(--weight-medium);
+  color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -62,6 +88,10 @@
 
 .due {
   font-family: var(--font-mono);
-  font-size: var(--text-11);
+  font-size: var(--text-11-5);
   flex: 0 0 auto;
+}
+
+.empty-wrap {
+  padding: var(--space-22);
 }

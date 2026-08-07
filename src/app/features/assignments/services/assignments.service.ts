@@ -12,17 +12,11 @@ const NEXT_STATUS: Record<TaskStatus, TaskStatus> = {
 
 const CONTEXT_COLORS: Record<string, { bg: string; color: string }> = {
   Fundraising: { bg: 'var(--accent-soft)', color: 'var(--accent-ink)' },
-  Sales: { bg: 'rgb(224 161 94 / 18%)', color: 'var(--ochre)' },
-  People: { bg: 'rgb(91 141 239 / 18%)', color: '#5b8def' },
-  Product: { bg: 'rgb(124 168 255 / 18%)', color: 'var(--ink-blue)' },
+  Sales: { bg: 'var(--gold-soft)', color: 'var(--gold)' },
+  People: { bg: 'var(--ink-blue-soft)', color: 'var(--ink-blue)' },
+  Product: { bg: 'var(--mint-soft)', color: 'var(--mint)' },
 };
 const DEFAULT_CONTEXT_COLOR = { bg: 'var(--canvas-sub)', color: 'var(--ink-3)' };
-
-const STATUS_COLORS: Record<AssignmentStatus, { bg: string; color: string }> = {
-  'Not started': { bg: 'var(--canvas-sub)', color: 'var(--ink-4)' },
-  'In progress': { bg: 'var(--accent-soft)', color: 'var(--accent-ink)' },
-  Complete: { bg: 'rgb(124 135 255 / 12%)', color: 'var(--accent)' },
-};
 
 function statusOf(tasks: Task[]): AssignmentStatus {
   if (tasks.length === 0) return 'Not started';
@@ -37,8 +31,14 @@ function decorate(assignment: Assignment): DecoratedAssignment {
   const percentComplete = totalCount === 0 ? 0 : Math.round((doneCount / totalCount) * 100);
   const status = statusOf(assignment.tasks);
   const context = CONTEXT_COLORS[assignment.context] ?? DEFAULT_CONTEXT_COLOR;
-  const statusStyle = STATUS_COLORS[status];
   const atRisk = assignment.hot && percentComplete < 100;
+
+  // Matches the design's status-pill rule exactly: at-risk always wins, otherwise a
+  // not-yet-started assignment reads neutral (slate) and anything actively moving reads
+  // positive (mint) — status alone (not just the 3-value enum) never determines the color.
+  const statusColor = atRisk ? 'var(--warm)' : status === 'Not started' ? 'var(--slate)' : 'var(--mint)';
+  const statusBg = atRisk ? 'var(--warm-soft)' : status === 'Not started' ? 'var(--slate-soft)' : 'var(--mint-soft)';
+  const statusLine = atRisk ? 'var(--warm-line)' : status === 'Not started' ? 'var(--slate-line)' : 'var(--mint-line)';
 
   return {
     ...assignment,
@@ -46,13 +46,20 @@ function decorate(assignment: Assignment): DecoratedAssignment {
     totalCount,
     percentComplete,
     status,
+    atRisk,
     taskCountLabel: `${doneCount}/${totalCount}`,
     tagBg: context.bg,
     tagColor: context.color,
-    statusBg: statusStyle.bg,
-    statusColor: statusStyle.color,
-    barColor: atRisk ? 'var(--rust)' : 'var(--accent)',
-    dueColor: assignment.hot ? 'var(--rust)' : 'var(--ink-4)',
+    statusBg,
+    statusColor,
+    statusLine,
+    barColor: atRisk ? 'var(--warm)' : 'var(--accent)',
+    trackColor: atRisk ? 'var(--warm-soft)' : 'var(--accent-soft)',
+    badgeBg: atRisk ? 'var(--warm-soft)' : 'var(--accent-soft)',
+    badgeColor: atRisk ? 'var(--warm)' : 'var(--accent-ink)',
+    dueColor: assignment.hot ? 'var(--warm)' : 'var(--ink-4)',
+    riskLabel: atRisk ? 'Behind schedule' : 'On track',
+    riskColor: atRisk ? 'var(--warm)' : 'var(--ink-3)',
   };
 }
 

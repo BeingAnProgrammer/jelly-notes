@@ -30,8 +30,6 @@
 
   &.danger:hover {
     @include icon-button-destructive-hover;
-    border-color: var(--rust);
-    color: var(--rust);
   }
 
   &.active {

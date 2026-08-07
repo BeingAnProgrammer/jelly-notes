@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ModalComponent } from '../../../../shared/ui/modal/modal.component';
 import { FoldersService } from '../../../folders/services/folders.service';
 
-const FOLDER_SWATCHES = ['var(--accent)', 'var(--ochre)', 'var(--ink-blue)', 'var(--rust)', '#5b8def', '#c06bd9'];
+const FOLDER_SWATCHES = ['var(--accent)', 'var(--gold)', 'var(--mint)', 'var(--lav)', 'var(--slate)', 'var(--warm)'];
 
 interface NewFolderForm {
   name: FormControl<string>;

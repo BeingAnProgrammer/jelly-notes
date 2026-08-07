@@ -1,39 +1,29 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NotesService } from '../../notes/services/notes.service';
 import { AssignmentsService } from '../../assignments/services/assignments.service';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { SeoService } from '../../../core/seo/seo.service';
+import { AskHeroComponent } from '../components/ask-hero/ask-hero.component';
 import { DigestCardComponent } from '../components/digest-card/digest-card.component';
-import { InsightCardComponent } from '../components/insight-card/insight-card.component';
+import { StatTilesRowComponent } from '../components/stat-tiles-row/stat-tiles-row.component';
 import { RecentNotesListComponent } from '../components/recent-notes-list/recent-notes-list.component';
 import { UpcomingTasksWidgetComponent } from '../components/upcoming-tasks-widget/upcoming-tasks-widget.component';
-import { DeadlineCardComponent } from '../components/deadline-card/deadline-card.component';
 
-const EYEBROW_FORMAT = new Intl.DateTimeFormat(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+const EYEBROW_FORMAT = new Intl.DateTimeFormat(undefined, { weekday: 'short', month: 'long', day: 'numeric' });
 const SOON_MS = 2 * 24 * 60 * 60 * 1000;
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [
-    RouterLink,
-    DigestCardComponent,
-    InsightCardComponent,
-    RecentNotesListComponent,
-    UpcomingTasksWidgetComponent,
-    DeadlineCardComponent,
-  ],
+  imports: [AskHeroComponent, DigestCardComponent, StatTilesRowComponent, RecentNotesListComponent, UpcomingTasksWidgetComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dashboard.page.html',
   styleUrl: './dashboard.page.scss',
 })
 export class DashboardPage {
-  protected readonly notesService = inject(NotesService);
-  protected readonly assignmentsService = inject(AssignmentsService);
+  private readonly assignmentsService = inject(AssignmentsService);
   private readonly auth = inject(AuthService);
 
   constructor() {
-    inject(SeoService).update('Dashboard', 'Your notes, tasks, and assignments at a glance.');
+    inject(SeoService).update('Home', 'Your notes, tasks, and assignments at a glance.');
   }
 
   protected readonly eyebrow = EYEBROW_FORMAT.format(new Date());
@@ -57,6 +47,4 @@ export class DashboardPage {
     const nearest = [...dueSoon].sort((a, b) => (a.due < b.due ? -1 : 1))[0];
     return `${dueSoon.length} item${dueSoon.length === 1 ? ' is' : 's are'} due soon, and “${nearest.title}” is ${nearest.percentComplete}% done.`;
   });
-
-  protected readonly deadlines = computed(() => this.assignmentsService.assignmentsDecorated().slice(0, 3));
 }

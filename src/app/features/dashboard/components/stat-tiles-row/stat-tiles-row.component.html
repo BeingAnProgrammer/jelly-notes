@@ -1,0 +1,16 @@
+<div class="tile">
+  <span class="value">{{ notesService.totalCount() }}</span>
+  <span class="label">Total notes</span>
+</div>
+<a routerLink="/assignments" class="tile accent">
+  <span class="value">{{ assignmentsService.openCount() }}</span>
+  <span class="label">Assignments</span>
+</a>
+<a routerLink="/notes" [queryParams]="{ filter: 'favorites' }" class="tile">
+  <span class="value">{{ notesService.favoriteCount() }}</span>
+  <span class="label">Favorites</span>
+</a>
+<a routerLink="/notes" [queryParams]="{ filter: 'archive' }" class="tile">
+  <span class="value">{{ notesService.archivedCount() }}</span>
+  <span class="label">Archived</span>
+</a>

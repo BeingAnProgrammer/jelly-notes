@@ -17,3 +17,12 @@ export interface Note {
 }
 
 export type NotesFilter = 'all' | 'favorites' | 'archive' | 'folder';
+
+/** Route + query params for each non-folder filter — the single source both the top nav and the
+ *  command palette navigate through, instead of each hand-typing the same `{ filter: '...' }`
+ *  object independently. */
+export const NOTES_FILTER_LINK: Record<'all' | 'favorites' | 'archive', { link: string; queryParams: { filter: NotesFilter } }> = {
+  all: { link: '/notes', queryParams: { filter: 'all' } },
+  favorites: { link: '/notes', queryParams: { filter: 'favorites' } },
+  archive: { link: '/notes', queryParams: { filter: 'archive' } },
+};

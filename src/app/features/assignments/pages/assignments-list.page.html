@@ -1,12 +1,20 @@
-<div class="header">
+<div class="header" data-anim>
   <h1>Assignments</h1>
-  <p class="subtext">{{ assignmentsService.assignmentsDecorated().length }} assignments</p>
+  <p class="subtext">{{ openCount() }} open · {{ atRiskCount() }} at risk</p>
 </div>
 
 @if (assignmentsService.assignmentsDecorated().length) {
+  <div class="column-labels" data-anim>
+    <span>Due</span>
+    <span>Assignment</span>
+    <span>Status</span>
+    <span>Progress</span>
+    <span class="align-right">Deadline</span>
+    <span></span>
+  </div>
   <div class="list">
     @for (assignment of assignmentsService.assignmentsDecorated(); track assignment.id) {
-      <app-assignment-row [assignment]="assignment" />
+      <app-assignment-row [assignment]="assignment" data-card />
     }
   </div>
 } @else {

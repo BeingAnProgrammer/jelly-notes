@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PillComponent } from '../../../../shared/ui/pill/pill.component';
 import { ProgressBarComponent } from '../../../../shared/ui/progress-bar/progress-bar.component';
 import { IconComponent } from '../../../../shared/ui/icon/icon.component';
 import { DecoratedAssignment } from '../../models/assignment.model';
@@ -10,7 +9,7 @@ const DUE_FORMAT = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'nu
 
 @Component({
   selector: 'app-assignment-row',
-  imports: [RouterLink, PillComponent, ProgressBarComponent, IconComponent],
+  imports: [RouterLink, ProgressBarComponent, IconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './assignment-row.component.html',
   styleUrl: './assignment-row.component.scss',

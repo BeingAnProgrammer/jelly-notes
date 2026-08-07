@@ -1,20 +1,29 @@
-<div class="header">
-  <span class="title">Upcoming tasks</span>
-  <a routerLink="/assignments" class="view-all">Assignments</a>
-</div>
+<section class="card">
+  <div class="header">
+    <h2 class="title">Upcoming tasks</h2>
+    <a routerLink="/assignments" class="view-all">Assignments</a>
+  </div>
 
-@if (assignmentsService.upcomingTasks().length) {
-  <div class="card">
+  @if (assignmentsService.upcomingTasks().length) {
     @for (task of assignmentsService.upcomingTasks(); track task.taskId) {
-      <div class="row">
-        <span class="checkbox" [style.border-color]="task.hot ? 'var(--rust)' : 'var(--ink-5)'"></span>
-        <div class="text">{{ task.title }}</div>
-        <span class="due" [style.color]="task.hot ? 'var(--rust)' : 'var(--ink-4)'">
+      <button
+        type="button"
+        class="row"
+        [attr.aria-label]="'Advance status of ' + task.title"
+        (click)="advance(task, $event)"
+      >
+        <span class="checkbox" [style.border-color]="task.hot ? 'var(--warm-line)' : 'var(--hairline)'">
+          <app-icon name="checkmark" [size]="10" [strokeWidth]="3.6" class="tick" />
+        </span>
+        <span class="text">{{ task.title }}</span>
+        <span class="due" [style.color]="task.hot ? 'var(--warm)' : 'var(--ink-3)'">
           {{ formatDue(task.due) }}
         </span>
-      </div>
+      </button>
     }
-  </div>
-} @else {
-  <app-empty-state icon="cap" title="Nothing due soon" description="You're all caught up on tasks." />
-}
+  } @else {
+    <div class="empty-wrap">
+      <app-empty-state icon="cap" title="Nothing due soon" description="You're all caught up on tasks." />
+    </div>
+  }
+</section>

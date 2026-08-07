@@ -1,32 +1,21 @@
 // Elevation system: shared shadow/scrim tokens so every floating surface (cards, popovers,
 // modals, drawers) reaches for one of four consistent steps instead of a bespoke box-shadow.
-// Dark and light need fundamentally different shadow *recipes*, not just an opacity tweak —
-// dark shadows recede naturally into an already-dark canvas, so a near-black shadow at
-// moderate-to-high opacity reads as depth. On a light canvas the same recipe reads as dirt.
-// Light steps use a soft, cool ink-tinted shadow (never pure black) at low opacity, spread
-// across two layers (a tight one + a diffuse one) — the "soft large shadow" technique premium
-// light-mode UIs (Linear, Stripe) use instead of one hard shadow.
+// --shadow-sm/--shadow-md are v4's own two-tier system verbatim (resting card / hover-lift card);
+// --shadow-xs/--shadow-lg extend the same recipe down (subtle chrome like inputs) and up (modals,
+// popovers) proportionally, since the export itself only ever needed two steps.
 
 :root {
-  --shadow-xs: 0 1px 2px rgb(0 0 0 / 16%);
-  --shadow-sm: 0 10px 24px -8px rgb(0 0 0 / 40%);
-  --shadow-md: 0 20px 48px -14px rgb(0 0 0 / 70%);
-  --shadow-lg: 0 32px 80px -16px rgb(0 0 0 / 80%);
-  --scrim: rgb(10 9 7 / 60%);
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 50%), 0 10px 28px rgb(0 0 0 / 42%);
+  --shadow-md: 0 2px 6px rgb(0 0 0 / 50%), 0 22px 50px rgb(0 0 0 / 55%);
+  --shadow-lg: 0 4px 10px rgb(0 0 0 / 55%), 0 32px 72px rgb(0 0 0 / 65%);
+  --scrim: rgb(10 10 15 / 60%);
 }
 
 :root[data-theme='light'] {
-  --shadow-xs:
-    0 1px 2px rgb(32 34 68 / 4%),
-    0 1px 1px rgb(32 34 68 / 3%);
-  --shadow-sm:
-    0 8px 20px -6px rgb(32 34 68 / 10%),
-    0 2px 5px rgb(32 34 68 / 5%);
-  --shadow-md:
-    0 16px 36px -12px rgb(32 34 68 / 14%),
-    0 4px 10px rgb(32 34 68 / 6%);
-  --shadow-lg:
-    0 28px 60px -16px rgb(32 34 68 / 20%),
-    0 8px 18px rgb(32 34 68 / 8%);
-  --scrim: rgb(28 28 38 / 32%);
+  --shadow-xs: 0 1px 2px rgb(23 22 29 / 4%);
+  --shadow-sm: 0 1px 2px rgb(23 22 29 / 5%), 0 8px 24px rgb(23 22 29 / 7%);
+  --shadow-md: 0 2px 6px rgb(23 22 29 / 7%), 0 18px 44px rgb(23 22 29 / 12%);
+  --shadow-lg: 0 4px 10px rgb(23 22 29 / 9%), 0 28px 60px rgb(23 22 29 / 16%);
+  --scrim: rgb(23 22 29 / 32%);
 }
