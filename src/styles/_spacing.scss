@@ -2,8 +2,8 @@
 // value used anywhere in the app is declared once here — components reference var(--space-*),
 // never a bare px literal, per the "no hardcoded values" requirement.
 
-$space-steps: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 30, 32, 36,
-  40, 44, 48, 56, 64, 80, 90, 100, 120;
+$space-steps: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36,
+  40, 44, 46, 48, 56, 64, 80, 90, 100, 120;
 
 :root {
   @each $step in $space-steps {
