@@ -18,7 +18,9 @@
   align-items: center;
   gap: var(--space-16);
   padding: 0 var(--space-14) 0 var(--space-20);
-  background: var(--nav);
+  background: color-mix(in srgb, var(--nav) 70%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid var(--nav-line);
   border-radius: var(--radius-2xl-plus);
   box-shadow: var(--nav-shadow);

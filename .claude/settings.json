@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(curl -s http://localhost:4200)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(lsof -ti:4200 -sTCP:LISTEN)",
+      "Bash(xargs -r kill)",
+      "Bash(rm -rf \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d510cc04-4ec9-427b-befb-b37e8c302c74/scratchpad/shots\" \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d510cc04-4ec9-427b-befb-b37e8c302c74/scratchpad\"/*.mjs)"
     ]
   }
 }

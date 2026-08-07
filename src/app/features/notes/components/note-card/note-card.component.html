@@ -8,7 +8,11 @@
   </div>
 
   <h2 class="title">{{ note().title }}</h2>
-  <p class="excerpt">{{ note().excerpt }}</p>
+  @if (note().excerpt) {
+    <p class="excerpt">{{ note().excerpt }}</p>
+  } @else {
+    <p class="excerpt empty">No content yet — click to start writing.</p>
+  }
 
   <div class="footer">
     <div class="tags">

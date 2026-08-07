@@ -1,5 +1,14 @@
 @use 'mixins' as *;
 
+:host {
+  display: block;
+  // The grid stretches this host to match the tallest card in its row (default grid
+  // align-items), but the visible `.card` inside it doesn't inherit that automatically —
+  // without height:100% below, cards with less content (e.g. no excerpt/tags yet) render
+  // shorter than their row-mates instead of stretching to match.
+  height: 100%;
+}
+
 .card {
   @include interactive-card;
   display: flex;
@@ -7,6 +16,7 @@
   gap: var(--space-10);
   padding: var(--space-22) var(--space-24);
   text-decoration: none;
+  height: 100%;
   min-height: 172px;
 
   &.pinned {
@@ -55,6 +65,11 @@
   line-height: 1.55;
   margin: 0;
   @include line-clamp(2);
+
+  &.empty {
+    color: var(--ink-4);
+    font-style: italic;
+  }
 }
 
 .footer {
