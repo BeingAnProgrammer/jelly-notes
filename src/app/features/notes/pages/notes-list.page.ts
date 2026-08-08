@@ -85,7 +85,7 @@ export class NotesListPage {
 
   protected selectFolder(name: string): void {
     this.foldersOpen.set(false);
-    this.router.navigate(['/notes'], { queryParams: { filter: 'folder', folder: name } });
+    this.router.navigate(['/app/notes'], { queryParams: { filter: 'folder', folder: name } });
   }
 
   protected clearFolder(): void {

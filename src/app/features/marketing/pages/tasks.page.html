@@ -1,0 +1,48 @@
+<app-public-nav />
+
+<app-feature-hero
+  eyebrow="TASKS"
+  headlineTop="Turn notes into things"
+  headlineBottom="you actually need to do."
+  subtext="Keep commitments, assignments, and follow-ups close to the information that created them."
+  ctaLabel="Organize your tasks"
+/>
+
+<app-product-window>
+  <h2 class="sr-only">A preview of Jelly Notes tasks</h2>
+  <div class="task-list">
+    @for (task of tasks; track task.title) {
+      <div class="task-row">
+        <span class="task-status-icon" [class]="'status-' + task.status">
+          @if (task.status === 'completed') {
+            <app-icon name="checkmark" [size]="11" [strokeWidth]="2.6" />
+          }
+        </span>
+        <div class="task-main">
+          <div class="task-row-head">
+            <span class="task-title">{{ task.title }}</span>
+            <app-pill [bg]="task.pillBg" [color]="task.pillColor" [bordered]="false" weight="600">{{
+              task.statusLabel
+            }}</app-pill>
+          </div>
+          @if (task.percent !== null) {
+            <app-progress-bar
+              [percent]="task.percent"
+              color="var(--accent)"
+              trackColor="var(--canvas-sub)"
+              [label]="task.title + ' progress'"
+            />
+          }
+          <span class="task-source">
+            <app-icon name="file" [size]="11" [strokeWidth]="2" />
+            {{ task.source }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+</app-product-window>
+
+<app-feature-section heading="From thought to action." [items]="features" />
+
+<app-cta-band headline="Ready to turn notes into action?" ctaLabel="Organize your tasks" />

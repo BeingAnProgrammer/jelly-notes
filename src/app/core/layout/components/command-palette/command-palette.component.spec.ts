@@ -91,7 +91,7 @@ describe('CommandPaletteComponent', () => {
 
     palette['activate']({ kind: 'note', note: { id: 'n2', label: 'Onboarding teardown', meta: 'Product' } });
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/notes', 'n2']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/app/notes', 'n2']);
     expect(paletteService.isOpen()).toBe(false);
   });
 
@@ -101,7 +101,7 @@ describe('CommandPaletteComponent', () => {
 
     palette['activate']({ kind: 'ask-ai', query: 'pricing' });
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/search'], { queryParams: { q: 'pricing' } });
+    expect(navigateSpy).toHaveBeenCalledWith(['/app/search'], { queryParams: { q: 'pricing' } });
   });
 
   it('activating an action runs it and closes the palette', () => {
@@ -111,7 +111,7 @@ describe('CommandPaletteComponent', () => {
 
     palette['activate']({ kind: 'action', action: dashboardAction });
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/dashboard']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/app/dashboard']);
     expect(paletteService.isOpen()).toBe(false);
   });
 
@@ -138,6 +138,6 @@ describe('CommandPaletteComponent', () => {
     palette['highlightedIndex'].set(lastIndex);
     palette['onKeydown']({ key: 'Enter', preventDefault: () => {} } as KeyboardEvent);
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/search'], { queryParams: { q: 'pricing' } });
+    expect(navigateSpy).toHaveBeenCalledWith(['/app/search'], { queryParams: { q: 'pricing' } });
   });
 });

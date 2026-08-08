@@ -1,0 +1,13 @@
+<section class="feature-section">
+  <h2>{{ heading() }}</h2>
+
+  <div class="feature-grid">
+    @for (item of items(); track item.title) {
+      <div class="feature-block">
+        <span class="feature-icon"><app-icon [name]="item.icon" [size]="17" [strokeWidth]="2" /></span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+    }
+  </div>
+</section>

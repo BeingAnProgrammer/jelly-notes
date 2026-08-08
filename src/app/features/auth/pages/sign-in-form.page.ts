@@ -38,7 +38,7 @@ export class SignInFormPage {
 
   continueToDashboard(): void {
     this.auth.signIn();
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/app/dashboard']);
   }
 
   goToGuestName(): void {

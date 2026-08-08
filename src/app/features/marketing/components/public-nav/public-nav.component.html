@@ -1,0 +1,18 @@
+<header class="top-nav">
+  <a class="brand" routerLink="/welcome">
+    <span class="brand-mark"><app-icon name="logo" [size]="18" [filled]="true" /></span>
+    <span class="brand-name">Jelly Notes</span>
+  </a>
+
+  <nav class="nav-labels" aria-label="Product">
+    @for (item of navItems; track item.path) {
+      <a
+        class="nav-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >{{ item.label }}</a
+      >
+    }
+  </nav>
+</header>

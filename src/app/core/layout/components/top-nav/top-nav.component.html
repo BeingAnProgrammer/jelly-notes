@@ -1,6 +1,6 @@
 <header class="top-nav-header">
   <div class="bar">
-    <a routerLink="/dashboard" class="brand">
+    <a routerLink="/app/dashboard" class="brand">
       <span class="brand-mark">
         <app-icon name="logo" [size]="20" [filled]="true" />
       </span>
@@ -84,13 +84,13 @@
         }
       </button>
 
-      <a routerLink="/settings" class="icon-only settings-btn" title="Settings">
+      <a routerLink="/app/settings" class="icon-only settings-btn" title="Settings">
         <app-icon name="settings" [size]="15" [strokeWidth]="1.8" />
       </a>
 
       <div class="divider"></div>
 
-      <a routerLink="/settings" class="profile">
+      <a routerLink="/app/settings" class="profile">
         <app-avatar [initials]="userInitials()" [gradient]="auth.currentUser()?.avatar ?? 'gradient-1'" [size]="28" />
       </a>
     </div>
@@ -137,7 +137,7 @@
       <button type="button" class="mobile-item" (click)="appearance.toggleTheme()">
         Toggle theme ({{ appearance.theme() === 'dark' ? 'dark' : 'light' }})
       </button>
-      <a routerLink="/settings" class="mobile-item" (click)="mobileMenuOpen.set(false)">Settings</a>
+      <a routerLink="/app/settings" class="mobile-item" (click)="mobileMenuOpen.set(false)">Settings</a>
     </div>
   }
 </header>

@@ -24,5 +24,5 @@ export const redirectIfSignedInGuard: CanActivateFn = () => {
   if (!isPlatformBrowser(inject(PLATFORM_ID))) return true;
   const auth = inject(AuthService);
   const router = inject(Router);
-  return auth.isSignedIn() ? router.parseUrl('/dashboard') : true;
+  return auth.isSignedIn() ? router.parseUrl('/app/dashboard') : true;
 };

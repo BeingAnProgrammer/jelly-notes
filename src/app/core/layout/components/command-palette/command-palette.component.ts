@@ -46,7 +46,7 @@ export class CommandPaletteComponent implements AfterViewInit {
 
   private readonly actions = computed<ActionItem[]>(() => [
     { label: 'New note', icon: 'plus', hint: 'N', run: () => this.createNote() },
-    { label: 'Go to Home', icon: 'home', run: () => this.router.navigate(['/dashboard']) },
+    { label: 'Go to Home', icon: 'home', run: () => this.router.navigate(['/app/dashboard']) },
     {
       label: 'Go to All notes',
       icon: 'file',
@@ -63,7 +63,7 @@ export class CommandPaletteComponent implements AfterViewInit {
       icon: 'archive',
       run: () => this.router.navigate([NOTES_FILTER_LINK.archive.link], { queryParams: NOTES_FILTER_LINK.archive.queryParams }),
     },
-    { label: 'Go to Assignments', icon: 'cap', run: () => this.router.navigate(['/assignments']) },
+    { label: 'Go to Assignments', icon: 'cap', run: () => this.router.navigate(['/app/assignments']) },
     { label: 'Toggle theme', icon: 'sun', run: () => this.appearance.toggleTheme() },
   ]);
 
@@ -122,13 +122,13 @@ export class CommandPaletteComponent implements AfterViewInit {
   protected activate(item: FlatItem | undefined): void {
     if (!item) return;
     if (item.kind === 'action') item.action.run();
-    else if (item.kind === 'note') this.router.navigate(['/notes', item.note.id]);
-    else this.router.navigate(['/search'], { queryParams: { q: item.query } });
+    else if (item.kind === 'note') this.router.navigate(['/app/notes', item.note.id]);
+    else this.router.navigate(['/app/search'], { queryParams: { q: item.query } });
     this.paletteService.close();
   }
 
   private createNote(): void {
     const note = this.notesService.create();
-    this.router.navigate(['/notes', note.id]);
+    this.router.navigate(['/app/notes', note.id]);
   }
 }

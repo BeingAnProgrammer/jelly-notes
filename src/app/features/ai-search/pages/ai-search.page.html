@@ -41,7 +41,7 @@
     @if (answer.sourceNoteIds.length) {
       <div class="sources">
         @for (noteId of answer.sourceNoteIds; track noteId) {
-          <a class="source-chip" [routerLink]="['/notes', noteId]">
+          <a class="source-chip" [routerLink]="['/app/notes', noteId]">
             <app-icon name="file" [size]="12" [strokeWidth]="1.8" />
             {{ sourceTitle(noteId) }}
           </a>
@@ -56,7 +56,7 @@
     <div class="results-label">Matching notes</div>
     <div class="results">
       @for (result of results(); track result.id) {
-        <a class="result-row" [routerLink]="['/notes', result.id]">
+        <a class="result-row" [routerLink]="['/app/notes', result.id]">
           <span class="dot" [style.background]="result.dot"></span>
           <div class="text">
             <div class="title-line">

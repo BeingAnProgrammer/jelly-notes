@@ -5,6 +5,7 @@ import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { PillComponent } from '../../../shared/ui/pill/pill.component';
 import { ProgressBarComponent } from '../../../shared/ui/progress-bar/progress-bar.component';
 import { SeoService } from '../../../core/seo/seo.service';
+import { PublicNavComponent } from '../../marketing/components/public-nav/public-nav.component';
 
 type ShowcaseFaceId = 'notes' | 'search' | 'assignments';
 
@@ -24,7 +25,7 @@ const ROTATE_MS = 4200;
 
 @Component({
   selector: 'app-sign-in-page',
-  imports: [IconComponent, PillComponent, ProgressBarComponent],
+  imports: [IconComponent, PillComponent, ProgressBarComponent, PublicNavComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sign-in.page.html',
   styleUrl: './sign-in.page.scss',
@@ -34,7 +35,6 @@ export class SignInPage implements OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private rotateHandle?: ReturnType<typeof setInterval>;
 
-  protected readonly navLabels = ['Notes', 'Tasks', 'AI Search'] as const;
   protected readonly showcaseFaces = SHOWCASE_FACES;
   protected readonly activeFace = signal(0);
 

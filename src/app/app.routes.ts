@@ -3,7 +3,7 @@ import { authGuard, redirectIfSignedInGuard } from './core/auth/guards/auth.guar
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'app',
     loadComponent: () =>
       import('./core/layout/components/app-shell/app-shell.component').then((m) => m.AppShellComponent),
     canActivate: [authGuard],
@@ -32,8 +32,28 @@ export const routes: Routes = [
     ],
   },
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'welcome',
+  },
+  {
     path: 'welcome',
     loadComponent: () => import('./features/auth/pages/sign-in.page').then((m) => m.SignInPage),
+    canActivate: [redirectIfSignedInGuard],
+  },
+  {
+    path: 'notes',
+    loadComponent: () => import('./features/marketing/pages/notes.page').then((m) => m.NotesPage),
+    canActivate: [redirectIfSignedInGuard],
+  },
+  {
+    path: 'tasks',
+    loadComponent: () => import('./features/marketing/pages/tasks.page').then((m) => m.TasksPage),
+    canActivate: [redirectIfSignedInGuard],
+  },
+  {
+    path: 'ai-search',
+    loadComponent: () => import('./features/marketing/pages/ai-search.page').then((m) => m.AiSearchMarketingPage),
     canActivate: [redirectIfSignedInGuard],
   },
   {

@@ -85,17 +85,17 @@ export class TopNavComponent {
   protected readonly activeFolder = computed(() => {
     const url = this.currentUrl();
     const match = /[?&]folder=([^&]+)/.exec(url);
-    return url.startsWith('/notes') && url.includes('filter=folder') && match ? decodeURIComponent(match[1]) : null;
+    return url.startsWith('/app/notes') && url.includes('filter=folder') && match ? decodeURIComponent(match[1]) : null;
   });
 
   protected readonly navItems = computed<NavEntry[]>(() => {
     const url = this.currentUrl();
     const notesFilterActive = (activeFilter: string) =>
-      url.startsWith('/notes') &&
+      url.startsWith('/app/notes') &&
       (url.includes(`filter=${activeFilter}`) || (activeFilter === 'all' && !url.includes('filter=')));
 
     return [
-      { id: 'home', label: 'Home', link: '/dashboard', active: url.startsWith('/dashboard') },
+      { id: 'home', label: 'Home', link: '/app/dashboard', active: url.startsWith('/app/dashboard') },
       {
         id: 'all',
         label: 'All notes',
@@ -105,8 +105,8 @@ export class TopNavComponent {
       {
         id: 'assignments',
         label: 'Assignments',
-        link: '/assignments',
-        active: url.startsWith('/assignments'),
+        link: '/app/assignments',
+        active: url.startsWith('/app/assignments'),
         badge: this.assignmentsService.openCount(),
       },
       {
@@ -190,7 +190,7 @@ export class TopNavComponent {
   protected selectFolder(name: string): void {
     this.foldersOpen.set(false);
     this.mobileMenuOpen.set(false);
-    this.router.navigate(['/notes'], { queryParams: { filter: 'folder', folder: name } });
+    this.router.navigate(['/app/notes'], { queryParams: { filter: 'folder', folder: name } });
   }
 
   protected clearFolder(): void {
@@ -202,6 +202,6 @@ export class TopNavComponent {
   protected createNote(): void {
     this.mobileMenuOpen.set(false);
     const note = this.notesService.create();
-    this.router.navigate(['/notes', note.id]);
+    this.router.navigate(['/app/notes', note.id]);
   }
 }

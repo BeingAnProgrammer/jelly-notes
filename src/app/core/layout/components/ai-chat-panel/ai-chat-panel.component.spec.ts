@@ -94,7 +94,7 @@ describe('AiChatPanelComponent', () => {
     const panel = create();
     const navigateSpy = spyOn(router, 'navigate');
     panel['openSource']('n1');
-    expect(navigateSpy).toHaveBeenCalledWith(['/notes', 'n1']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/app/notes', 'n1']);
   });
 
   it('send() forwards the input value to the chat service and clears the field', () => {

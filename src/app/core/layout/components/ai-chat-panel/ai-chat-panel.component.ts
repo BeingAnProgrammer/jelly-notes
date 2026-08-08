@@ -21,7 +21,7 @@ export class AiChatPanelComponent {
   }
 
   protected openSource(noteId: string): void {
-    this.router.navigate(['/notes', noteId]);
+    this.router.navigate(['/app/notes', noteId]);
   }
 
   protected send(input: HTMLInputElement): void {

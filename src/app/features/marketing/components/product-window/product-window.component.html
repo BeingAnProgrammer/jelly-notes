@@ -1,0 +1,19 @@
+<div class="window-outer">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="frame">
+    <div class="layer layer-1" aria-hidden="true"></div>
+    <div class="layer layer-2" aria-hidden="true"></div>
+
+    <div class="window">
+      <div class="window-bar">
+        <span class="window-dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="window-title">{{ title() }}</span>
+      </div>
+      <div class="window-body">
+        <ng-content />
+      </div>
+    </div>
+  </div>
+</div>

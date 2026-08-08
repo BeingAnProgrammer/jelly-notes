@@ -198,6 +198,46 @@
   }
 }
 
+// Shared by every public marketing page (welcome, notes, tasks, ai-search) — a deliberately
+// fixed light-pastel branded surface, same reasoning as auth-shell-host: the public site keeps
+// one calm look regardless of the site's stored theme preference. Re-declaring these token
+// names means every page's stylesheet can keep reading var(--ink), var(--accent), etc. as
+// normal and resolve to this fixed palette.
+@mixin marketing-page-host {
+  --canvas: #f8f6fc;
+  --canvas-sub: #f1eef9;
+  --surface: #ffffff;
+  --surface-alt: #faf8fd;
+  --ink: #18171f;
+  --ink-2: #57536a;
+  --ink-3: #737088;
+  --ink-4: #9692a6;
+  --hairline: #e8e3f3;
+  --hairline-2: #efebf8;
+  --accent: #2f5fe0;
+  --accent-hover: #2650c4;
+  --accent-soft: #e7edfc;
+  --accent-line: #c7d8f7;
+  --accent-ink: #2f5fe0;
+  --accent-glow-weak: rgb(47 95 224 / 8%);
+  --accent-glow: rgb(47 95 224 / 12%);
+  --accent-glow-strong: rgb(47 95 224 / 20%);
+  --mint: #18715c;
+  --mint-soft: #e4f3ee;
+  --lav: #6d5bd0;
+  --lav-soft: #ece7fc;
+  --shadow-lift: 0 24px 60px rgb(90 70 150 / 16%), 0 4px 16px rgb(90 70 150 / 8%);
+
+  display: block;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--canvas);
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% 0%, rgb(191 219 254 / 45%), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 85% 8%, rgb(251 207 232 / 35%), transparent 60%),
+    radial-gradient(ellipse 1000px 600px at 50% 38%, rgb(196 181 253 / 30%), transparent 65%);
+}
+
 @mixin line-clamp($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;

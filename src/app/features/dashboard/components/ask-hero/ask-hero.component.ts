@@ -50,7 +50,7 @@ export class AskHeroComponent {
   protected ask(question?: string): void {
     const q = (question ?? this.query()).trim();
     if (!q) return;
-    this.router.navigate(['/search'], { queryParams: { q } });
+    this.router.navigate(['/app/search'], { queryParams: { q } });
   }
 
   protected onFileSelected(event: Event): void {

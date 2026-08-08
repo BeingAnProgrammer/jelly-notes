@@ -22,7 +22,7 @@ export class GuestNamePage {
   onSubmit(event: Event, nameInput: HTMLInputElement): void {
     event.preventDefault();
     this.auth.signInAsGuest(nameInput.value);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/app/dashboard']);
   }
 
   goBack(): void {

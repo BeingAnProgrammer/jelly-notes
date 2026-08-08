@@ -32,10 +32,10 @@ describe('authGuard / redirectIfSignedInGuard', () => {
     expect(result).toBe(true);
   });
 
-  it('redirectIfSignedInGuard bounces an already-signed-in user to /dashboard', () => {
+  it('redirectIfSignedInGuard bounces an already-signed-in user to /app/dashboard', () => {
     auth.signIn();
     const result = TestBed.runInInjectionContext(() => redirectIfSignedInGuard({} as never, {} as never));
-    expect((result as UrlTree).toString()).toBe('/dashboard');
+    expect((result as UrlTree).toString()).toBe('/app/dashboard');
   });
 
   describe('during SSR (no visibility into browser localStorage)', () => {

@@ -113,7 +113,7 @@ export class NoteEditorPage {
   confirmDelete(): void {
     this.notesService.remove(this.id());
     this.showDeleteConfirm.set(false);
-    this.router.navigate(['/notes']);
+    this.router.navigate(['/app/notes']);
   }
 
   protected deleteMessage(title: string): string {

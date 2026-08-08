@@ -1,16 +1,4 @@
-<header class="top-nav">
-  <div class="brand">
-    <span class="brand-mark">
-      <app-icon name="logo" [size]="18" [filled]="true" />
-    </span>
-    <span class="brand-name">Jelly Notes</span>
-  </div>
-  <nav class="nav-labels" aria-hidden="true">
-    @for (label of navLabels; track label) {
-      <span>{{ label }}</span>
-    }
-  </nav>
-</header>
+<app-public-nav />
 
 <main class="hero">
   <h1>Everything you know,<br />in one calm workspace.</h1>

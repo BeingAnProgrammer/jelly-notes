@@ -1,4 +1,4 @@
-<a class="card" [class.pinned]="note().pinned" [style.--dot]="note().dot" [routerLink]="['/notes', note().id]">
+<a class="card" [class.pinned]="note().pinned" [style.--dot]="note().dot" [routerLink]="['/app/notes', note().id]">
   <div class="top-row">
     <span class="dot" [style.background]="note().dot"></span>
     <span class="folder" [style.color]="note().dot">{{ note().folder }}</span>

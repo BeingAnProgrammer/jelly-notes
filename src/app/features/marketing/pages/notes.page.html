@@ -1,0 +1,34 @@
+<app-public-nav />
+
+<app-feature-hero
+  eyebrow="NOTES"
+  headlineTop="Everything worth remembering,"
+  headlineBottom="kept in one place."
+  subtext="Capture ideas, decisions, research, and everything in between — organized so you can actually find it later."
+  ctaLabel="Start writing"
+/>
+
+<app-product-window>
+  <h2 class="sr-only">A preview of the Jelly Notes workspace</h2>
+  <div class="notes-grid">
+    @for (note of notes; track note.title) {
+      <div class="note-card">
+        <div class="note-card-head">
+          <span class="note-dot" [style.background]="note.dot"></span>
+          <span class="note-folder">{{ note.folder }}</span>
+        </div>
+        <h3 class="note-title">{{ note.title }}</h3>
+        <p class="note-snippet">{{ note.snippet }}</p>
+        <div class="note-tags">
+          @for (tag of note.tags; track tag) {
+            <span class="note-tag">{{ tag }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</app-product-window>
+
+<app-feature-section heading="Write freely. Find everything later." [items]="features" />
+
+<app-cta-band headline="Ready to start building your knowledge base?" ctaLabel="Start building your knowledge base" />

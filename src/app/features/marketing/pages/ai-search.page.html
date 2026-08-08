@@ -1,0 +1,53 @@
+<app-public-nav />
+
+<app-feature-hero
+  eyebrow="AI SEARCH"
+  headlineTop="Ask your knowledge."
+  headlineBottom="Get the answer."
+  subtext="Ask questions about everything you've written and let Jelly Notes find the context for you."
+  ctaLabel="Ask Jelly Notes"
+/>
+
+<app-product-window>
+  <h2 class="sr-only">A preview of Jelly Notes AI Search</h2>
+  <div class="search-demo">
+    <div class="ask-row">
+      <app-icon name="sparkles" [size]="15" [strokeWidth]="0" [filled]="true" />
+      <span>What did I decide about the Acme deal?</span>
+    </div>
+    <div class="answer-block">
+      <p>
+        You closed the security review and moved forward with the enterprise tier for Acme, prioritized ahead of
+        the SMB rollout.
+      </p>
+      <div class="source-chips">
+        @for (source of sources; track source) {
+          <span class="source-chip">
+            <app-icon name="file" [size]="12" [strokeWidth]="2" />
+            {{ source }}
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+</app-product-window>
+
+<app-feature-section heading="Your notes become searchable knowledge." [items]="features" />
+
+<section class="connect-visual" aria-hidden="true">
+  <div class="connect-sources">
+    @for (source of sources; track source) {
+      <div class="connect-chip">
+        <app-icon name="file" [size]="12" [strokeWidth]="2" />
+        {{ source }}
+      </div>
+    }
+  </div>
+  <app-icon name="chevron-down" [size]="16" [strokeWidth]="2" class="connect-arrow" />
+  <div class="connect-answer">
+    <app-icon name="sparkles" [size]="14" [strokeWidth]="0" [filled]="true" />
+    <p>One grounded answer, pulled straight from what you already wrote.</p>
+  </div>
+</section>
+
+<app-cta-band headline="Ready to ask your knowledge?" ctaLabel="Ask Jelly Notes" />
