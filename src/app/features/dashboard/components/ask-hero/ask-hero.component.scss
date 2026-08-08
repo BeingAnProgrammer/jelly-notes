@@ -5,6 +5,9 @@
 // so they need to stay legible against that specific gradient in both light and dark app
 // themes, not adapt to either.
 :host {
+  // Blue re-theme, matching top-nav.component.scss — see blue-accent-theme in _mixins.scss.
+  @include blue-accent-theme;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +15,10 @@
   text-align: center;
   min-height: 80vh;
   padding: var(--space-40) var(--space-24) var(--space-46);
+}
+
+:host-context([data-theme='light']) {
+  @include blue-accent-theme-light;
 }
 
 .eyebrow {
