@@ -26,7 +26,8 @@ export type IconName =
   | 'menu'
   | 'x'
   | 'eye'
-  | 'eye-off';
+  | 'eye-off'
+  | 'paperclip';
 
 export type IconShape =
   | { readonly kind: 'path'; readonly d: string }
@@ -140,5 +141,11 @@ export const ICONS: Record<IconName, IconShape[]> = {
       d: 'M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143',
     },
     { kind: 'path', d: 'm2 2 20 20' },
+  ],
+  paperclip: [
+    {
+      kind: 'path',
+      d: 'M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48',
+    },
   ],
 };

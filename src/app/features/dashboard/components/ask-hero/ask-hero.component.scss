@@ -1,9 +1,26 @@
+@use 'mixins' as *;
+
+// Fixed brand gradient (not theme-reactive), same reasoning as the auth pages' fixed-dark
+// surface: this backdrop is a deliberate branded look, so the eyebrow/heading colors below
+// are hardcoded dark rather than reading var(--ink) — they need to stay legible against this
+// specific gradient in both light and dark app themes, not adapt to either.
 :host {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: var(--space-40) 0 var(--space-46);
+  padding: var(--space-46) var(--space-24) var(--space-64);
+  border-radius: var(--radius-3xl);
+  background: radial-gradient(
+    125% 125% at 50% 85%,
+    rgb(245 87 2) 10.5%,
+    rgb(245 120 2) 16%,
+    rgb(245 140 2) 17.5%,
+    rgb(245 170 100) 25%,
+    rgb(238 174 202) 40%,
+    rgb(202 179 214) 65%,
+    rgb(148 201 233) 100%
+  );
 }
 
 .eyebrow {
@@ -43,7 +60,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-11);
   letter-spacing: 1.7px;
-  color: var(--ink-3);
+  color: rgb(23 22 29 / 65%);
   text-transform: uppercase;
 }
 
@@ -55,12 +72,12 @@ h1 {
   line-height: 1.02;
   letter-spacing: -2.6px;
   max-width: 920px;
-  color: var(--ink);
+  color: #17161d;
   text-wrap: balance;
 }
 
 .dim {
-  color: var(--ink-3);
+  color: rgb(23 22 29 / 55%);
 }
 
 .ask-field {
@@ -71,13 +88,21 @@ h1 {
   border: 1px solid var(--hairline);
   box-shadow: var(--shadow-md);
   padding: var(--space-8) var(--space-8) 0;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+
+  &:focus-within {
+    border-color: var(--accent-line);
+    box-shadow: var(--shadow-md), 0 0 0 3px var(--accent-glow-weak);
+  }
 }
 
 .input-row {
   display: flex;
   align-items: center;
   gap: var(--space-14);
-  padding: var(--space-10) var(--space-8) var(--space-10) var(--space-16);
+  padding: var(--space-10) var(--space-16) var(--space-6);
 }
 
 .sparkle {
@@ -103,27 +128,156 @@ input {
   }
 }
 
-.ask-btn {
+.action-row {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-8) var(--space-8);
+}
+
+.action-spacer {
+  flex: 1;
+}
+
+.icon-btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-9);
-  height: 46px;
-  padding: 0 var(--space-20);
-  border-radius: var(--radius-xl-plus);
+  justify-content: center;
+  width: 34px;
+  height: 34px;
   border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--ink-3);
   cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: var(--text-14-5);
-  font-weight: var(--weight-semibold);
-  color: var(--accent-fg);
-  background: var(--cta-gradient);
-  box-shadow: 0 8px 24px var(--accent-glow-strong);
-  flex-shrink: 0;
-  transition: filter var(--duration-fast) var(--ease-standard);
+  transition:
+    background var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
 
   &:hover {
-    filter: brightness(1.08);
+    background: var(--surface-alt);
+    color: var(--ink);
   }
+
+  @include focus-ring;
+}
+
+.file-input {
+  display: none;
+}
+
+.send-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--surface-alt);
+  color: var(--ink-3);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.active {
+    background: var(--cta-gradient);
+    color: var(--accent-fg);
+    box-shadow: 0 6px 18px var(--accent-glow-strong);
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  @include focus-ring;
+}
+
+.attachment-row {
+  display: flex;
+  padding: var(--space-10) var(--space-16) 0;
+}
+
+.attachment-thumb {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @include focus-ring;
+}
+
+.remove-attachment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin: -8px 0 0 -10px;
+  border: 1px solid var(--surface);
+  border-radius: var(--radius-full);
+  background: var(--ink-3);
+  color: var(--surface);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--ink);
+  }
+
+  @include focus-ring;
+}
+
+.image-preview {
+  position: relative;
+  line-height: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: var(--radius-2xl);
+  }
+}
+
+.preview-close {
+  position: absolute;
+  top: var(--space-10);
+  right: var(--space-10);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: rgb(0 0 0 / 55%);
+  color: #ffffff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+
+  &:hover {
+    background: rgb(0 0 0 / 72%);
+  }
+
+  @include focus-ring;
 }
 
 .suggestions {
@@ -166,6 +320,11 @@ input {
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.chip:hover .chip-dot {
+  transform: scale(1.6) rotate(15deg);
 }
 
 @media (max-width: 640px) {
@@ -176,10 +335,5 @@ input {
 
   .input-row {
     flex-wrap: wrap;
-  }
-
-  .ask-btn {
-    width: 100%;
-    justify-content: center;
   }
 }
