@@ -36,8 +36,8 @@
   @include focus-ring;
 
   &-mark {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: var(--radius-md);
     background: var(--logo-gradient);
     box-shadow: 0 3px 10px var(--accent-glow-strong);
