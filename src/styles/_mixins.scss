@@ -141,23 +141,23 @@
 }
 
 // Shared by every step of the sign-in flow (sign-in-form, guest-name, …) — a deliberately
-// fixed-dark branded surface, like the command palette and AI chat panel elsewhere, rather
+// fixed-light branded surface, like the command palette and AI chat panel elsewhere, rather
 // than theme-reactive: a first-run visitor hasn't set an in-app light/dark preference yet.
 // Re-declaring these token names (not touching the global :root values) means the rest of
 // each page's stylesheet can keep reading var(--ink), var(--hairline), etc. as normal and
-// resolve to the dark palette regardless of the site's active theme.
+// resolve to this fixed palette regardless of the site's active theme.
 @mixin auth-shell-host {
-  --canvas: #0b0b0f;
-  --canvas-sub: #111117;
-  --surface: #16161d;
-  --ink: #f4f4f7;
-  --ink-2: #c9c9d4;
-  --ink-3: #8b8b99;
-  --ink-4: #5e5e6b;
-  --hairline: #242430;
-  --accent: #5b8ef5;
-  --accent-fg: #0b0b0f;
-  --shadow-lg: 0 32px 80px -16px rgb(0 0 0 / 80%);
+  --canvas: #f4f3f7;
+  --canvas-sub: #eeedf3;
+  --surface: #ffffff;
+  --ink: #17161d;
+  --ink-2: #5a5769;
+  --ink-3: #646270;
+  --ink-4: #6f6d7c;
+  --hairline: #e6e4ec;
+  --accent: #2f5fe0;
+  --accent-fg: #ffffff;
+  --shadow-lg: 0 32px 80px -16px rgb(23 22 29 / 20%);
 
   position: fixed;
   inset: 0;
@@ -165,8 +165,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // A large (125%/125%) radial ellipse anchored just above center, solid dark through the
-  // middle 40%, opening out into the brand's blue at the edges.
+  // A large (125%/125%) radial ellipse anchored just above center, light through the middle
+  // 40%, opening out into the brand's blue at the edges — same shape as before, just the
+  // center swapped from near-black to a light canvas.
   background: radial-gradient(125% 125% at 50% 10%, var(--canvas) 40%, #2f5fe0 100%);
   overflow: hidden;
   padding: var(--space-24);
