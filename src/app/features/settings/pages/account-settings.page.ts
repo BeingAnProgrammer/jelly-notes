@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { SeoService } from '../../../core/seo/seo.service';
@@ -17,6 +18,7 @@ import { initialsOf } from '../../../shared/utils/initials';
 export class AccountSettingsPage {
   protected readonly auth = inject(AuthService);
   private readonly toast = inject(ToastService);
+  private readonly router = inject(Router);
 
   protected readonly avatarOptions = Object.keys(AVATAR_GRADIENTS) as AvatarGradient[];
   protected readonly nameControl = new FormControl('', { nonNullable: true, validators: [Validators.required] });
@@ -44,5 +46,10 @@ export class AccountSettingsPage {
 
   protected avatarGradientCss(gradient: AvatarGradient): string {
     return AVATAR_GRADIENTS[gradient];
+  }
+
+  logOut(): void {
+    this.auth.signOut();
+    this.router.navigate(['/welcome']);
   }
 }

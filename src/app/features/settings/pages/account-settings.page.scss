@@ -111,6 +111,12 @@
   }
 }
 
+.logout-btn {
+  @include ghost-button;
+  @include icon-button-destructive-hover;
+  padding: var(--space-8) var(--space-16);
+}
+
 @media (max-width: 560px) {
   .row {
     flex-direction: column;
