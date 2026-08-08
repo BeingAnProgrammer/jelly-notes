@@ -1,12 +1,38 @@
 @use 'mixins' as *;
 
 :host {
+  // Nav-scoped override of the app's accent tokens, blue instead of the app-wide purple —
+  // every rule below still just reads var(--accent)/var(--cta-gradient) etc. unchanged, so
+  // this is the only place the nav's button color lives. Custom properties cascade down from
+  // :host to this component's whole template without leaking to the rest of the app.
+  --accent: #3b6fed;
+  --accent-hover: #4c7ef0;
+  --accent-soft: rgb(59 111 237 / 16%);
+  --accent-line: rgb(59 111 237 / 34%);
+  --accent-ink: #9dc0f8;
+  --accent-fg: #ffffff;
+  --accent-glow-weak: rgb(59 111 237 / 10%);
+  --accent-glow: rgb(59 111 237 / 14%);
+  --accent-glow-strong: rgb(59 111 237 / 24%);
+  --cta-gradient: linear-gradient(150deg, #5b8ef5, #2f5fe0);
+
   display: block;
   position: sticky;
   top: 0;
   z-index: 50;
   padding: var(--space-16) var(--space-22) var(--space-10);
   background: linear-gradient(var(--canvas) 62%, transparent);
+}
+
+:host-context([data-theme='light']) {
+  --accent: #2f5fe0;
+  --accent-hover: #2650c4;
+  --accent-soft: #e7edfc;
+  --accent-line: #c7d8f7;
+  --accent-ink: #2f5fe0;
+  --accent-glow-weak: rgb(47 95 224 / 8%);
+  --accent-glow: rgb(47 95 224 / 12%);
+  --accent-glow-strong: rgb(47 95 224 / 20%);
 }
 
 .bar {
