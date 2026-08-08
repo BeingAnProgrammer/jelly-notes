@@ -1,113 +1,134 @@
 <header class="top-nav">
   <div class="brand">
-    <div class="brand-mark">
-      <app-icon name="logo" [size]="34" [filled]="true" />
-    </div>
+    <span class="brand-mark">
+      <app-icon name="logo" [size]="18" [filled]="true" />
+    </span>
     <span class="brand-name">Jelly Notes</span>
   </div>
-  <div class="nav-labels" aria-hidden="true">
+  <nav class="nav-labels" aria-hidden="true">
     @for (label of navLabels; track label) {
-      <span>[ {{ label }} ]</span>
+      <span>{{ label }}</span>
     }
-  </div>
+  </nav>
 </header>
 
-<!-- The calm ask: left column, never touched by the jellyfish's tentacles. -->
-<div class="text-column" #textColumn>
-  <h1>Everything you know, in one calm workspace.</h1>
+<main class="hero">
+  <h1>Everything you know,<br />in one calm workspace.</h1>
   <p class="subtext">
     Notes, folders, tasks, and assignments — with an AI that has actually read everything you've written.
   </p>
-  <button type="button" class="sign-in-btn" (click)="continueToSignIn()">
-    Sign in
-    <app-icon name="arrow-right" [size]="16" [strokeWidth]="2" />
-  </button>
-  <p class="footnote">No account needed for this preview.</p>
-</div>
 
-<!-- The seam: a labelled divider between the ask and the atmosphere. -->
-<div class="side-ruler side-ruler--left" aria-hidden="true">
-  @for (tick of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track $index) {
-    <span class="tick" [class.tick--major]="$index % 4 === 0"></span>
-  }
-  <span class="ruler-label">{{ tickLabels.join(' · ') }}</span>
-</div>
+  <div class="cta-block">
+    <button type="button" class="cta-btn" (click)="getStarted()">
+      Get started
+      <app-icon name="arrow-right" [size]="16" [strokeWidth]="2" />
+    </button>
+    <p class="footnote">No account needed for this preview.</p>
+  </div>
 
-<!-- The atmosphere: the kinetic word-ring and the procedural jellyfish, contained in its
-     own stage so nothing here ever has to compete with the sign-in copy for space. -->
-<div class="visual-stage">
-  <div class="word-ring-viewport" [style.perspective.px]="perspective" aria-hidden="true">
-    <div class="jelly-stage" [style.animation-duration.s]="loopSeconds">
-      @for (seat of phraseSeats; track seat.text) {
-        <span
-          class="jelly-phrase"
-          [style.transform]="seat.transform"
-          [style.animation-duration.s]="loopSeconds"
-          [style.animation-delay]="seat.delay"
-        >
-          <span class="jelly-rise" [style.animation-duration.s]="loopSeconds" [style.animation-delay]="seat.delay">
-            <span class="jelly-condense">{{ seat.text }}</span>
-          </span>
+  <div class="showcase">
+    <div class="showcase-glow" aria-hidden="true"></div>
+
+    <div class="showcase-window">
+      <div class="window-bar">
+        <span class="window-dots" aria-hidden="true">
+          <span></span><span></span><span></span>
         </span>
+        <span class="window-title">Jelly Notes</span>
+      </div>
+
+      <div class="window-body">
+        @for (face of showcaseFaces; track face.id; let i = $index) {
+          <div class="face" [class.active]="i === activeFace()" [attr.aria-hidden]="i === activeFace() ? null : 'true'">
+            @switch (face.id) {
+              @case ('notes') {
+                <div class="face-notes">
+                  <div class="mini-card">
+                    <div class="mini-card-head">
+                      <span class="mini-dot" style="background: var(--mint)"></span>
+                      Growth
+                    </div>
+                    <div class="mini-card-title">Pricing v2 — experiment log</div>
+                    <p class="mini-card-body">
+                      Cohort A is converting 18% higher on the usage-based hybrid.
+                    </p>
+                    <div class="mini-tags">
+                      <span class="mini-tag">pricing</span>
+                      <span class="mini-tag">experiments</span>
+                    </div>
+                  </div>
+                  <div class="mini-card">
+                    <div class="mini-card-head">
+                      <span class="mini-dot" style="background: var(--accent)"></span>
+                      Fundraising
+                    </div>
+                    <div class="mini-card-title">Series B narrative — v3</div>
+                    <p class="mini-card-body">
+                      The three-act story: category creation, the wedge, and the inevitable platform.
+                    </p>
+                    <div class="mini-tags">
+                      <span class="mini-tag">deck</span>
+                      <span class="mini-tag">narrative</span>
+                    </div>
+                  </div>
+                </div>
+              }
+              @case ('search') {
+                <div class="face-search">
+                  <div class="ask-row">
+                    <app-icon name="sparkles" [size]="15" [strokeWidth]="0" [filled]="true" />
+                    <span>What did I decide about the Acme deal?</span>
+                  </div>
+                  <div class="answer-block">
+                    <p>
+                      You closed the security review and moved forward with the enterprise tier for
+                      Acme, prioritized ahead of the SMB rollout.
+                    </p>
+                    <span class="source-chip">
+                      <app-icon name="file" [size]="12" [strokeWidth]="2" />
+                      Series B narrative — v3
+                    </span>
+                  </div>
+                </div>
+              }
+              @case ('assignments') {
+                <div class="face-assignments">
+                  <div class="assignment-row">
+                    <div class="assignment-row-head">
+                      <span class="assignment-title">Investor data room</span>
+                      <app-pill bg="var(--mint-soft)" color="var(--mint)" [bordered]="false" weight="600"
+                        >In progress</app-pill
+                      >
+                    </div>
+                    <app-progress-bar [percent]="75" label="Investor data room progress" />
+                  </div>
+                  <div class="assignment-row">
+                    <div class="assignment-row-head">
+                      <span class="assignment-title">Board deck — final draft</span>
+                      <app-pill bg="var(--mint-soft)" color="var(--mint)" [bordered]="false" weight="600"
+                        >Complete</app-pill
+                      >
+                    </div>
+                    <app-progress-bar [percent]="100" label="Board deck progress" />
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="showcase-dots">
+      @for (face of showcaseFaces; track face.id; let i = $index) {
+        <button
+          type="button"
+          class="showcase-dot"
+          [class.active]="i === activeFace()"
+          [attr.aria-label]="'Show ' + face.label"
+          (click)="setFace(i)"
+        ></button>
       }
     </div>
   </div>
-
-  @for (bubble of bubbles; track bubble.left) {
-    <span
-      class="bubble"
-      aria-hidden="true"
-      [style.left]="bubble.left"
-      [style.width]="bubble.size"
-      [style.height]="bubble.size"
-      [style.animation-duration]="bubble.duration"
-      [style.animation-delay]="bubble.delay"
-    ></span>
-  }
-
-  <div class="jellyfish-stage">
-    <app-jellyfish [loopSeconds]="loopSeconds" />
-  </div>
-
-  <div class="manifesto" [style.animation-duration.s]="loopSeconds" aria-hidden="true">
-    <p>{{ manifesto }}</p>
-  </div>
-
-  <div class="side-ruler side-ruler--right" aria-hidden="true">
-    @for (tick of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track $index) {
-      <span class="tick" [class.tick--major]="$index % 4 === 0"></span>
-    }
-  </div>
-
-  <div class="bottom-caption">
-    @for (caption of captions; track caption; let i = $index) {
-      <p [style.animation-delay.s]="i * 6">{{ caption }}</p>
-    }
-  </div>
-
-  <div class="corner-chip corner-chip--right" aria-hidden="true">
-    <app-icon name="sparkles" [size]="14" [strokeWidth]="2" />
-  </div>
-
-  @for (mark of marks; track mark.left) {
-    <span
-      class="drift-mark"
-      aria-hidden="true"
-      [style.left]="mark.left"
-      [style.top]="mark.top"
-      [style.width.px]="mark.size"
-      [style.height.px]="mark.size"
-      [style.animation-duration]="mark.duration"
-      [style.animation-delay]="mark.delay"
-    ></span>
-  }
-</div>
-
-<div class="corner-chip corner-chip--left" aria-hidden="true">
-  <span class="dot"></span>
-  PREVIEW MODE
-</div>
-
-<div class="micro-label" aria-hidden="true">Jelly Notes — Preview Build</div>
-
-<div class="grain" aria-hidden="true"></div>
+</main>

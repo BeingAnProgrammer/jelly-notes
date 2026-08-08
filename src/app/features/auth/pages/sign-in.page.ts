@@ -1,143 +1,75 @@
 import { isPlatformBrowser } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  OnDestroy,
-  PLATFORM_ID,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import gsap from 'gsap';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
+import { PillComponent } from '../../../shared/ui/pill/pill.component';
+import { ProgressBarComponent } from '../../../shared/ui/progress-bar/progress-bar.component';
 import { SeoService } from '../../../core/seo/seo.service';
-import { JellyfishComponent } from '../components/jellyfish/jellyfish.component';
 
-// Seconds for one full orbit of the word-ring / camera-relative jellyfish spin. Shared by
-// the CSS keyframes (jelly-orbit) and the JellyfishSceneComponent's own rotation so the two
-// stay in lockstep.
-const LOOP_SECONDS = 20;
-// Radius (px) of the word ring and the perspective (camera) distance for the 3D word carousel.
-const RING_RADIUS = 660;
-const PERSPECTIVE = 2200;
+type ShowcaseFaceId = 'notes' | 'search' | 'assignments';
 
-interface PhraseSeat {
-  readonly text: string;
-  readonly transform: string;
-  readonly delay: string;
+interface ShowcaseFace {
+  readonly id: ShowcaseFaceId;
+  readonly label: string;
 }
 
-function buildPhraseSeats(phrases: readonly string[]): PhraseSeat[] {
-  const count = phrases.length;
-  const step = 360 / count;
-  return phrases.map((text, i) => {
-    // Phase-locks each word's fade/rise to the moment it faces the camera on the ring.
-    const delaySeconds = (-LOOP_SECONDS * ((count - i) % count)) / count - LOOP_SECONDS / 2;
-    return {
-      text,
-      transform: `rotateY(${(i * step).toFixed(2)}deg) translateZ(${RING_RADIUS}px) rotateY(180deg)`,
-      delay: `${delaySeconds.toFixed(3)}s`,
-    };
-  });
-}
+const SHOWCASE_FACES: readonly ShowcaseFace[] = [
+  { id: 'notes', label: 'Notes' },
+  { id: 'search', label: 'AI Search' },
+  { id: 'assignments', label: 'Assignments' },
+];
 
-interface Bubble {
-  readonly left: string;
-  readonly size: string;
-  readonly delay: string;
-  readonly duration: string;
-}
-
-interface DriftMark {
-  readonly left: string;
-  readonly top: string;
-  readonly size: number;
-  readonly duration: string;
-  readonly delay: string;
-}
+// How long each face of the product preview holds before crossfading to the next.
+const ROTATE_MS = 4200;
 
 @Component({
   selector: 'app-sign-in-page',
-  imports: [IconComponent, JellyfishComponent],
+  imports: [IconComponent, PillComponent, ProgressBarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sign-in.page.html',
   styleUrl: './sign-in.page.scss',
 })
-export class SignInPage implements AfterViewInit, OnDestroy {
+export class SignInPage implements OnDestroy {
   private readonly router = inject(Router);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly host = inject(ElementRef<HTMLElement>);
-  private matchMedia?: ReturnType<typeof gsap.matchMedia>;
+  private rotateHandle?: ReturnType<typeof setInterval>;
 
-  protected readonly loopSeconds = LOOP_SECONDS;
-  protected readonly perspective = PERSPECTIVE;
-
-  protected readonly phrases = ['NOTES', 'IDEAS', 'THOUGHTS', 'MEMORY', 'KNOWLEDGE'] as const;
-  protected readonly phraseSeats = buildPhraseSeats(this.phrases);
-
-  protected readonly navLabels = ['NOTES', 'TASKS', 'AI SEARCH'] as const;
-  protected readonly tickLabels = ['AI', 'NOTES', 'TASKS', 'SEARCH'] as const;
-
-  protected readonly manifesto =
-    'JELLY NOTES BRINGS YOUR NOTES, TASKS, AND KNOWLEDGE INTO ONE CALM, AI-POWERED WORKSPACE.';
-
-  protected readonly captions = [
-    'EVERYTHING YOU KNOW, IN ONE CALM WORKSPACE',
-    "NOTES, FOLDERS, TASKS — WITH AN AI THAT'S ACTUALLY READ THEM",
-    'NO ACCOUNT NEEDED FOR THIS PREVIEW',
-  ] as const;
-
-  protected readonly bubbles: readonly Bubble[] = [
-    { left: '22%', size: '0.9vh', delay: '0s', duration: '13s' },
-    { left: '71%', size: '1.4vh', delay: '4s', duration: '16s' },
-    { left: '58%', size: '0.7vh', delay: '8s', duration: '11s' },
-    { left: '38%', size: '1.1vh', delay: '6s', duration: '15s' },
-  ];
-
-  protected readonly marks: readonly DriftMark[] = [
-    { left: '12%', top: '30%', size: 6, duration: '17s', delay: '0s' },
-    { left: '86%', top: '62%', size: 5, duration: '21s', delay: '-6s' },
-    { left: '78%', top: '26%', size: 4, duration: '14s', delay: '-3s' },
-  ];
+  protected readonly navLabels = ['Notes', 'Tasks', 'AI Search'] as const;
+  protected readonly showcaseFaces = SHOWCASE_FACES;
+  protected readonly activeFace = signal(0);
 
   constructor() {
     inject(SeoService).update(
       'Welcome',
       'Jelly Notes is an AI-powered note-taking and personal knowledge management app.',
     );
-  }
 
-  continueToSignIn(): void {
-    this.router.navigate(['/sign-in']);
-  }
-
-  ngAfterViewInit(): void {
-    if (!this.isBrowser) return;
-    const root = this.host.nativeElement;
-
-    // One orchestrated page-load moment: the nav settles, then the ask (headline, subtext,
-    // button, footnote) rises in as a sequence, while the atmosphere (word-ring + jellyfish,
-    // already looping on its own) fades into view alongside it. Skipped entirely — not just
-    // shortened — when the visitor prefers reduced motion, since matchMedia's setup callback
-    // simply never runs for a query that doesn't match.
-    this.matchMedia = gsap.matchMedia();
-    this.matchMedia.add('(prefers-reduced-motion: no-preference)', () => {
-      const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      timeline
-        .from(root.querySelectorAll('.top-nav > *'), { autoAlpha: 0, y: -8, duration: 0.5, stagger: 0.08 })
-        .from(
-          root.querySelectorAll('.text-column > *'),
-          { autoAlpha: 0, y: 18, duration: 0.7, stagger: 0.12 },
-          '-=0.25',
-        )
-        .from(root.querySelector('.visual-stage'), { autoAlpha: 0, duration: 1.2 }, '-=0.9');
-
-      return () => timeline.kill();
-    });
+    // A plain setInterval isn't a CSS animation, so the app-wide reduced-motion stylesheet
+    // rule can't stop it — skip starting it at all for visitors who've opted out of motion.
+    if (this.isBrowser && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.startRotation();
+    }
   }
 
   ngOnDestroy(): void {
-    this.matchMedia?.revert();
+    clearInterval(this.rotateHandle);
+  }
+
+  setFace(index: number): void {
+    this.activeFace.set(index);
+    // Otherwise a manual pick can get overwritten by a tick that was already mid-flight,
+    // which reads as "I clicked and it just changed back" — restart the hold instead.
+    if (this.rotateHandle) this.startRotation();
+  }
+
+  private startRotation(): void {
+    clearInterval(this.rotateHandle);
+    this.rotateHandle = setInterval(() => {
+      this.activeFace.update((i) => (i + 1) % SHOWCASE_FACES.length);
+    }, ROTATE_MS);
+  }
+
+  getStarted(): void {
+    this.router.navigate(['/sign-in']);
   }
 }
