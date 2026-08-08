@@ -191,11 +191,35 @@ h1 {
 .showcase-window {
   position: relative;
   z-index: 1;
-  background: var(--surface);
+  background: var(--face-bg, var(--surface));
   border: 1px solid var(--hairline);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-lift);
   overflow: hidden;
+  transition: background-color var(--duration-moderate) var(--ease-standard);
+
+  // The face's own color runs the full card, header included — matching the reference's
+  // solid-color treatment rather than a white bar sitting on top of it.
+  &[data-theme='notes'] {
+    --face-bg: #c4b5fd;
+    --face-border: #a78bfa;
+    --face-ink: #2e1065;
+    --face-ink-2: #5b21b6;
+  }
+
+  &[data-theme='search'] {
+    --face-bg: #93c5fd;
+    --face-border: #60a5fa;
+    --face-ink: #172554;
+    --face-ink-2: #1e40af;
+  }
+
+  &[data-theme='assignments'] {
+    --face-bg: #6ee7b7;
+    --face-border: #34d399;
+    --face-ink: #022c22;
+    --face-ink-2: #065f46;
+  }
 }
 
 .window-bar {
@@ -203,7 +227,7 @@ h1 {
   align-items: center;
   gap: var(--space-10);
   padding: var(--space-12) var(--space-16);
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
 }
 
 .window-dots {
@@ -232,7 +256,7 @@ h1 {
 .window-title {
   font-size: var(--text-12-5);
   font-weight: var(--weight-semibold);
-  color: var(--ink-3);
+  color: var(--face-ink-2, var(--ink-3));
 }
 
 .window-body {
@@ -263,42 +287,24 @@ h1 {
 }
 
 .face-notes {
-  --face-bg: #ece7fc;
-  --face-border: #d6cbf5;
-  --face-ink: #322952;
-  --face-ink-2: #5b4e82;
-
   display: flex;
   gap: var(--space-14);
-  background: var(--face-bg);
 }
 
 .face-search {
-  --face-bg: #e1edfe;
-  --face-border: #c3dbfb;
-  --face-ink: #1c3a66;
-  --face-ink-2: #3f5f8f;
-
   display: flex;
   flex-direction: column;
   gap: var(--space-16);
   justify-content: center;
   text-align: left;
-  background: var(--face-bg);
 }
 
 .face-assignments {
-  --face-bg: #def3e7;
-  --face-border: #bfe6cf;
-  --face-ink: #1f4430;
-  --face-ink-2: #3c6b4f;
-
   display: flex;
   flex-direction: column;
   gap: var(--space-18);
   justify-content: center;
   text-align: left;
-  background: var(--face-bg);
 }
 
 .mini-card {
