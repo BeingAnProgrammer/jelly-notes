@@ -1,18 +1,56 @@
 @use 'mixins' as *;
 
+// A deliberately fixed light-pastel surface, same reasoning as the auth pages' fixed-dark one
+// (auth-shell-host in _mixins.scss): this is the pre-sign-in marketing page, not a workspace
+// view, so it keeps one calm look regardless of whatever dark/light preference is stored from
+// a previous session. Re-declaring these token names (not touching the global :root values)
+// means every rule below can keep reading var(--ink), var(--surface), etc. as normal.
 :host {
+  --canvas: #f8f6fc;
+  --canvas-sub: #f1eef9;
+  --surface: #ffffff;
+  --surface-alt: #faf8fd;
+  --ink: #18171f;
+  --ink-2: #57536a;
+  --ink-3: #737088;
+  --ink-4: #9692a6;
+  --hairline: #e8e3f3;
+  --hairline-2: #efebf8;
+  --accent: #2f5fe0;
+  --accent-hover: #2650c4;
+  --accent-soft: #e7edfc;
+  --accent-line: #c7d8f7;
+  --accent-ink: #2f5fe0;
+  --accent-glow-weak: rgb(47 95 224 / 8%);
+  --accent-glow: rgb(47 95 224 / 12%);
+  --accent-glow-strong: rgb(47 95 224 / 20%);
+  --mint: #18715c;
+  --mint-soft: #e4f3ee;
+  --shadow-lift: 0 24px 60px rgb(90 70 150 / 16%), 0 4px 16px rgb(90 70 150 / 8%);
+
   display: block;
   min-height: 100vh;
-  background: var(--canvas);
+  overflow-x: hidden;
+  background-color: var(--canvas);
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% 0%, rgb(191 219 254 / 45%), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 85% 8%, rgb(251 207 232 / 35%), transparent 60%),
+    radial-gradient(ellipse 1000px 600px at 50% 38%, rgb(196 181 253 / 30%), transparent 65%);
 }
 
 .top-nav {
   display: flex;
+  width: fit-content;
   align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--space-24) var(--space-32);
+  gap: var(--space-40);
+  margin: var(--space-24) auto 0;
+  padding: var(--space-10) var(--space-20);
+  background: rgb(255 255 255 / 80%);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 60%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 28px rgb(90 70 150 / 12%);
 }
 
 .brand {
@@ -125,6 +163,31 @@ h1 {
   z-index: 0;
 }
 
+// The colorful stacked-card frame: two pastel layers sit behind the window at the same
+// bounding box, rotated and scaled slightly smaller — the rotation alone is what makes their
+// corners peek out past the window's straight edges, no separate offset math needed.
+.showcase-frame {
+  position: relative;
+  z-index: 1;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-2xl);
+  pointer-events: none;
+}
+
+.layer-1 {
+  background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+  transform: rotate(-3deg) scale(0.97);
+}
+
+.layer-2 {
+  background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+  transform: rotate(3deg) scale(0.955);
+}
+
 .showcase-window {
   position: relative;
   z-index: 1;
@@ -145,13 +208,24 @@ h1 {
 
 .window-dots {
   display: flex;
-  gap: 6px;
+  gap: 7px;
 
   span {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: var(--hairline);
+
+    &:nth-child(1) {
+      background: #ff5f57;
+    }
+
+    &:nth-child(2) {
+      background: #febc2e;
+    }
+
+    &:nth-child(3) {
+      background: #28c840;
+    }
   }
 }
 
@@ -166,35 +240,72 @@ h1 {
   height: 260px;
 }
 
+// Only the active face is ever in the DOM (an @if in the template, not a class toggle) —
+// simpler than cross-fading three stacked, opacity-toggled siblings, and sidesteps a real
+// Angular-class-binding/CSS-transition interaction bug where the browser's computed opacity
+// settled on the opposite of what `.face.active` specified. A plain enter animation on mount
+// still gives each face a soft entrance.
 .face {
   position: absolute;
   inset: 0;
-  padding: var(--space-24);
-  opacity: 0;
-  transform: translateY(6px);
-  transition:
-    opacity var(--duration-moderate) var(--ease-standard),
-    transform var(--duration-moderate) var(--ease-standard);
-  pointer-events: none;
+  animation: m-fade-up var(--duration-moderate) var(--ease-standard);
+}
 
-  &.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
+// Each showcase state owns a solid pastel surface (not the shared window chrome) plus a small
+// set of local tokens — an "elevated" surface tint, a border, and two ink shades — so every
+// inner element below (mini-card, ask-row, assignment-row) can stay generic and just read
+// var(--face-*) instead of needing its own copy per color.
+.face-notes,
+.face-search,
+.face-assignments {
+  height: 100%;
+  padding: var(--space-24);
 }
 
 .face-notes {
+  --face-bg: #ece7fc;
+  --face-border: #d6cbf5;
+  --face-ink: #322952;
+  --face-ink-2: #5b4e82;
+
   display: flex;
   gap: var(--space-14);
-  height: 100%;
+  background: var(--face-bg);
+}
+
+.face-search {
+  --face-bg: #e1edfe;
+  --face-border: #c3dbfb;
+  --face-ink: #1c3a66;
+  --face-ink-2: #3f5f8f;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  justify-content: center;
+  text-align: left;
+  background: var(--face-bg);
+}
+
+.face-assignments {
+  --face-bg: #def3e7;
+  --face-border: #bfe6cf;
+  --face-ink: #1f4430;
+  --face-ink-2: #3c6b4f;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-18);
+  justify-content: center;
+  text-align: left;
+  background: var(--face-bg);
 }
 
 .mini-card {
   flex: 1;
   min-width: 0;
-  background: var(--canvas-sub);
-  border: 1px solid var(--hairline);
+  background: rgb(255 255 255 / 55%);
+  border: 1px solid var(--face-border);
   border-radius: var(--radius-lg);
   padding: var(--space-14);
   display: flex;
@@ -209,7 +320,7 @@ h1 {
   gap: var(--space-6);
   font-size: var(--text-11-5);
   font-weight: var(--weight-semibold);
-  color: var(--ink-3);
+  color: var(--face-ink-2);
 }
 
 .mini-dot {
@@ -222,14 +333,14 @@ h1 {
 .mini-card-title {
   font-size: var(--text-14);
   font-weight: var(--weight-semibold);
-  color: var(--ink);
+  color: var(--face-ink);
 }
 
 .mini-card-body {
   margin: 0;
   font-size: var(--text-12-5);
   line-height: 1.5;
-  color: var(--ink-3);
+  color: var(--face-ink-2);
   flex: 1;
 }
 
@@ -242,17 +353,8 @@ h1 {
   font-size: var(--text-11);
   padding: 2px var(--space-8);
   border-radius: var(--radius-sm-plus);
-  background: var(--surface-alt);
-  color: var(--ink-3);
-}
-
-.face-search {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-16);
-  height: 100%;
-  justify-content: center;
-  text-align: left;
+  background: rgb(255 255 255 / 55%);
+  color: var(--face-ink-2);
 }
 
 .ask-row {
@@ -260,14 +362,14 @@ h1 {
   align-items: center;
   gap: var(--space-10);
   padding: var(--space-14) var(--space-16);
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--face-border);
   border-radius: var(--radius-full);
-  background: var(--canvas-sub);
-  color: var(--ink);
+  background: rgb(255 255 255 / 55%);
+  color: var(--face-ink);
   font-size: var(--text-14-5);
 
   app-icon {
-    color: var(--accent-ink);
+    color: var(--face-ink);
     flex-shrink: 0;
   }
 }
@@ -275,14 +377,14 @@ h1 {
 .answer-block {
   padding: var(--space-16);
   border-radius: var(--radius-lg);
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-line);
+  background: rgb(255 255 255 / 55%);
+  border: 1px solid var(--face-border);
 
   p {
     margin: 0 0 var(--space-10);
     font-size: var(--text-13-5);
     line-height: 1.6;
-    color: var(--ink-2);
+    color: var(--face-ink-2);
   }
 }
 
@@ -292,16 +394,7 @@ h1 {
   gap: var(--space-6);
   font-size: var(--text-11-5);
   font-weight: var(--weight-semibold);
-  color: var(--accent-ink);
-}
-
-.face-assignments {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-18);
-  height: 100%;
-  justify-content: center;
-  text-align: left;
+  color: var(--face-ink);
 }
 
 .assignment-row-head {
@@ -315,7 +408,7 @@ h1 {
 .assignment-title {
   font-size: var(--text-13-5);
   font-weight: var(--weight-medium);
-  color: var(--ink);
+  color: var(--face-ink);
 }
 
 .showcase-dots {
@@ -400,7 +493,9 @@ h1 {
     height: 360px;
   }
 
-  .face {
+  .face-notes,
+  .face-search,
+  .face-assignments {
     padding: var(--space-16);
   }
 }
