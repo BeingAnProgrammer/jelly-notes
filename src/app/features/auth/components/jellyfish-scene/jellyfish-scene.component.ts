@@ -33,14 +33,6 @@ const BELL_FRAG = /* glsl */ `
   uniform float uTime;
   varying vec3 vPos; varying vec3 vNormal; varying vec3 vView;
 
-  float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
-  float noise(vec2 p){
-    vec2 i=floor(p), f=fract(p);
-    float a=hash(i), b=hash(i+vec2(1.,0.)), c=hash(i+vec2(0.,1.)), d=hash(i+vec2(1.,1.));
-    vec2 u=f*f*(3.-2.*f);
-    return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
-  }
-
   void main(){
     vec3 N = normalize(vNormal);
     vec3 V = normalize(vView);
@@ -63,15 +55,10 @@ const BELL_FRAG = /* glsl */ `
 
     float backw = gl_FrontFacing ? 1.0 : 0.0;
 
-    float band = smoothstep(0.34, 0.02, h);
-    float spots = noise(vec2(ang*7.0, h*12.0));
-    float wart = smoothstep(0.58, 0.86, spots) * band;
-    col = mix(col, vec3(0.05,0.05,0.10), wart*0.85*backw);
-
     col += fres * vec3(0.14, 0.26, 0.55);
     col += (1.0 - fres) * vec3(0.05,0.09,0.23) * (0.5 + 0.5*h);
 
-    float alpha = 0.50 + fres*0.45 + ribLine*ribMask*0.22 + wart*0.35*backw;
+    float alpha = 0.50 + fres*0.45 + ribLine*ribMask*0.22;
     alpha *= mix(0.30, 1.0, backw);
     alpha = clamp(alpha, 0.0, 0.96);
     gl_FragColor = vec4(col, alpha);
