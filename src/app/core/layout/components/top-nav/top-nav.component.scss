@@ -89,6 +89,22 @@
   position: relative;
   display: flex;
   align-items: center;
+
+  // Static background for the active item, independent of the `.ink` div that GSAP
+  // slides into place — `.ink`'s position comes from a JS layout measurement that can
+  // land before the nav has its real size (first paint) or race with a later re-measure,
+  // leaving `.active`'s white text with nothing underneath it. This always renders
+  // immediately, so the pill (and the caret button sharing this group) stays legible.
+  &:has(.active)::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+    height: 32px;
+    border-radius: var(--radius-lg-plus);
+    background: var(--accent);
+  }
 }
 
 .nav-item {

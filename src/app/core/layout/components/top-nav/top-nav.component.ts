@@ -153,7 +153,11 @@ export class TopNavComponent {
       const ink = this.inkEl()?.nativeElement;
       if (!nav || !ink) return;
       const activeId = this.navItems().find((item) => item.active)?.id ?? 'all';
-      const target = nav.querySelector<HTMLElement>(`[data-nav="${activeId}"]`);
+      const navItem = nav.querySelector<HTMLElement>(`[data-nav="${activeId}"]`);
+      // Measure the whole `.nav-item-group` (not just the `.nav-item` link) so the pill
+      // also covers the folder-caret dropdown button that sits beside "All notes" —
+      // otherwise the caret's active (white) color has no pill underneath it to sit on.
+      const target = navItem?.closest<HTMLElement>('.nav-item-group') ?? navItem;
       if (!target) return;
       // getBoundingClientRect (not offsetLeft) on purpose: each nav item sits inside its own
       // `position: relative` wrapper (for the folders popover), which would otherwise reset
