@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { AvatarGradient } from '../../../core/auth/models/user.model';
 
 export const AVATAR_GRADIENTS: Record<AvatarGradient, string> = {
-  'gradient-1': 'linear-gradient(140deg, #c79a5b, #9c4a2e)',
-  'gradient-2': 'linear-gradient(140deg, #7ab387, #3e6b4a)',
-  'gradient-3': 'linear-gradient(140deg, #7b9fcf, #2e4a6b)',
-  'gradient-4': 'linear-gradient(140deg, #c56a4e, #7a2e1e)',
+  'gradient-1': 'linear-gradient(140deg, #9c7ff0, #6b46e0)',
+  'gradient-2': 'linear-gradient(140deg, #34d8b8, #159c82)',
+  'gradient-3': 'linear-gradient(140deg, #4fb8f0, #1f7dc4)',
+  'gradient-4': 'linear-gradient(140deg, #ff9466, #d64a26)',
 };
 
 @Component({
@@ -18,9 +18,9 @@ export const AVATAR_GRADIENTS: Record<AvatarGradient, string> = {
       align-items: center;
       justify-content: center;
       border-radius: var(--radius-full);
-      /* Fixed dark literal, not a theme token — tuned for contrast against every warm gradient
+      /* Fixed white literal, not a theme token — tuned for contrast against every gradient
          swatch below, independent of the app's own light/dark theme. */
-      color: #0f0e0b;
+      color: #ffffff;
       font-weight: var(--weight-bold);
       flex: 0 0 auto;
     }
