@@ -49,10 +49,10 @@ const BELL_FRAG = /* glsl */ `
     float h = clamp((vPos.y + 0.40)/1.40, 0.0, 1.0);
     float ang = atan(vPos.z, vPos.x);
 
-    // vertical colour gradient: deep indigo apex -> accent -> pale ink-blue margin
-    vec3 top  = vec3(0.30, 0.32, 0.70);
-    vec3 mid  = vec3(0.49, 0.53, 0.95);
-    vec3 edge = vec3(0.55, 0.68, 1.00);
+    // vertical colour gradient: deep blue apex -> accent -> pale ink-blue margin
+    vec3 top  = vec3(0.18, 0.32, 0.72);
+    vec3 mid  = vec3(0.30, 0.52, 0.96);
+    vec3 edge = vec3(0.42, 0.68, 1.00);
     vec3 col = mix(edge, mid, smoothstep(0.0,0.5,h));
     col = mix(col, top, smoothstep(0.45,1.0,h));
 
@@ -68,8 +68,8 @@ const BELL_FRAG = /* glsl */ `
     float wart = smoothstep(0.58, 0.86, spots) * band;
     col = mix(col, vec3(0.05,0.05,0.10), wart*0.85*backw);
 
-    col += fres * vec3(0.20, 0.24, 0.50);
-    col += (1.0 - fres) * vec3(0.08,0.09,0.22) * (0.5 + 0.5*h);
+    col += fres * vec3(0.14, 0.26, 0.55);
+    col += (1.0 - fres) * vec3(0.05,0.09,0.23) * (0.5 + 0.5*h);
 
     float alpha = 0.50 + fres*0.45 + ribLine*ribMask*0.22 + wart*0.35*backw;
     alpha *= mix(0.30, 1.0, backw);
@@ -139,8 +139,8 @@ function buildStrandSpecs(): StrandSpec[] {
       amp: 0.5,
       freq: 7.0,
       phase: i * 0.5,
-      top: '#c3c9ff',
-      tip: '#eef0ff',
+      top: '#b3caff',
+      tip: '#edf2ff',
       opacity: 0.55,
     });
   }
@@ -156,8 +156,8 @@ function buildStrandSpecs(): StrandSpec[] {
       amp: 0.32,
       freq: 10.0,
       phase: i * 1.0 + 0.4,
-      top: '#e3e6ff',
-      tip: '#8b93ff',
+      top: '#e0eaff',
+      tip: '#5b8ef5',
       opacity: 0.72,
     });
   }
@@ -303,7 +303,7 @@ export class JellyfishSceneComponent implements AfterViewInit, OnDestroy {
 
     const glowGeometry = new THREE.SphereGeometry(0.5, 32, 32);
     const glowMaterial = new THREE.MeshBasicMaterial({
-      color: '#7c87ff',
+      color: '#5b8ef5',
       transparent: true,
       opacity: 0.5,
       blending: THREE.AdditiveBlending,

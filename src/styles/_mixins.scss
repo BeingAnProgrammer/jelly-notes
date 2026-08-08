@@ -155,7 +155,7 @@
   --ink-3: #8b8b99;
   --ink-4: #5e5e6b;
   --hairline: #242430;
-  --accent: #7c87ff;
+  --accent: #5b8ef5;
   --accent-fg: #0b0b0f;
   --shadow-lg: 0 32px 80px -16px rgb(0 0 0 / 80%);
 
@@ -166,8 +166,8 @@
   align-items: center;
   justify-content: center;
   // A large (125%/125%) radial ellipse anchored just above center, solid dark through the
-  // middle 40%, opening out into the brand's indigo at the edges.
-  background: radial-gradient(125% 125% at 50% 10%, var(--canvas) 40%, #4a52d8 100%);
+  // middle 40%, opening out into the brand's blue at the edges.
+  background: radial-gradient(125% 125% at 50% 10%, var(--canvas) 40%, #2f5fe0 100%);
   overflow: hidden;
   padding: var(--space-24);
 }
@@ -286,31 +286,3 @@
   border: 0;
 }
 
-// Home-screen blue re-theme (top-nav + ask-hero): overrides the app-wide purple --accent
-// tokens locally on a component's :host, so every existing rule that already reads
-// var(--accent)/var(--cta-gradient) picks up blue instead, without touching the global
-// tokens other pages still rely on. Pair with blue-accent-theme-light under
-// :host-context([data-theme='light']) for the light-mode variant.
-@mixin blue-accent-theme {
-  --accent: #3b6fed;
-  --accent-hover: #4c7ef0;
-  --accent-soft: rgb(59 111 237 / 16%);
-  --accent-line: rgb(59 111 237 / 34%);
-  --accent-ink: #9dc0f8;
-  --accent-fg: #ffffff;
-  --accent-glow-weak: rgb(59 111 237 / 10%);
-  --accent-glow: rgb(59 111 237 / 14%);
-  --accent-glow-strong: rgb(59 111 237 / 24%);
-  --cta-gradient: linear-gradient(150deg, #5b8ef5, #2f5fe0);
-}
-
-@mixin blue-accent-theme-light {
-  --accent: #2f5fe0;
-  --accent-hover: #2650c4;
-  --accent-soft: #e7edfc;
-  --accent-line: #c7d8f7;
-  --accent-ink: #2f5fe0;
-  --accent-glow-weak: rgb(47 95 224 / 8%);
-  --accent-glow: rgb(47 95 224 / 12%);
-  --accent-glow-strong: rgb(47 95 224 / 20%);
-}

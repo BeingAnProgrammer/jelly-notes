@@ -34,7 +34,7 @@ import { ToastService } from '../../../services/toast.service';
       border-radius: var(--radius-lg);
       background: rgb(28 26 21 / 96%);
       backdrop-filter: blur(12px);
-      border: 1px solid rgb(124 135 255 / 30%);
+      border: 1px solid rgb(59 111 237 / 30%);
       box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
       color: var(--ink);
       font-size: var(--text-13-5);

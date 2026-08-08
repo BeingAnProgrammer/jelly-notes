@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 28px rgb(124 135 255 / 40%);
+  box-shadow: 0 8px 28px rgb(59 111 237 / 40%);
   transition: transform var(--duration-fast) var(--ease-standard);
 
   &:hover {
@@ -40,7 +40,7 @@
   position: absolute;
   inset: 0;
   border-radius: var(--radius-full);
-  border: 2px solid rgb(124 135 255 / 50%);
+  border: 2px solid rgb(59 111 237 / 50%);
   animation: m-ring 2.2s ease-out infinite;
 }
 
@@ -51,7 +51,7 @@
   flex-direction: column;
   background: rgb(22 20 15 / 92%);
   backdrop-filter: blur(16px);
-  border: 1px solid rgb(124 135 255 / 22%);
+  border: 1px solid rgb(59 111 237 / 22%);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-md);
   animation: m-pop var(--duration-moderate) var(--ease-standard);

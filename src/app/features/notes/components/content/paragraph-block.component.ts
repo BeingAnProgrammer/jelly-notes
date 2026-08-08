@@ -74,7 +74,7 @@ type ParagraphBlock = Extract<ContentBlock, { type: 'paragraph' }>;
 
     .run-link {
       color: var(--accent);
-      border-bottom: 1px solid rgb(124 135 255 / 40%);
+      border-bottom: 1px solid rgb(59 111 237 / 40%);
     }
   `,
 })

@@ -1,19 +1,12 @@
 @use 'mixins' as *;
 
 :host {
-  // Blue re-theme for this component's buttons — see blue-accent-theme in _mixins.scss.
-  @include blue-accent-theme;
-
   display: block;
   position: sticky;
   top: 0;
   z-index: 50;
   padding: var(--space-16) var(--space-22) var(--space-10);
   background: linear-gradient(var(--canvas) 62%, transparent);
-}
-
-:host-context([data-theme='light']) {
-  @include blue-accent-theme-light;
 }
 
 .bar {

@@ -33,11 +33,11 @@
   --hairline: rgb(255 255 255 / 7%);
   --hairline-2: rgb(255 255 255 / 4.5%);
 
-  --accent: #6c5ce0;
-  --accent-hover: #7d6dee;
-  --accent-soft: rgb(108 92 224 / 16%);
-  --accent-line: rgb(108 92 224 / 34%);
-  --accent-ink: #a99bf5;
+  --accent: #3b6fed;
+  --accent-hover: #4c7ef0;
+  --accent-soft: rgb(59 111 237 / 16%);
+  --accent-line: rgb(59 111 237 / 34%);
+  --accent-ink: #9dc0f8;
   --accent-fg: #ffffff;
 
   --mint: #4fbfa0;
@@ -60,10 +60,10 @@
   --ink-blue: #5ea8d9;
   --ink-blue-soft: rgb(94 168 217 / 14%);
 
-  --accent-glow-weak: rgb(108 92 224 / 10%);
-  --accent-glow: rgb(108 92 224 / 14%);
-  --accent-glow-strong: rgb(108 92 224 / 24%);
-  --selection-bg: rgb(108 92 224 / 25%);
+  --accent-glow-weak: rgb(59 111 237 / 10%);
+  --accent-glow: rgb(59 111 237 / 14%);
+  --accent-glow-strong: rgb(59 111 237 / 24%);
+  --selection-bg: rgb(59 111 237 / 25%);
   --selection-fg: var(--ink);
 
   --scrollbar-thumb: rgb(255 255 255 / 9%);
@@ -72,9 +72,9 @@
   // v4 renders both the nav logo mark and every gradient CTA ("New note", "Ask Jelly") with the
   // same literal hex stops regardless of theme — a fixed brand gradient, not theme-reactive —
   // so these are declared once here and never overridden in the light block below.
-  --logo-gradient: linear-gradient(150deg, #8778f0, #5b4bd1);
-  --logo-gradient-hover: linear-gradient(150deg, #9a8ff5, #6c5ce0);
-  --cta-gradient: linear-gradient(150deg, #7d6dee, #5b4bd1);
+  --logo-gradient: linear-gradient(150deg, #6f96f5, #2f5fe0);
+  --logo-gradient-hover: linear-gradient(150deg, #8fabf7, #3b6fed);
+  --cta-gradient: linear-gradient(150deg, #5b8ef5, #2f5fe0);
 
   --shadow: 0 1px 2px rgb(0 0 0 / 50%), 0 10px 28px rgb(0 0 0 / 42%);
   --shadow-lift: 0 2px 6px rgb(0 0 0 / 50%), 0 22px 50px rgb(0 0 0 / 55%);
@@ -109,11 +109,11 @@
   --hairline: #e6e4ec;
   --hairline-2: #eeedf3;
 
-  --accent: #5b4bd1;
-  --accent-hover: #4c3ebc;
-  --accent-soft: #ece9fb;
-  --accent-line: #d3ccf6;
-  --accent-ink: #5b4bd1;
+  --accent: #2f5fe0;
+  --accent-hover: #2650c4;
+  --accent-soft: #e7edfc;
+  --accent-line: #c7d8f7;
+  --accent-ink: #2f5fe0;
   --accent-fg: #ffffff;
 
   // mint and warm are darkened from v4's literal hex — as given (#1E8C71 / #B5561F) they measure
@@ -145,10 +145,10 @@
   --ink-blue: #427698;
   --ink-blue-soft: #e6eef4;
 
-  --accent-glow-weak: rgb(91 75 209 / 8%);
-  --accent-glow: rgb(91 75 209 / 12%);
-  --accent-glow-strong: rgb(91 75 209 / 20%);
-  --selection-bg: rgb(91 75 209 / 18%);
+  --accent-glow-weak: rgb(47 95 224 / 8%);
+  --accent-glow: rgb(47 95 224 / 12%);
+  --accent-glow-strong: rgb(47 95 224 / 20%);
+  --selection-bg: rgb(47 95 224 / 18%);
 
   --scrollbar-thumb: #d8d8e2;
   --scrollbar-thumb-hover: #c2c2ce;
