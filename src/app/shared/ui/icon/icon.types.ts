@@ -149,12 +149,12 @@ export const ICONS: Record<IconName, IconShape[]> = {
       d: 'M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48',
     },
   ],
-  // Same page-with-folded-corner outline as `file`, with the text lines swapped for a plus —
-  // reads as "new note" rather than a generic document.
+  // A bound notebook (rounded cover + spine) with a plus on the page — no folded-corner file
+  // skeuomorphism, so it stays crisp and reads cleanly at the small sizes buttons use it at.
   'note-plus': [
-    { kind: 'path', d: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' },
-    { kind: 'path', d: 'M14 2v6h6' },
-    { kind: 'path', d: 'M12 10v8' },
-    { kind: 'path', d: 'M8 14h8' },
+    { kind: 'rect', x: 4, y: 3, width: 16, height: 18, rx: 3 },
+    { kind: 'path', d: 'M8 3v18' },
+    { kind: 'path', d: 'M14 8v8' },
+    { kind: 'path', d: 'M10 12h8' },
   ],
 };
