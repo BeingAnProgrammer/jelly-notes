@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import gsap from 'gsap';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { SeoService } from '../../../core/seo/seo.service';
-import { JellyfishSceneComponent } from '../components/jellyfish-scene/jellyfish-scene.component';
+import { JellyfishComponent } from '../components/jellyfish/jellyfish.component';
 
 // Seconds for one full orbit of the word-ring / camera-relative jellyfish spin. Shared by
 // the CSS keyframes (jelly-orbit) and the JellyfishSceneComponent's own rotation so the two
@@ -59,7 +59,7 @@ interface DriftMark {
 
 @Component({
   selector: 'app-sign-in-page',
-  imports: [IconComponent, JellyfishSceneComponent],
+  imports: [IconComponent, JellyfishComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sign-in.page.html',
   styleUrl: './sign-in.page.scss',

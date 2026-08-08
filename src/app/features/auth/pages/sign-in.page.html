@@ -36,8 +36,6 @@
 <!-- The atmosphere: the kinetic word-ring and the procedural jellyfish, contained in its
      own stage so nothing here ever has to compete with the sign-in copy for space. -->
 <div class="visual-stage">
-  <div class="glow" aria-hidden="true"></div>
-
   <div class="word-ring-viewport" [style.perspective.px]="perspective" aria-hidden="true">
     <div class="jelly-stage" [style.animation-duration.s]="loopSeconds">
       @for (seat of phraseSeats; track seat.text) {
@@ -68,7 +66,7 @@
   }
 
   <div class="jellyfish-stage">
-    <app-jellyfish-scene [loopSeconds]="loopSeconds" />
+    <app-jellyfish [loopSeconds]="loopSeconds" />
   </div>
 
   <div class="manifesto" [style.animation-duration.s]="loopSeconds" aria-hidden="true">

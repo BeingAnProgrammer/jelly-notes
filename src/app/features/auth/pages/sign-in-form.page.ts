@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { SeoService } from '../../../core/seo/seo.service';
+import { JellyfishComponent } from '../components/jellyfish/jellyfish.component';
 
 @Component({
   selector: 'app-sign-in-form-page',
-  imports: [IconComponent],
+  imports: [IconComponent, JellyfishComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sign-in-form.page.html',
   styleUrl: './sign-in-form.page.scss',
