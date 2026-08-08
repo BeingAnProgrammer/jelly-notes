@@ -234,6 +234,8 @@
   height: 36px;
   padding: 0 var(--space-15);
   border-radius: var(--radius-lg-plus);
+  // Flat, matching the active nav pill's solid var(--accent) — not the mixin's gradient.
+  background: var(--accent);
 }
 
 .theme-btn,
