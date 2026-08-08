@@ -1,4 +1,33 @@
 :host {
   display: block;
+}
+
+// Animation lives here, not on :host, so :host never carries a `transform` — a transformed
+// ancestor becomes the containing block for `position: fixed` descendants, which would trap
+// .hero-backdrop inside this box instead of letting it cover the full viewport.
+.page-content {
   animation: m-fade-up var(--duration-slow) var(--ease-standard);
+}
+
+// Fixed brand gradient (not theme-reactive, same reasoning as the auth pages' fixed-dark
+// surface): a deliberate branded backdrop for the whole home screen, not just the hero card.
+// `position: fixed` so it spans the full viewport — including behind the sticky nav — rather
+// than just this page's own content box. No z-index: `.shell` is `position: relative` with
+// z-index:auto, which (per the CSS stacking spec) paints at the same tier as any other
+// z-index:auto positioned box — a negative z-index here would push this behind `.shell`'s own
+// background instead of merely behind its later siblings; document order alone (this element
+// comes first) already keeps it under the nav, which sets its own explicit z-index.
+.hero-backdrop {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    125% 125% at 50% 101%,
+    rgb(245 87 2) 10.5%,
+    rgb(245 120 2) 16%,
+    rgb(245 140 2) 17.5%,
+    rgb(245 170 100) 25%,
+    rgb(238 174 202) 40%,
+    rgb(202 179 214) 65%,
+    rgb(148 201 233) 100%
+  );
 }

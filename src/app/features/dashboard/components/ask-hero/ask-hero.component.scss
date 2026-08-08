@@ -1,26 +1,17 @@
 @use 'mixins' as *;
 
-// Fixed brand gradient (not theme-reactive), same reasoning as the auth pages' fixed-dark
-// surface: this backdrop is a deliberate branded look, so the eyebrow/heading colors below
-// are hardcoded dark rather than reading var(--ink) — they need to stay legible against this
-// specific gradient in both light and dark app themes, not adapt to either.
+// Text colors below are hardcoded dark rather than reading var(--ink): this hero sits on
+// dashboard.page's fixed brand-gradient backdrop (not theme-reactive, see dashboard.page.scss),
+// so they need to stay legible against that specific gradient in both light and dark app
+// themes, not adapt to either.
 :host {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: var(--space-46) var(--space-24) var(--space-64);
-  border-radius: var(--radius-3xl);
-  background: radial-gradient(
-    125% 125% at 50% 85%,
-    rgb(245 87 2) 10.5%,
-    rgb(245 120 2) 16%,
-    rgb(245 140 2) 17.5%,
-    rgb(245 170 100) 25%,
-    rgb(238 174 202) 40%,
-    rgb(202 179 214) 65%,
-    rgb(148 201 233) 100%
-  );
+  min-height: 80vh;
+  padding: var(--space-40) var(--space-24) var(--space-46);
 }
 
 .eyebrow {
