@@ -5,7 +5,12 @@
       "Bash(node -e ' *)",
       "Bash(lsof -ti:4200 -sTCP:LISTEN)",
       "Bash(xargs -r kill)",
-      "Bash(rm -rf \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d510cc04-4ec9-427b-befb-b37e8c302c74/scratchpad/shots\" \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d510cc04-4ec9-427b-befb-b37e8c302c74/scratchpad\"/*.mjs)"
+      "Bash(rm -rf \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d510cc04-4ec9-427b-befb-b37e8c302c74/scratchpad/shots\" \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d510cc04-4ec9-427b-befb-b37e8c302c74/scratchpad\"/*.mjs)",
+      "Bash(node verify-topnav.mjs)",
+      "Bash(rm -f \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d725be5f-5748-404a-9fef-29666d9ae443/scratchpad/debug.mjs\" \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d725be5f-5748-404a-9fef-29666d9ae443/scratchpad/debug2.mjs\" \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d725be5f-5748-404a-9fef-29666d9ae443/scratchpad/debug.png\" \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d725be5f-5748-404a-9fef-29666d9ae443/scratchpad/debug2.png\" \"/private/tmp/claude-501/-Users-nitesh-Documents-Code-Nitesh-Website-Memora-jelly-notes/d725be5f-5748-404a-9fef-29666d9ae443/scratchpad/node_modules\")"
+    ],
+    "additionalDirectories": [
+      "/Users/nitesh/.npm/_npx/361ceb562f3b3235/node_modules"
     ]
   }
 }

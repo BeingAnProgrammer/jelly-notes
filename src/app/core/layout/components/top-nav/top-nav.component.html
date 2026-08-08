@@ -92,7 +92,6 @@
 
       <a routerLink="/settings" class="profile">
         <app-avatar [initials]="userInitials()" [gradient]="auth.currentUser()?.avatar ?? 'gradient-1'" [size]="28" />
-        <span class="profile-name">{{ auth.currentUser()?.displayName }}</span>
       </a>
     </div>
 
