@@ -35,7 +35,11 @@
         <app-icon name="sparkles" [size]="13" [strokeWidth]="1.8" />
       </span>
       <span class="title">Answer</span>
-      <span class="synth">Synthesized from {{ answer.sourceNoteIds.length }} note{{ answer.sourceNoteIds.length === 1 ? '' : 's' }}</span>
+      <span class="synth"
+        >Synthesized from {{ answer.sourceNoteIds.length }} note{{
+          answer.sourceNoteIds.length === 1 ? '' : 's'
+        }}</span
+      >
     </div>
     <p class="answer-text">{{ answer.text }}</p>
     @if (answer.sourceNoteIds.length) {
@@ -73,6 +77,10 @@
       }
     </div>
   } @else {
-    <app-empty-state icon="search" title="No matching notes" description="Try a different word or phrase." />
+    <app-empty-state
+      icon="search"
+      title="No matching notes"
+      description="Try a different word or phrase."
+    />
   }
 }

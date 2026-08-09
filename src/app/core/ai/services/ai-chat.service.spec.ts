@@ -27,7 +27,10 @@ describe('AiChatService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection(), { provide: AiService, useClass: FakeAiService }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: AiService, useClass: FakeAiService },
+      ],
     });
     service = TestBed.inject(AiChatService);
   });
@@ -51,8 +54,12 @@ describe('AiChatService', () => {
     service.sendMessage('What changed in pricing?');
     const messages = service.messages();
     expect(messages.length).toBe(3);
-    expect(messages[1]).toEqual(jasmine.objectContaining({ role: 'user', text: 'What changed in pricing?' }));
-    expect(messages[2]).toEqual(jasmine.objectContaining({ role: 'ai', text: 'Echo: What changed in pricing?' }));
+    expect(messages[1]).toEqual(
+      jasmine.objectContaining({ role: 'user', text: 'What changed in pricing?' }),
+    );
+    expect(messages[2]).toEqual(
+      jasmine.objectContaining({ role: 'ai', text: 'Echo: What changed in pricing?' }),
+    );
   });
 
   it('sendMessage ignores blank input', () => {

@@ -1,5 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, PLATFORM_ID, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import gsap from 'gsap';
@@ -10,7 +11,13 @@ import { CommandPaletteComponent } from '../command-palette/command-palette.comp
 
 @Component({
   selector: 'app-shell',
-  imports: [RouterOutlet, TopNavComponent, ToastHostComponent, AiChatPanelComponent, CommandPaletteComponent],
+  imports: [
+    RouterOutlet,
+    TopNavComponent,
+    ToastHostComponent,
+    AiChatPanelComponent,
+    CommandPaletteComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app-shell.component.html',
   styleUrl: './app-shell.component.scss',
@@ -23,12 +30,17 @@ export class AppShellComponent {
 
   constructor() {
     if (!this.isBrowser) return;
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      // Two rAFs: the outlet's new component is instantiated by the time NavigationEnd fires,
-      // but its own change detection/layout may not have committed yet — the design's own
-      // prototype has the same "wait a tick after the view changes" requirement.
-      requestAnimationFrame(() => requestAnimationFrame(() => this.animateIn()));
-    });
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => {
+        // Two rAFs: the outlet's new component is instantiated by the time NavigationEnd fires,
+        // but its own change detection/layout may not have committed yet — the design's own
+        // prototype has the same "wait a tick after the view changes" requirement.
+        requestAnimationFrame(() => requestAnimationFrame(() => this.animateIn()));
+      });
   }
 
   private animateIn(): void {
@@ -54,7 +66,11 @@ export class AppShellComponent {
     const mm = gsap.matchMedia();
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       if (anim.length) {
-        gsap.fromTo(anim, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', stagger: 0.05 });
+        gsap.fromTo(
+          anim,
+          { y: 12, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', stagger: 0.05 },
+        );
       }
       if (cards.length) {
         gsap.fromTo(

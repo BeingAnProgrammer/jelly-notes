@@ -15,7 +15,7 @@
   max-height: 70vh;
   display: flex;
   flex-direction: column;
-  background: rgb(28 26 21 / 96%);
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
   backdrop-filter: blur(20px);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-2xl);

@@ -85,17 +85,25 @@ export class TopNavComponent {
   protected readonly activeFolder = computed(() => {
     const url = this.currentUrl();
     const match = /[?&]folder=([^&]+)/.exec(url);
-    return url.startsWith('/app/notes') && url.includes('filter=folder') && match ? decodeURIComponent(match[1]) : null;
+    return url.startsWith('/app/notes') && url.includes('filter=folder') && match
+      ? decodeURIComponent(match[1])
+      : null;
   });
 
   protected readonly navItems = computed<NavEntry[]>(() => {
     const url = this.currentUrl();
     const notesFilterActive = (activeFilter: string) =>
       url.startsWith('/app/notes') &&
-      (url.includes(`filter=${activeFilter}`) || (activeFilter === 'all' && !url.includes('filter=')));
+      (url.includes(`filter=${activeFilter}`) ||
+        (activeFilter === 'all' && !url.includes('filter=')));
 
     return [
-      { id: 'home', label: 'Home', link: '/app/dashboard', active: url.startsWith('/app/dashboard') },
+      {
+        id: 'home',
+        label: 'Home',
+        link: '/app/dashboard',
+        active: url.startsWith('/app/dashboard'),
+      },
       {
         id: 'all',
         label: 'All notes',
@@ -172,7 +180,13 @@ export class TopNavComponent {
       const mm = gsap.matchMedia();
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         if (animate) {
-          gsap.to(ink, { x: to.x, width: to.width, opacity: to.opacity, duration: 0.4, ease: 'power3.out' });
+          gsap.to(ink, {
+            x: to.x,
+            width: to.width,
+            opacity: to.opacity,
+            duration: 0.4,
+            ease: 'power3.out',
+          });
         } else {
           gsap.set(ink, to);
         }
@@ -196,7 +210,9 @@ export class TopNavComponent {
   protected clearFolder(): void {
     this.foldersOpen.set(false);
     this.mobileMenuOpen.set(false);
-    this.router.navigate([NOTES_FILTER_LINK.all.link], { queryParams: NOTES_FILTER_LINK.all.queryParams });
+    this.router.navigate([NOTES_FILTER_LINK.all.link], {
+      queryParams: NOTES_FILTER_LINK.all.queryParams,
+    });
   }
 
   protected createNote(): void {

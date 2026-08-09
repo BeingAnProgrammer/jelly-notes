@@ -107,13 +107,17 @@ export class NotesService {
     const note = this.findById(id);
     const trimmed = tag.trim();
     if (!note || !trimmed || note.tags.includes(trimmed)) return;
-    this.repo.update(id, { tags: [...note.tags, trimmed] }).subscribe((updated) => this.replace(updated));
+    this.repo
+      .update(id, { tags: [...note.tags, trimmed] })
+      .subscribe((updated) => this.replace(updated));
   }
 
   removeTag(id: string, tag: string): void {
     const note = this.findById(id);
     if (!note) return;
-    this.repo.update(id, { tags: note.tags.filter((t) => t !== tag) }).subscribe((updated) => this.replace(updated));
+    this.repo
+      .update(id, { tags: note.tags.filter((t) => t !== tag) })
+      .subscribe((updated) => this.replace(updated));
   }
 
   toggleChecklistItem(noteId: string, blockId: string, itemId: string): void {
@@ -123,7 +127,9 @@ export class NotesService {
       if (block.id !== blockId || block.type !== 'checklist') return block;
       return {
         ...block,
-        items: block.items.map((item) => (item.id === itemId ? { ...item, done: !item.done } : item)),
+        items: block.items.map((item) =>
+          item.id === itemId ? { ...item, done: !item.done } : item,
+        ),
       };
     });
     this.repo.update(noteId, { content }).subscribe((updated) => this.replace(updated));

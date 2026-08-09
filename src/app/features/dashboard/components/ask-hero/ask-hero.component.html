@@ -1,7 +1,5 @@
 <div class="eyebrow">
-  <span class="bars" aria-hidden="true">
-    <span></span><span></span><span></span>
-  </span>
+  <span class="bars" aria-hidden="true"> <span></span><span></span><span></span> </span>
   <span class="eyebrow-text">
     Jelly has read every note you've written · {{ notesService.totalCount() }} notes ·
     {{ assignmentsService.assignments().length }} assignments
@@ -13,10 +11,20 @@
 <form class="ask-field" (ngSubmit)="ask()">
   @if (attachment(); as file) {
     <div class="attachment-row">
-      <button type="button" class="attachment-thumb" (click)="openPreview()" aria-label="View attached image">
+      <button
+        type="button"
+        class="attachment-thumb"
+        (click)="openPreview()"
+        aria-label="View attached image"
+      >
         <img [src]="file.url" [alt]="file.name" />
       </button>
-      <button type="button" class="remove-attachment" (click)="removeAttachment()" aria-label="Remove attached image">
+      <button
+        type="button"
+        class="remove-attachment"
+        (click)="removeAttachment()"
+        aria-label="Remove attached image"
+      >
         <app-icon name="x" [size]="11" [strokeWidth]="2.6" />
       </button>
     </div>
@@ -37,11 +45,23 @@
     <button type="button" class="icon-btn" title="Attach an image" (click)="fileInput.click()">
       <app-icon name="paperclip" [size]="16" [strokeWidth]="2" />
     </button>
-    <input #fileInput type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" />
+    <input
+      #fileInput
+      type="file"
+      accept="image/*"
+      class="file-input"
+      (change)="onFileSelected($event)"
+    />
 
     <span class="action-spacer"></span>
 
-    <button type="submit" class="send-btn" [class.active]="hasContent()" [disabled]="!hasContent()" aria-label="Ask Jelly">
+    <button
+      type="submit"
+      class="send-btn"
+      [class.active]="hasContent()"
+      [disabled]="!hasContent()"
+      aria-label="Ask Jelly"
+    >
       <app-icon name="arrow-right" [size]="16" [strokeWidth]="2.4" />
     </button>
   </div>
@@ -68,7 +88,12 @@
   <app-modal ariaLabel="Attached image" [width]="560" (dismissed)="closePreview()">
     <div class="image-preview">
       <img [src]="file.url" [alt]="file.name" />
-      <button type="button" class="preview-close" (click)="closePreview()" aria-label="Close preview">
+      <button
+        type="button"
+        class="preview-close"
+        (click)="closePreview()"
+        aria-label="Close preview"
+      >
         <app-icon name="x" [size]="16" [strokeWidth]="2.2" />
       </button>
     </div>

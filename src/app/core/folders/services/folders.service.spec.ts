@@ -37,7 +37,12 @@ class FakeFoldersRepository extends FoldersRepository {
 
 class FakeNotesRepository extends NotesRepository {
   getAll(): Observable<Note[]> {
-    return of([makeNote('Growth'), makeNote('Growth'), makeNote('Growth', true), makeNote('Product')]);
+    return of([
+      makeNote('Growth'),
+      makeNote('Growth'),
+      makeNote('Growth', true),
+      makeNote('Product'),
+    ]);
   }
   create(note: Note): Observable<Note> {
     return of(note);

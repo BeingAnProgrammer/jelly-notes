@@ -3,7 +3,8 @@
 <main class="hero">
   <h1>Everything you know,<br />in one calm workspace.</h1>
   <p class="subtext">
-    Notes, folders, tasks, and assignments — with an AI that has actually read everything you've written.
+    Notes, folders, tasks, and assignments — with an AI that has actually read everything you've
+    written.
   </p>
 
   <div class="cta-block">
@@ -33,90 +34,99 @@
           @for (face of showcaseFaces; track face.id; let i = $index) {
             @if (i === activeFace()) {
               <div class="face">
-              @switch (face.id) {
-                @case ('notes') {
-                  <div class="face-notes">
-                    <div class="mini-card">
-                      <div class="mini-card-head">
-                        <span class="mini-dot" style="background: var(--mint)"></span>
-                        Growth
+                @switch (face.id) {
+                  @case ('notes') {
+                    <div class="face-notes">
+                      <div class="mini-card">
+                        <div class="mini-card-head">
+                          <span class="mini-dot" style="background: var(--mint)"></span>
+                          Growth
+                        </div>
+                        <div class="mini-card-title">Pricing v2 — experiment log</div>
+                        <p class="mini-card-body">
+                          Cohort A is converting 18% higher on the usage-based hybrid.
+                        </p>
+                        <div class="mini-tags">
+                          <span class="mini-tag">pricing</span>
+                          <span class="mini-tag">experiments</span>
+                        </div>
                       </div>
-                      <div class="mini-card-title">Pricing v2 — experiment log</div>
-                      <p class="mini-card-body">
-                        Cohort A is converting 18% higher on the usage-based hybrid.
-                      </p>
-                      <div class="mini-tags">
-                        <span class="mini-tag">pricing</span>
-                        <span class="mini-tag">experiments</span>
+                      <div class="mini-card">
+                        <div class="mini-card-head">
+                          <span class="mini-dot" style="background: var(--accent)"></span>
+                          Fundraising
+                        </div>
+                        <div class="mini-card-title">Series B narrative — v3</div>
+                        <p class="mini-card-body">
+                          The three-act story: category creation, the wedge, and the inevitable
+                          platform.
+                        </p>
+                        <div class="mini-tags">
+                          <span class="mini-tag">deck</span>
+                          <span class="mini-tag">narrative</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="mini-card">
-                      <div class="mini-card-head">
-                        <span class="mini-dot" style="background: var(--accent)"></span>
-                        Fundraising
+                  }
+                  @case ('search') {
+                    <div class="face-search">
+                      <div class="ask-row">
+                        <app-icon name="sparkles" [size]="15" [strokeWidth]="0" [filled]="true" />
+                        <span>What did I decide about the Acme deal?</span>
                       </div>
-                      <div class="mini-card-title">Series B narrative — v3</div>
-                      <p class="mini-card-body">
-                        The three-act story: category creation, the wedge, and the inevitable platform.
-                      </p>
-                      <div class="mini-tags">
-                        <span class="mini-tag">deck</span>
-                        <span class="mini-tag">narrative</span>
+                      <div class="answer-block">
+                        <p>
+                          You closed the security review and moved forward with the enterprise tier
+                          for Acme, prioritized ahead of the SMB rollout.
+                        </p>
+                        <span class="source-chip">
+                          <app-icon name="file" [size]="12" [strokeWidth]="2" />
+                          Series B narrative — v3
+                        </span>
                       </div>
                     </div>
-                  </div>
+                  }
+                  @case ('assignments') {
+                    <div class="face-assignments">
+                      <div class="assignment-row">
+                        <div class="assignment-row-head">
+                          <span class="assignment-title">Investor data room</span>
+                          <app-pill
+                            bg="var(--mint-soft)"
+                            color="var(--mint)"
+                            [bordered]="false"
+                            weight="600"
+                            >In progress</app-pill
+                          >
+                        </div>
+                        <app-progress-bar
+                          [percent]="75"
+                          color="var(--mint)"
+                          trackColor="rgb(255 255 255 / 55%)"
+                          label="Investor data room progress"
+                        />
+                      </div>
+                      <div class="assignment-row">
+                        <div class="assignment-row-head">
+                          <span class="assignment-title">Board deck — final draft</span>
+                          <app-pill
+                            bg="var(--mint-soft)"
+                            color="var(--mint)"
+                            [bordered]="false"
+                            weight="600"
+                            >Complete</app-pill
+                          >
+                        </div>
+                        <app-progress-bar
+                          [percent]="100"
+                          color="var(--mint)"
+                          trackColor="rgb(255 255 255 / 55%)"
+                          label="Board deck progress"
+                        />
+                      </div>
+                    </div>
+                  }
                 }
-                @case ('search') {
-                  <div class="face-search">
-                    <div class="ask-row">
-                      <app-icon name="sparkles" [size]="15" [strokeWidth]="0" [filled]="true" />
-                      <span>What did I decide about the Acme deal?</span>
-                    </div>
-                    <div class="answer-block">
-                      <p>
-                        You closed the security review and moved forward with the enterprise tier for
-                        Acme, prioritized ahead of the SMB rollout.
-                      </p>
-                      <span class="source-chip">
-                        <app-icon name="file" [size]="12" [strokeWidth]="2" />
-                        Series B narrative — v3
-                      </span>
-                    </div>
-                  </div>
-                }
-                @case ('assignments') {
-                  <div class="face-assignments">
-                    <div class="assignment-row">
-                      <div class="assignment-row-head">
-                        <span class="assignment-title">Investor data room</span>
-                        <app-pill bg="var(--mint-soft)" color="var(--mint)" [bordered]="false" weight="600"
-                          >In progress</app-pill
-                        >
-                      </div>
-                      <app-progress-bar
-                        [percent]="75"
-                        color="var(--mint)"
-                        trackColor="rgb(255 255 255 / 55%)"
-                        label="Investor data room progress"
-                      />
-                    </div>
-                    <div class="assignment-row">
-                      <div class="assignment-row-head">
-                        <span class="assignment-title">Board deck — final draft</span>
-                        <app-pill bg="var(--mint-soft)" color="var(--mint)" [bordered]="false" weight="600"
-                          >Complete</app-pill
-                        >
-                      </div>
-                      <app-progress-bar
-                        [percent]="100"
-                        color="var(--mint)"
-                        trackColor="rgb(255 255 255 / 55%)"
-                        label="Board deck progress"
-                      />
-                    </div>
-                  </div>
-                }
-              }
               </div>
             }
           }

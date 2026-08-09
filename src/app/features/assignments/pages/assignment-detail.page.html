@@ -18,7 +18,11 @@
     <div class="stat-card">
       <div class="pct" [style.color]="assignment.barColor">{{ assignment.percentComplete }}%</div>
       <div class="done-label">{{ assignment.taskCountLabel }} done</div>
-      <app-progress-bar [percent]="assignment.percentComplete" [color]="assignment.barColor" [label]="'Overall progress'" />
+      <app-progress-bar
+        [percent]="assignment.percentComplete"
+        [color]="assignment.barColor"
+        [label]="'Overall progress'"
+      />
     </div>
   </div>
 
@@ -28,23 +32,38 @@
       #newTaskInput
       type="text"
       placeholder="Add a task and press Enter — it starts in To do"
+      aria-label="Add a task"
       (keydown.enter)="addTask(newTaskInput)"
     />
     <button type="button" (click)="addTask(newTaskInput)">Add task</button>
   </div>
 
   <div class="kanban">
-    <app-kanban-column title="To do" color="var(--ink-4)" [tasks]="columns().todo" (advance)="advanceTask($event)" />
+    <app-kanban-column
+      title="To do"
+      color="var(--ink-4)"
+      [tasks]="columns().todo"
+      (advance)="advanceTask($event)"
+    />
     <app-kanban-column
       title="In progress"
       color="var(--ink-blue)"
       [tasks]="columns().progress"
       (advance)="advanceTask($event)"
     />
-    <app-kanban-column title="Done" color="var(--accent)" [tasks]="columns().done" (advance)="advanceTask($event)" />
+    <app-kanban-column
+      title="Done"
+      color="var(--accent)"
+      [tasks]="columns().done"
+      (advance)="advanceTask($event)"
+    />
   </div>
 } @else {
   <div class="not-found">
-    <app-empty-state icon="cap" title="Assignment not found" description="This assignment may have been removed." />
+    <app-empty-state
+      icon="cap"
+      title="Assignment not found"
+      description="This assignment may have been removed."
+    />
   </div>
 }

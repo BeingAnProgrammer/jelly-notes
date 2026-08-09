@@ -8,7 +8,11 @@
     </div>
     <div class="row-content">
       @if (auth.currentUser(); as user) {
-        <app-avatar [initials]="initialsOf(user.displayName)" [gradient]="user.avatar" [size]="56" />
+        <app-avatar
+          [initials]="initialsOf(user.displayName)"
+          [gradient]="user.avatar"
+          [size]="56"
+        />
         <div class="swatches" role="radiogroup" aria-label="Avatar color">
           @for (option of avatarOptions; track option) {
             <button

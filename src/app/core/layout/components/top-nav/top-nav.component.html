@@ -42,7 +42,13 @@
               [attr.aria-expanded]="foldersOpen()"
               (click)="foldersOpen.set(!foldersOpen())"
             >
-              <app-icon name="chevron-down" [size]="11" [strokeWidth]="2.6" class="caret-icon" [class.open]="foldersOpen()" />
+              <app-icon
+                name="chevron-down"
+                [size]="11"
+                [strokeWidth]="2.6"
+                class="caret-icon"
+                [class.open]="foldersOpen()"
+              />
             </button>
 
             @if (foldersOpen()) {
@@ -59,7 +65,12 @@
       }
     </nav>
 
-    <button type="button" class="icon-only search-btn" title="Search" (click)="paletteService.open()">
+    <button
+      type="button"
+      class="icon-only search-btn"
+      title="Search"
+      (click)="paletteService.open()"
+    >
       <app-icon name="search" [size]="14" [strokeWidth]="2.2" />
       <span class="kbd-hint">⌘K</span>
     </button>
@@ -74,7 +85,9 @@
         type="button"
         class="icon-only theme-btn"
         title="Toggle theme"
-        [attr.aria-label]="'Switch to ' + (appearance.theme() === 'dark' ? 'light' : 'dark') + ' theme'"
+        [attr.aria-label]="
+          'Switch to ' + (appearance.theme() === 'dark' ? 'light' : 'dark') + ' theme'
+        "
         (click)="appearance.toggleTheme()"
       >
         @if (appearance.theme() === 'dark') {
@@ -91,7 +104,11 @@
       <div class="divider"></div>
 
       <a routerLink="/app/settings" class="profile">
-        <app-avatar [initials]="userInitials()" [gradient]="auth.currentUser()?.avatar ?? 'gradient-1'" [size]="28" />
+        <app-avatar
+          [initials]="userInitials()"
+          [gradient]="auth.currentUser()?.avatar ?? 'gradient-1'"
+          [size]="28"
+        />
       </a>
     </div>
 
@@ -118,15 +135,24 @@
         >
           {{ item.label }}
           @if (item.badge) {
-            <app-pill bg="var(--accent-soft)" color="var(--accent-ink)" [bordered]="false" weight="600">{{
-              item.badge
-            }}</app-pill>
+            <app-pill
+              bg="var(--accent-soft)"
+              color="var(--accent-ink)"
+              [bordered]="false"
+              weight="600"
+              >{{ item.badge }}</app-pill
+            >
           }
         </a>
       }
       <div class="mobile-divider"></div>
       @for (folder of foldersService.foldersWithCounts(); track folder.name) {
-        <button type="button" class="mobile-item" [class.active]="isFolderActive(folder.name)" (click)="selectFolder(folder.name)">
+        <button
+          type="button"
+          class="mobile-item"
+          [class.active]="isFolderActive(folder.name)"
+          (click)="selectFolder(folder.name)"
+        >
           <span class="folder-dot" [style.background]="folder.color"></span>
           {{ folder.name }}
           <span class="folder-count">{{ folder.count }}</span>
@@ -137,7 +163,9 @@
       <button type="button" class="mobile-item" (click)="appearance.toggleTheme()">
         Toggle theme ({{ appearance.theme() === 'dark' ? 'dark' : 'light' }})
       </button>
-      <a routerLink="/app/settings" class="mobile-item" (click)="mobileMenuOpen.set(false)">Settings</a>
+      <a routerLink="/app/settings" class="mobile-item" (click)="mobileMenuOpen.set(false)"
+        >Settings</a
+      >
     </div>
   }
 </header>

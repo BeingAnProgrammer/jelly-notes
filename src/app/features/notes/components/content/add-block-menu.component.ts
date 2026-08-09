@@ -27,7 +27,9 @@ const OPTIONS: BlockOption[] = [
       @if (open()) {
         <div class="menu" role="menu">
           @for (option of options; track option.type) {
-            <button type="button" role="menuitem" (click)="select(option.type)">{{ option.label }}</button>
+            <button type="button" role="menuitem" (click)="select(option.type)">
+              {{ option.label }}
+            </button>
           }
         </div>
       }

@@ -21,7 +21,12 @@
       </button>
 
       @if (editable()) {
-        <input class="item-text" type="text" [value]="item.text" (input)="onItemTextInput(i, $event)" />
+        <input
+          class="item-text"
+          type="text"
+          [value]="item.text"
+          (input)="onItemTextInput(i, $event)"
+        />
         <button type="button" class="remove-item" title="Remove item" (click)="onRemoveItem(i)">
           <app-icon name="x" [size]="12" [strokeWidth]="2" />
         </button>
@@ -33,7 +38,12 @@
 
   @if (editable()) {
     <div class="add-item">
-      <input #newItemInput type="text" placeholder="Add item…" (keydown.enter)="onAddItem(newItemInput)" />
+      <input
+        #newItemInput
+        type="text"
+        placeholder="Add item…"
+        (keydown.enter)="onAddItem(newItemInput)"
+      />
       <button type="button" (click)="onAddItem(newItemInput)">Add</button>
     </div>
   }

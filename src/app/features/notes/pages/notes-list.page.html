@@ -1,7 +1,9 @@
 <div class="header" data-anim>
   <div>
     <h1>{{ notesTitle() }}</h1>
-    <p class="subtext">{{ notesCount() }} {{ notesCount() === 1 ? 'note' : 'notes' }} · sorted by last edited</p>
+    <p class="subtext">
+      {{ notesCount() }} {{ notesCount() === 1 ? 'note' : 'notes' }} · sorted by last edited
+    </p>
   </div>
 
   <div class="header-actions">
@@ -63,7 +65,11 @@
     }
   </div>
 } @else if (!showPinned()) {
-  <app-empty-state icon="file" [title]="'No notes in ' + notesTitle()" description="Notes you create will show up here." />
+  <app-empty-state
+    icon="file"
+    [title]="'No notes in ' + notesTitle()"
+    description="Notes you create will show up here."
+  />
 }
 
 @if (folderModalOpen()) {

@@ -10,7 +10,13 @@
       [value]="block().language ?? ''"
       (input)="onLanguageInput($event)"
     />
-    <textarea class="code-input" rows="4" spellcheck="false" [value]="block().code" (input)="onCodeInput($event)"></textarea>
+    <textarea
+      class="code-input"
+      rows="4"
+      spellcheck="false"
+      [value]="block().code"
+      (input)="onCodeInput($event)"
+    ></textarea>
   </div>
 } @else {
   <div class="code-wrap">

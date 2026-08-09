@@ -1,7 +1,12 @@
 <div class="menu" appClickOutside (clickOutside)="dismiss.emit()">
   <div class="label">Folders</div>
   @for (folder of foldersService.foldersWithCounts(); track folder.name) {
-    <button type="button" class="row" [class.active]="activeFolder() === folder.name" (click)="select.emit(folder.name)">
+    <button
+      type="button"
+      class="row"
+      [class.active]="activeFolder() === folder.name"
+      (click)="select.emit(folder.name)"
+    >
       <span class="dot" [style.background]="folder.color"></span>
       <span class="name">{{ folder.name }}</span>
       <span class="count">{{ folder.count }}</span>

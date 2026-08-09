@@ -38,7 +38,12 @@
     </div>
 
     <div class="footer">
-      <input #chatInput type="text" placeholder="Ask about your notes" (keydown.enter)="send(chatInput)" />
+      <input
+        #chatInput
+        type="text"
+        placeholder="Ask about your notes"
+        (keydown.enter)="send(chatInput)"
+      />
       <button type="button" title="Send" (click)="send(chatInput)">
         <app-icon name="arrow-right" [size]="15" [strokeWidth]="2" />
       </button>

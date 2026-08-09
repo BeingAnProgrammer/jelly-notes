@@ -42,6 +42,8 @@ export class FocusTrapDirective implements AfterViewInit {
   }
 
   private focusableElements(): HTMLElement[] {
-    return Array.from(this.elementRef.nativeElement.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+    return Array.from(
+      this.elementRef.nativeElement.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+    );
   }
 }

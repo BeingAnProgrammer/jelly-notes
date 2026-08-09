@@ -3,7 +3,14 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ModalComponent } from '../../../../shared/ui/modal/modal.component';
 import { FoldersService } from '../../../folders/services/folders.service';
 
-const FOLDER_SWATCHES = ['var(--accent)', 'var(--gold)', 'var(--mint)', 'var(--lav)', 'var(--slate)', 'var(--warm)'];
+const FOLDER_SWATCHES = [
+  'var(--accent)',
+  'var(--gold)',
+  'var(--mint)',
+  'var(--lav)',
+  'var(--slate)',
+  'var(--warm)',
+];
 
 interface NewFolderForm {
   name: FormControl<string>;
@@ -20,7 +27,13 @@ interface NewFolderForm {
         <h2 class="heading">New folder</h2>
 
         <label class="field-label" for="folder-name">Folder name</label>
-        <input id="folder-name" class="text-input" type="text" formControlName="name" autocomplete="off" />
+        <input
+          id="folder-name"
+          class="text-input"
+          type="text"
+          formControlName="name"
+          autocomplete="off"
+        />
 
         <span class="field-label">Color</span>
         <div class="swatches" role="radiogroup" aria-label="Folder color">
@@ -105,7 +118,9 @@ interface NewFolderForm {
       }
 
       &.selected {
-        box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--ink);
+        box-shadow:
+          0 0 0 2px var(--surface),
+          0 0 0 4px var(--ink);
       }
 
       @include focus-ring;

@@ -11,8 +11,12 @@ import { ModalComponent } from '../modal/modal.component';
         <h2>{{ title() }}</h2>
         <p>{{ message() }}</p>
         <div class="footer">
-          <button type="button" class="btn-ghost" (click)="cancelled.emit()">{{ cancelLabel() }}</button>
-          <button type="button" class="btn-danger" (click)="confirmed.emit()">{{ confirmLabel() }}</button>
+          <button type="button" class="btn-ghost" (click)="cancelled.emit()">
+            {{ cancelLabel() }}
+          </button>
+          <button type="button" class="btn-danger" (click)="confirmed.emit()">
+            {{ confirmLabel() }}
+          </button>
         </div>
       </div>
     </app-modal>

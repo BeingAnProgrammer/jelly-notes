@@ -8,11 +8,13 @@ export const SETTINGS_ROUTES: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'account' },
       {
         path: 'account',
-        loadComponent: () => import('./pages/account-settings.page').then((m) => m.AccountSettingsPage),
+        loadComponent: () =>
+          import('./pages/account-settings.page').then((m) => m.AccountSettingsPage),
       },
       {
         path: 'appearance',
-        loadComponent: () => import('./pages/appearance-settings.page').then((m) => m.AppearanceSettingsPage),
+        loadComponent: () =>
+          import('./pages/appearance-settings.page').then((m) => m.AppearanceSettingsPage),
       },
     ],
   },

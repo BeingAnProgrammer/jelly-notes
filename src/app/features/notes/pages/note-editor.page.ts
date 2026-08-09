@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { PillComponent } from '../../../shared/ui/pill/pill.component';
@@ -56,7 +64,9 @@ export class NoteEditorPage {
   constructor() {
     effect(() => {
       const note = this.note();
-      this.seo.update(note?.title ?? 'Note', note?.excerpt || 'A note in Jelly Notes.');
+      this.seo.update(note?.title ?? 'Note', note?.excerpt || 'A note in Jelly Notes.', {
+        private: true,
+      });
     });
   }
 

@@ -15,7 +15,8 @@ export class AssignmentsListPage {
   protected readonly assignmentsService = inject(AssignmentsService);
 
   protected readonly openCount = computed(
-    () => this.assignmentsService.assignmentsDecorated().filter((a) => a.status !== 'Complete').length,
+    () =>
+      this.assignmentsService.assignmentsDecorated().filter((a) => a.status !== 'Complete').length,
   );
   protected readonly atRiskCount = computed(
     () => this.assignmentsService.assignmentsDecorated().filter((a) => a.atRisk).length,

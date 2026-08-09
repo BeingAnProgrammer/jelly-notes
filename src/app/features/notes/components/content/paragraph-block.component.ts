@@ -74,7 +74,7 @@ type ParagraphBlock = Extract<ContentBlock, { type: 'paragraph' }>;
 
     .run-link {
       color: var(--accent);
-      border-bottom: 1px solid rgb(59 111 237 / 40%);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
     }
   `,
 })
@@ -84,7 +84,11 @@ export class ParagraphBlockComponent {
   readonly changed = output<ContentBlock>();
   readonly removed = output<void>();
 
-  protected readonly plainText = computed(() => this.block().runs.map((r) => r.text).join(''));
+  protected readonly plainText = computed(() =>
+    this.block()
+      .runs.map((r) => r.text)
+      .join(''),
+  );
 
   protected onInput(event: Event): void {
     const value = (event.target as HTMLTextAreaElement).value;

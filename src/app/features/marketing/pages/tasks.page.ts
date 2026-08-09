@@ -3,7 +3,10 @@ import { SeoService } from '../../../core/seo/seo.service';
 import { PublicNavComponent } from '../components/public-nav/public-nav.component';
 import { FeatureHeroComponent } from '../components/feature-hero/feature-hero.component';
 import { ProductWindowComponent } from '../components/product-window/product-window.component';
-import { FeatureSectionComponent, type FeatureBlock } from '../components/feature-section/feature-section.component';
+import {
+  FeatureSectionComponent,
+  type FeatureBlock,
+} from '../components/feature-section/feature-section.component';
 import { CtaBandComponent } from '../components/cta-band/cta-band.component';
 import { PillComponent } from '../../../shared/ui/pill/pill.component';
 import { ProgressBarComponent } from '../../../shared/ui/progress-bar/progress-bar.component';
@@ -64,7 +67,7 @@ const TASKS_FEATURES: readonly FeatureBlock[] = [
   {
     icon: 'note-plus',
     title: 'Create tasks from notes',
-    description: "Turn any note into a task without losing the context that created it.",
+    description: 'Turn any note into a task without losing the context that created it.',
   },
   {
     icon: 'cap',

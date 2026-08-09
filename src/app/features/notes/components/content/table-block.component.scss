@@ -14,7 +14,9 @@
 .table-wrap {
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  // overflow-x (not a plain `hidden`) so a table wider than its column can scroll instead of
+  // getting clipped — still clips to the rounded corners, same as `hidden` did.
+  overflow-x: auto;
 }
 
 table {

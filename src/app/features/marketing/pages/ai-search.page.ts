@@ -3,11 +3,18 @@ import { SeoService } from '../../../core/seo/seo.service';
 import { PublicNavComponent } from '../components/public-nav/public-nav.component';
 import { FeatureHeroComponent } from '../components/feature-hero/feature-hero.component';
 import { ProductWindowComponent } from '../components/product-window/product-window.component';
-import { FeatureSectionComponent, type FeatureBlock } from '../components/feature-section/feature-section.component';
+import {
+  FeatureSectionComponent,
+  type FeatureBlock,
+} from '../components/feature-section/feature-section.component';
 import { CtaBandComponent } from '../components/cta-band/cta-band.component';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 
-const SOURCE_NOTES: readonly string[] = ['Series B narrative — v3', 'Acme security review', 'Enterprise pricing discussion'];
+const SOURCE_NOTES: readonly string[] = [
+  'Series B narrative — v3',
+  'Acme security review',
+  'Enterprise pricing discussion',
+];
 
 const AI_SEARCH_FEATURES: readonly FeatureBlock[] = [
   {

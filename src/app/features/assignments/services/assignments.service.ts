@@ -1,6 +1,11 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { AssignmentsRepository } from '../data/assignments.repository';
-import { Assignment, AssignmentStatus, DecoratedAssignment, UpcomingTask } from '../models/assignment.model';
+import {
+  Assignment,
+  AssignmentStatus,
+  DecoratedAssignment,
+  UpcomingTask,
+} from '../models/assignment.model';
 import { Task, TaskStatus } from '../models/task.model';
 import { generateId } from '../../../shared/utils/id';
 
@@ -79,7 +84,9 @@ export class AssignmentsService {
 
   readonly assignmentsDecorated = computed(() => this._assignments().map(decorate));
 
-  readonly openCount = computed(() => this._assignments().filter((a) => statusOf(a.tasks) !== 'Complete').length);
+  readonly openCount = computed(
+    () => this._assignments().filter((a) => statusOf(a.tasks) !== 'Complete').length,
+  );
 
   /** Nearest-due, not-yet-done tasks across every assignment — backs the dashboard widget. */
   readonly upcomingTasks = computed<UpcomingTask[]>(() =>
@@ -125,6 +132,8 @@ export class AssignmentsService {
   }
 
   private replace(updated: Assignment): void {
-    this._assignments.update((assignments) => assignments.map((a) => (a.id === updated.id ? updated : a)));
+    this._assignments.update((assignments) =>
+      assignments.map((a) => (a.id === updated.id ? updated : a)),
+    );
   }
 }

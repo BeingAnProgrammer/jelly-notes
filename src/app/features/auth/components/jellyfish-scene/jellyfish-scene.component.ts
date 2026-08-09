@@ -324,7 +324,11 @@ export class JellyfishSceneComponent implements AfterViewInit, OnDestroy {
         side: THREE.DoubleSide,
       });
       const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(Math.cos(spec.angle) * spec.radius, spec.yOffset, Math.sin(spec.angle) * spec.radius);
+      mesh.position.set(
+        Math.cos(spec.angle) * spec.radius,
+        spec.yOffset,
+        Math.sin(spec.angle) * spec.radius,
+      );
       jellyGroup.add(mesh);
       this.disposables.push(geometry, material);
     }
@@ -344,7 +348,8 @@ export class JellyfishSceneComponent implements AfterViewInit, OnDestroy {
       this.renderer.setSize(width, height, false);
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.renderFrame(this.timeUniform.value);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+        this.renderFrame(this.timeUniform.value);
     });
     this.resizeObserver.observe(parent);
   }

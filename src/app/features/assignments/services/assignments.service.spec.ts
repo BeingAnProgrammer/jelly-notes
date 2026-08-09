@@ -62,7 +62,10 @@ describe('AssignmentsService', () => {
   beforeEach(() => {
     repo = new FakeAssignmentsRepository();
     TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection(), { provide: AssignmentsRepository, useValue: repo }],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: AssignmentsRepository, useValue: repo },
+      ],
     });
     service = TestBed.inject(AssignmentsService);
   });
@@ -87,7 +90,9 @@ describe('AssignmentsService', () => {
 
   it('addTask appends a new todo task and ignores blank input', () => {
     service.addTask('a1', 'Three');
-    expect(service.findById('a1')?.tasks.at(-1)).toEqual(jasmine.objectContaining({ title: 'Three', status: 'todo' }));
+    expect(service.findById('a1')?.tasks.at(-1)).toEqual(
+      jasmine.objectContaining({ title: 'Three', status: 'todo' }),
+    );
 
     const countBefore = service.findById('a1')?.tasks.length;
     service.addTask('a1', '   ');

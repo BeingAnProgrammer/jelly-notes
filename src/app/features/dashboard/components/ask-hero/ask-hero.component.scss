@@ -85,7 +85,9 @@ h1 {
 
   &:focus-within {
     border-color: var(--accent-line);
-    box-shadow: var(--shadow-md), 0 0 0 3px var(--accent-glow-weak);
+    box-shadow:
+      var(--shadow-md),
+      0 0 0 3px var(--accent-glow-weak);
   }
 }
 

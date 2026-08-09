@@ -21,7 +21,10 @@ export class AccountSettingsPage {
   private readonly router = inject(Router);
 
   protected readonly avatarOptions = Object.keys(AVATAR_GRADIENTS) as AvatarGradient[];
-  protected readonly nameControl = new FormControl('', { nonNullable: true, validators: [Validators.required] });
+  protected readonly nameControl = new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required],
+  });
   protected readonly initialsOf = initialsOf;
 
   constructor() {

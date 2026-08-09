@@ -23,7 +23,12 @@
           <app-icon name="archive" [size]="16" [strokeWidth]="1.8" />
         </button>
 
-        <button type="button" class="icon-btn danger" title="Delete" (click)="showDeleteConfirm.set(true)">
+        <button
+          type="button"
+          class="icon-btn danger"
+          title="Delete"
+          (click)="showDeleteConfirm.set(true)"
+        >
           <app-icon name="trash" [size]="16" [strokeWidth]="1.8" />
         </button>
 
@@ -39,13 +44,9 @@
         </button>
 
         @if (!editing()) {
-          <button type="button" class="btn-primary" (click)="startEdit()">
-            Edit
-          </button>
+          <button type="button" class="btn-primary" (click)="startEdit()">Edit</button>
         } @else {
-          <button type="button" class="btn-primary" (click)="saveNote()">
-            Save
-          </button>
+          <button type="button" class="btn-primary" (click)="saveNote()">Save</button>
         }
       </div>
     </div>
@@ -63,13 +64,25 @@
       @for (tag of note.tags; track tag) {
         <app-pill>
           {{ tag }}
-          <button type="button" class="tag-remove" [attr.aria-label]="'Remove tag ' + tag" (click)="notesService.removeTag(note.id, tag)">
+          <button
+            type="button"
+            class="tag-remove"
+            [attr.aria-label]="'Remove tag ' + tag"
+            (click)="notesService.removeTag(note.id, tag)"
+          >
             <app-icon name="x" [size]="10" [strokeWidth]="2.4" />
           </button>
         </app-pill>
       }
       @if (addingTag()) {
-        <input #tagInput class="tag-input" type="text" placeholder="Tag name" (keydown.enter)="addTag(tagInput)" (blur)="addTag(tagInput)" />
+        <input
+          #tagInput
+          class="tag-input"
+          type="text"
+          placeholder="Tag name"
+          (keydown.enter)="addTag(tagInput)"
+          (blur)="addTag(tagInput)"
+        />
       } @else {
         <button type="button" class="add-tag" (click)="addingTag.set(true)">
           <app-icon name="plus" [size]="11" [strokeWidth]="2.2" />
@@ -87,8 +100,13 @@
       @if (!editing()) {
         <app-note-content-renderer [blocks]="note.content" (toggleItem)="onToggleItem($event)" />
       } @else {
-        <app-note-content-renderer [blocks]="draftContent()" [editable]="true" (blocksChange)="draftContent.set($event)" (toggleItem)="onToggleItem($event)" />
-        <app-add-block-menu (add)="draftContent.update(blocks => [...blocks, $event])" />
+        <app-note-content-renderer
+          [blocks]="draftContent()"
+          [editable]="true"
+          (blocksChange)="draftContent.set($event)"
+          (toggleItem)="onToggleItem($event)"
+        />
+        <app-add-block-menu (add)="draftContent.update((blocks) => [...blocks, $event])" />
       }
     </article>
   </div>
@@ -104,6 +122,10 @@
   }
 } @else {
   <div class="not-found">
-    <app-empty-state icon="file" title="Note not found" description="This note may have been deleted or never existed." />
+    <app-empty-state
+      icon="file"
+      title="Note not found"
+      description="This note may have been deleted or never existed."
+    />
   </div>
 }

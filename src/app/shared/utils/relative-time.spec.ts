@@ -12,7 +12,9 @@ describe('relativeTime', () => {
   });
 
   it('renders hours for under a day', () => {
-    expect(relativeTime(new Date(now.getTime() - 3 * 60 * 60_000).toISOString(), now)).toBe('3h ago');
+    expect(relativeTime(new Date(now.getTime() - 3 * 60 * 60_000).toISOString(), now)).toBe(
+      '3h ago',
+    );
   });
 
   it('renders "Yesterday" for the previous calendar day', () => {
@@ -37,7 +39,9 @@ describe('relativeTime', () => {
   it('renders a month/day for anything older', () => {
     const monthAgo = new Date(now);
     monthAgo.setDate(monthAgo.getDate() - 40);
-    const expected = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(monthAgo);
+    const expected = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(
+      monthAgo,
+    );
     expect(relativeTime(monthAgo.toISOString(), now)).toBe(expected);
   });
 });

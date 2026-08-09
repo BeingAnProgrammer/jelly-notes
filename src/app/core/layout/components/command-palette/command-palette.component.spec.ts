@@ -26,8 +26,16 @@ function makeNote(overrides: Partial<Note>): Note {
 
 class FakeNotesRepository extends NotesRepository {
   notes: Note[] = [
-    makeNote({ id: 'n1', title: 'Pricing v2 experiment', updatedAt: new Date('2026-01-02').toISOString() }),
-    makeNote({ id: 'n2', title: 'Onboarding teardown', updatedAt: new Date('2026-01-01').toISOString() }),
+    makeNote({
+      id: 'n1',
+      title: 'Pricing v2 experiment',
+      updatedAt: new Date('2026-01-02').toISOString(),
+    }),
+    makeNote({
+      id: 'n2',
+      title: 'Onboarding teardown',
+      updatedAt: new Date('2026-01-01').toISOString(),
+    }),
   ];
   getAll(): Observable<Note[]> {
     return of(this.notes);
@@ -89,7 +97,10 @@ describe('CommandPaletteComponent', () => {
     const palette = create();
     const navigateSpy = spyOn(router, 'navigate');
 
-    palette['activate']({ kind: 'note', note: { id: 'n2', label: 'Onboarding teardown', meta: 'Product' } });
+    palette['activate']({
+      kind: 'note',
+      note: { id: 'n2', label: 'Onboarding teardown', meta: 'Product' },
+    });
 
     expect(navigateSpy).toHaveBeenCalledWith(['/app/notes', 'n2']);
     expect(paletteService.isOpen()).toBe(false);

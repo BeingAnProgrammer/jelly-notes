@@ -1,6 +1,12 @@
 @if (paletteService.isOpen()) {
   <div class="scrim">
-    <div class="card" appClickOutside (clickOutside)="paletteService.close()" role="dialog" aria-label="Command palette">
+    <div
+      class="card"
+      appClickOutside
+      (clickOutside)="paletteService.close()"
+      role="dialog"
+      aria-label="Command palette"
+    >
       <div class="search-row">
         <app-icon name="search" [size]="16" [strokeWidth]="1.9" />
         <input

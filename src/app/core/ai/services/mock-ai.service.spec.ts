@@ -109,8 +109,18 @@ describe('MockAiService', () => {
     beforeEach(() => {
       const notesRepo = TestBed.inject(NotesRepository) as EmptyNotesRepository;
       notesRepo.notes = [
-        makeNote({ id: 'n1', title: 'Pricing v2 experiment', tags: ['pricing'], excerpt: 'Cohort A converts higher.' }),
-        makeNote({ id: 'n2', title: 'Onboarding teardown', tags: ['ux'], excerpt: 'Drop-off after import step.' }),
+        makeNote({
+          id: 'n1',
+          title: 'Pricing v2 experiment',
+          tags: ['pricing'],
+          excerpt: 'Cohort A converts higher.',
+        }),
+        makeNote({
+          id: 'n2',
+          title: 'Onboarding teardown',
+          tags: ['ux'],
+          excerpt: 'Drop-off after import step.',
+        }),
         makeNote({ id: 'n3', title: 'Random note', tags: [], excerpt: 'Nothing related here.' }),
       ];
       TestBed.inject(NotesService);

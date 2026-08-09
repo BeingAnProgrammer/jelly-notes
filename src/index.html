@@ -1,28 +1,34 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
-<head>
-  <meta charset="utf-8">
-  <title>Jelly Notes — Notes that remember everything</title>
-  <meta name="description" content="Jelly Notes is an AI-powered note-taking and personal knowledge management app — notes, folders, tasks, assignments, and AI search over everything you've written.">
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script>
-    // Runs before Angular hydrates so a returning visitor's saved theme applies with no
-    // flash of the default (dark) theme. Mutates <html data-theme>, which lives outside the
-    // Angular-rendered tree, so it can't cause a hydration mismatch.
-    try {
-      var savedTheme = localStorage.getItem('jelly-notes.theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      }
-    } catch (e) {}
-  </script>
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Jelly Notes — Notes that remember everything</title>
+    <meta
+      name="description"
+      content="Jelly Notes is an AI-powered note-taking and personal knowledge management app — notes, folders, tasks, assignments, and AI search over everything you've written."
+    />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Runs before Angular hydrates so a returning visitor's saved theme applies with no
+      // flash of the default (dark) theme. Mutates <html data-theme>, which lives outside the
+      // Angular-rendered tree, so it can't cause a hydration mismatch.
+      try {
+        var savedTheme = localStorage.getItem('jelly-notes.theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>

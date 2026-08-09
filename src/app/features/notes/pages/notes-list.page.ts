@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { EmptyStateComponent } from '../../../shared/ui/empty-state/empty-state.component';
@@ -15,7 +23,13 @@ const VIEW_KEY = 'notesView';
 
 @Component({
   selector: 'app-notes-list-page',
-  imports: [IconComponent, EmptyStateComponent, NoteCardComponent, FoldersMenuComponent, NewFolderModalComponent],
+  imports: [
+    IconComponent,
+    EmptyStateComponent,
+    NoteCardComponent,
+    FoldersMenuComponent,
+    NewFolderModalComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './notes-list.page.html',
   styleUrl: './notes-list.page.scss',
@@ -90,6 +104,8 @@ export class NotesListPage {
 
   protected clearFolder(): void {
     this.foldersOpen.set(false);
-    this.router.navigate([NOTES_FILTER_LINK.all.link], { queryParams: NOTES_FILTER_LINK.all.queryParams });
+    this.router.navigate([NOTES_FILTER_LINK.all.link], {
+      queryParams: NOTES_FILTER_LINK.all.queryParams,
+    });
   }
 }

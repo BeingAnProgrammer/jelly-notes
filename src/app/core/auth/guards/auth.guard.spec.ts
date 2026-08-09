@@ -28,13 +28,17 @@ describe('authGuard / redirectIfSignedInGuard', () => {
   });
 
   it('redirectIfSignedInGuard allows navigation to /welcome when signed out', () => {
-    const result = TestBed.runInInjectionContext(() => redirectIfSignedInGuard({} as never, {} as never));
+    const result = TestBed.runInInjectionContext(() =>
+      redirectIfSignedInGuard({} as never, {} as never),
+    );
     expect(result).toBe(true);
   });
 
   it('redirectIfSignedInGuard bounces an already-signed-in user to /app/dashboard', () => {
     auth.signIn();
-    const result = TestBed.runInInjectionContext(() => redirectIfSignedInGuard({} as never, {} as never));
+    const result = TestBed.runInInjectionContext(() =>
+      redirectIfSignedInGuard({} as never, {} as never),
+    );
     expect((result as UrlTree).toString()).toBe('/app/dashboard');
   });
 
@@ -56,7 +60,9 @@ describe('authGuard / redirectIfSignedInGuard', () => {
     });
 
     it('redirectIfSignedInGuard is a no-op so /welcome always server-renders', () => {
-      const result = TestBed.runInInjectionContext(() => redirectIfSignedInGuard({} as never, {} as never));
+      const result = TestBed.runInInjectionContext(() =>
+        redirectIfSignedInGuard({} as never, {} as never),
+      );
       expect(result).toBe(true);
     });
   });

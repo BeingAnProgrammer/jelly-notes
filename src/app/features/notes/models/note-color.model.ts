@@ -24,7 +24,9 @@ export const NOTE_COLORS: readonly NoteColor[] = [
   { id: 'slate', label: 'Slate', dot: 'var(--note-slate)', ink: 'var(--note-slate-ink)' },
 ];
 
-const NOTE_COLOR_INK: Record<string, string> = Object.fromEntries(NOTE_COLORS.map((c) => [c.dot, c.ink]));
+const NOTE_COLOR_INK: Record<string, string> = Object.fromEntries(
+  NOTE_COLORS.map((c) => [c.dot, c.ink]),
+);
 
 /** Older notes/folders still carry a `dot` from the muted UI hue set (var(--mint) etc.), which
  *  is already text-safe on its own — only the vivid --note-X swatches need this indirection to

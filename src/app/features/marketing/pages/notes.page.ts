@@ -3,7 +3,10 @@ import { SeoService } from '../../../core/seo/seo.service';
 import { PublicNavComponent } from '../components/public-nav/public-nav.component';
 import { FeatureHeroComponent } from '../components/feature-hero/feature-hero.component';
 import { ProductWindowComponent } from '../components/product-window/product-window.component';
-import { FeatureSectionComponent, type FeatureBlock } from '../components/feature-section/feature-section.component';
+import {
+  FeatureSectionComponent,
+  type FeatureBlock,
+} from '../components/feature-section/feature-section.component';
 import { CtaBandComponent } from '../components/cta-band/cta-band.component';
 
 interface NotePreview {
@@ -56,12 +59,14 @@ const NOTES_FEATURES: readonly FeatureBlock[] = [
   {
     icon: 'note-plus',
     title: 'Capture everything',
-    description: 'Quickly save ideas, thoughts, research, meeting notes, and important information.',
+    description:
+      'Quickly save ideas, thoughts, research, meeting notes, and important information.',
   },
   {
     icon: 'folder',
     title: 'Keep it organized',
-    description: 'Use folders, tags, and structured notes without making organization feel like work.',
+    description:
+      'Use folders, tags, and structured notes without making organization feel like work.',
   },
   {
     icon: 'focus',
@@ -72,7 +77,13 @@ const NOTES_FEATURES: readonly FeatureBlock[] = [
 
 @Component({
   selector: 'app-notes-page',
-  imports: [PublicNavComponent, FeatureHeroComponent, ProductWindowComponent, FeatureSectionComponent, CtaBandComponent],
+  imports: [
+    PublicNavComponent,
+    FeatureHeroComponent,
+    ProductWindowComponent,
+    FeatureSectionComponent,
+    CtaBandComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './notes.page.html',
   styleUrl: './notes.page.scss',

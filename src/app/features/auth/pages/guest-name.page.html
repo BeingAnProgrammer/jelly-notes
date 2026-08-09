@@ -15,7 +15,14 @@
   <form class="form" #form (submit)="onSubmit($event, nameInput)">
     <label class="field">
       <span class="field-label">Your name</span>
-      <input #nameInput type="text" name="name" placeholder="Jordan" autocomplete="given-name" autofocus />
+      <input
+        #nameInput
+        type="text"
+        name="name"
+        placeholder="Jordan"
+        autocomplete="given-name"
+        autofocus
+      />
     </label>
 
     <button type="submit" class="submit-btn">Continue as guest</button>

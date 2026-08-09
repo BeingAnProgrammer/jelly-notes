@@ -24,7 +24,9 @@ export const NOTES_SEED: Note[] = [
         id: 'n1-b1',
         type: 'paragraph',
         runs: [
-          { text: 'The story is in three acts. Right now act two is soft — we’re telling investors ' },
+          {
+            text: 'The story is in three acts. Right now act two is soft — we’re telling investors ',
+          },
           { text: 'what', emphasis: true },
           { text: ' we built without making the wedge feel inevitable.' },
         ],
@@ -34,7 +36,9 @@ export const NOTES_SEED: Note[] = [
         id: 'n1-b3',
         type: 'paragraph',
         runs: [
-          { text: 'Knowledge tools optimized for capture, not recall. Everyone has a graph; nobody can ' },
+          {
+            text: 'Knowledge tools optimized for capture, not recall. Everyone has a graph; nobody can ',
+          },
           { text: 'ask it anything', bold: true },
           { text: '. That’s the opening.' },
         ],
@@ -55,7 +59,11 @@ export const NOTES_SEED: Note[] = [
         type: 'checklist',
         items: [
           { id: 'n1-c1', text: 'Land on the one-line category claim', done: true },
-          { id: 'n1-c2', text: 'Quantify recall speed vs. Notion search (target < 2s)', done: false },
+          {
+            id: 'n1-c2',
+            text: 'Quantify recall speed vs. Notion search (target < 2s)',
+            done: false,
+          },
           { id: 'n1-c3', text: 'Pull NRR & cohort chart from the growth note', done: false },
         ],
       },
@@ -120,7 +128,11 @@ export const NOTES_SEED: Note[] = [
       {
         id: 'n2-b3',
         type: 'paragraph',
-        runs: [{ text: 'Whether to gate AI credits separately from seats before the next cohort ships.' }],
+        runs: [
+          {
+            text: 'Whether to gate AI credits separately from seats before the next cohort ships.',
+          },
+        ],
       },
     ],
   },
@@ -153,7 +165,8 @@ export const NOTES_SEED: Note[] = [
     folder: 'People',
     dot: 'var(--note-teal)',
     tags: ['1:1', 'people'],
-    excerpt: 'Open thread on the staff-level path — wants more scope before the title conversation.',
+    excerpt:
+      'Open thread on the staff-level path — wants more scope before the title conversation.',
     updatedAt: daysAgo(6),
     pinned: false,
     fav: false,
@@ -182,7 +195,9 @@ export const NOTES_SEED: Note[] = [
         id: 'n5-b1',
         type: 'paragraph',
         runs: [
-          { text: 'Last-write-wins is fine for guest mode. Once cloud sync ships we’ll want per-field merge, not per-note.' },
+          {
+            text: 'Last-write-wins is fine for guest mode. Once cloud sync ships we’ll want per-field merge, not per-note.',
+          },
         ],
       },
     ],
@@ -202,7 +217,11 @@ export const NOTES_SEED: Note[] = [
       {
         id: 'n6-b1',
         type: 'paragraph',
-        runs: [{ text: 'Ten slides: category, wedge, metrics, moat, team, ask. Keep it under fifteen minutes.' }],
+        runs: [
+          {
+            text: 'Ten slides: category, wedge, metrics, moat, team, ask. Keep it under fifteen minutes.',
+          },
+        ],
       },
     ],
   },

@@ -1,4 +1,13 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild, computed, inject, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { IconComponent } from '../../../../shared/ui/icon/icon.component';
 import { IconName } from '../../../../shared/ui/icon/icon.types';
@@ -50,20 +59,32 @@ export class CommandPaletteComponent implements AfterViewInit {
     {
       label: 'Go to All notes',
       icon: 'file',
-      run: () => this.router.navigate([NOTES_FILTER_LINK.all.link], { queryParams: NOTES_FILTER_LINK.all.queryParams }),
+      run: () =>
+        this.router.navigate([NOTES_FILTER_LINK.all.link], {
+          queryParams: NOTES_FILTER_LINK.all.queryParams,
+        }),
     },
     {
       label: 'Go to Favorites',
       icon: 'star',
       run: () =>
-        this.router.navigate([NOTES_FILTER_LINK.favorites.link], { queryParams: NOTES_FILTER_LINK.favorites.queryParams }),
+        this.router.navigate([NOTES_FILTER_LINK.favorites.link], {
+          queryParams: NOTES_FILTER_LINK.favorites.queryParams,
+        }),
     },
     {
       label: 'Go to Archive',
       icon: 'archive',
-      run: () => this.router.navigate([NOTES_FILTER_LINK.archive.link], { queryParams: NOTES_FILTER_LINK.archive.queryParams }),
+      run: () =>
+        this.router.navigate([NOTES_FILTER_LINK.archive.link], {
+          queryParams: NOTES_FILTER_LINK.archive.queryParams,
+        }),
     },
-    { label: 'Go to Assignments', icon: 'cap', run: () => this.router.navigate(['/app/assignments']) },
+    {
+      label: 'Go to Assignments',
+      icon: 'cap',
+      run: () => this.router.navigate(['/app/assignments']),
+    },
     { label: 'Toggle theme', icon: 'sun', run: () => this.appearance.toggleTheme() },
   ]);
 
@@ -83,7 +104,9 @@ export class CommandPaletteComponent implements AfterViewInit {
   protected readonly askAiQuery = computed(() => this.query().trim());
 
   protected readonly notesStartIndex = computed(() => this.filteredActions().length);
-  protected readonly askAiIndex = computed(() => this.filteredActions().length + this.noteItems().length);
+  protected readonly askAiIndex = computed(
+    () => this.filteredActions().length + this.noteItems().length,
+  );
 
   protected readonly flatItems = computed<FlatItem[]>(() => {
     const items: FlatItem[] = [

@@ -13,7 +13,14 @@ const DUE_FORMAT = new Intl.DateTimeFormat(undefined, { month: 'long', day: 'num
 
 @Component({
   selector: 'app-assignment-detail-page',
-  imports: [RouterLink, IconComponent, PillComponent, ProgressBarComponent, EmptyStateComponent, KanbanColumnComponent],
+  imports: [
+    RouterLink,
+    IconComponent,
+    PillComponent,
+    ProgressBarComponent,
+    EmptyStateComponent,
+    KanbanColumnComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './assignment-detail.page.html',
   styleUrl: './assignment-detail.page.scss',
@@ -38,7 +45,11 @@ export class AssignmentDetailPage {
   constructor() {
     effect(() => {
       const assignment = this.assignment();
-      this.seo.update(assignment?.title ?? 'Assignment', `Track tasks for ${assignment?.title ?? 'this assignment'}.`);
+      this.seo.update(
+        assignment?.title ?? 'Assignment',
+        `Track tasks for ${assignment?.title ?? 'this assignment'}.`,
+        { private: true },
+      );
     });
   }
 

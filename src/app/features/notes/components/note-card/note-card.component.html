@@ -1,4 +1,9 @@
-<a class="card" [class.pinned]="note().pinned" [style.--dot]="note().dot" [routerLink]="['/app/notes', note().id]">
+<a
+  class="card"
+  [class.pinned]="note().pinned"
+  [style.--dot]="note().dot"
+  [routerLink]="['/app/notes', note().id]"
+>
   <div class="top-row">
     <span class="folder" [style.color]="noteColorInk(note().dot)">{{ note().folder }}</span>
     @if (note().pinned) {

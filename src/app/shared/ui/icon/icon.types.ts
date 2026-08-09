@@ -48,7 +48,10 @@ export type IconShape =
 // `[filled]="true"`, since it's a solid glyph rather than a stroked line icon like the rest.
 export const ICONS: Record<IconName, IconShape[]> = {
   logo: [
-    { kind: 'path', d: 'M4.5,12.5 Q4.5,3.5 12,3.5 Q19.5,3.5 19.5,12.5 Q16,11.25 12,11.25 Q8,11.25 4.5,12.5 Z' },
+    {
+      kind: 'path',
+      d: 'M4.5,12.5 Q4.5,3.5 12,3.5 Q19.5,3.5 19.5,12.5 Q16,11.25 12,11.25 Q8,11.25 4.5,12.5 Z',
+    },
     { kind: 'path', d: 'M7.5,12.5 Q6.6,16 7.25,19.5 Q8.25,16.5 8.75,12.5 Z' },
     { kind: 'path', d: 'M11.25,12.5 Q10.65,17 11.75,21.5 Q12.85,17 12.25,12.5 Z' },
     { kind: 'path', d: 'M15.25,12.5 Q14.25,16.5 15.25,19.5 Q15.9,16 16.5,12.5 Z' },
@@ -73,7 +76,12 @@ export const ICONS: Record<IconName, IconShape[]> = {
     { kind: 'path', d: 'M22 10 12 5 2 10l10 5 10-5z' },
     { kind: 'path', d: 'M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5' },
   ],
-  star: [{ kind: 'path', d: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z' }],
+  star: [
+    {
+      kind: 'path',
+      d: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z',
+    },
+  ],
   check: [
     { kind: 'path', d: 'M9 11l3 3L22 4' },
     { kind: 'path', d: 'M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11' },
@@ -106,7 +114,10 @@ export const ICONS: Record<IconName, IconShape[]> = {
   ],
   list: [{ kind: 'path', d: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01' }],
   trash: [
-    { kind: 'path', d: 'M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 6M10 11v6M14 11v6' },
+    {
+      kind: 'path',
+      d: 'M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 6M10 11v6M14 11v6',
+    },
   ],
   x: [{ kind: 'path', d: 'M18 6 6 18M6 6l12 12' }],
   pin: [
@@ -123,9 +134,17 @@ export const ICONS: Record<IconName, IconShape[]> = {
   ],
   moon: [{ kind: 'path', d: 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z' }],
   menu: [{ kind: 'path', d: 'M3 12h18M3 6h18M3 18h18' }],
-  folder: [{ kind: 'path', d: 'M4 20a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2z' }],
+  folder: [
+    {
+      kind: 'path',
+      d: 'M4 20a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2z',
+    },
+  ],
   focus: [
-    { kind: 'path', d: 'M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3' },
+    {
+      kind: 'path',
+      d: 'M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3',
+    },
   ],
   eye: [
     {
@@ -135,7 +154,10 @@ export const ICONS: Record<IconName, IconShape[]> = {
     { kind: 'circle', cx: 12, cy: 12, r: 3 },
   ],
   'eye-off': [
-    { kind: 'path', d: 'M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49' },
+    {
+      kind: 'path',
+      d: 'M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49',
+    },
     { kind: 'path', d: 'M14.084 14.158a3 3 0 0 1-4.242-4.242' },
     {
       kind: 'path',

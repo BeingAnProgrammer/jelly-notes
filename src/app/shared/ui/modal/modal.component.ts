@@ -36,6 +36,7 @@ import { FocusTrapDirective } from '../../directives/focus-trap.directive';
 
     .card {
       @include modal-card;
+      max-width: calc(100vw - var(--space-32));
     }
   `,
 })

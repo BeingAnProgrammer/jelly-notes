@@ -104,7 +104,9 @@ describe('AiChatPanelComponent', () => {
 
     panel['send'](input);
 
-    expect(chat.messages().at(-1)).toEqual(jasmine.objectContaining({ role: 'ai', text: 'Re: What changed?' }));
+    expect(chat.messages().at(-1)).toEqual(
+      jasmine.objectContaining({ role: 'ai', text: 'Re: What changed?' }),
+    );
     expect(input.value).toBe('');
   });
 });

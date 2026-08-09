@@ -16,5 +16,15 @@ export type ContentBlock =
   | { readonly id: string; readonly type: 'heading'; readonly level: 2 | 3; readonly text: string }
   | { readonly id: string; readonly type: 'blockquote'; readonly text: string }
   | { readonly id: string; readonly type: 'checklist'; readonly items: ChecklistItem[] }
-  | { readonly id: string; readonly type: 'table'; readonly headers: string[]; readonly rows: string[][] }
-  | { readonly id: string; readonly type: 'code'; readonly language?: string; readonly code: string };
+  | {
+      readonly id: string;
+      readonly type: 'table';
+      readonly headers: string[];
+      readonly rows: string[][];
+    }
+  | {
+      readonly id: string;
+      readonly type: 'code';
+      readonly language?: string;
+      readonly code: string;
+    };

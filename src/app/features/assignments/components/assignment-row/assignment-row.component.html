@@ -25,7 +25,9 @@
 
   <div class="progress-block">
     <div class="progress-header">
-      <span class="risk-label" [style.color]="assignment().riskColor">{{ assignment().riskLabel }}</span>
+      <span class="risk-label" [style.color]="assignment().riskColor">{{
+        assignment().riskLabel
+      }}</span>
       <span class="pct">{{ assignment().percentComplete }}%</span>
     </div>
     <app-progress-bar

@@ -1,5 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  PLATFORM_ID,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { PillComponent } from '../../../shared/ui/pill/pill.component';

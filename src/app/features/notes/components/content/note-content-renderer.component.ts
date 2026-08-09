@@ -22,13 +22,28 @@ import { CodeBlockComponent } from './code-block.component';
     @for (block of blocks(); track block.id; let i = $index) {
       @switch (block.type) {
         @case ('paragraph') {
-          <app-paragraph-block [block]="block" [editable]="editable()" (changed)="onChanged(i, $event)" (removed)="onRemoved(i)" />
+          <app-paragraph-block
+            [block]="block"
+            [editable]="editable()"
+            (changed)="onChanged(i, $event)"
+            (removed)="onRemoved(i)"
+          />
         }
         @case ('heading') {
-          <app-heading-block [block]="block" [editable]="editable()" (changed)="onChanged(i, $event)" (removed)="onRemoved(i)" />
+          <app-heading-block
+            [block]="block"
+            [editable]="editable()"
+            (changed)="onChanged(i, $event)"
+            (removed)="onRemoved(i)"
+          />
         }
         @case ('blockquote') {
-          <app-blockquote-block [block]="block" [editable]="editable()" (changed)="onChanged(i, $event)" (removed)="onRemoved(i)" />
+          <app-blockquote-block
+            [block]="block"
+            [editable]="editable()"
+            (changed)="onChanged(i, $event)"
+            (removed)="onRemoved(i)"
+          />
         }
         @case ('checklist') {
           <app-checklist-block
@@ -40,10 +55,20 @@ import { CodeBlockComponent } from './code-block.component';
           />
         }
         @case ('table') {
-          <app-table-block [block]="block" [editable]="editable()" (changed)="onChanged(i, $event)" (removed)="onRemoved(i)" />
+          <app-table-block
+            [block]="block"
+            [editable]="editable()"
+            (changed)="onChanged(i, $event)"
+            (removed)="onRemoved(i)"
+          />
         }
         @case ('code') {
-          <app-code-block [block]="block" [editable]="editable()" (changed)="onChanged(i, $event)" (removed)="onRemoved(i)" />
+          <app-code-block
+            [block]="block"
+            [editable]="editable()"
+            (changed)="onChanged(i, $event)"
+            (removed)="onRemoved(i)"
+          />
         }
       }
     }

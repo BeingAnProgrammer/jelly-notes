@@ -21,10 +21,30 @@ interface SuggestionChip {
 }
 
 const SUGGESTIONS: SuggestionChip[] = [
-  { label: 'What did I decide?', color: 'var(--mint)', bg: 'var(--mint-soft)', line: 'var(--mint-line)' },
-  { label: "What's slipping?", color: 'var(--warm)', bg: 'var(--warm-soft)', line: 'var(--warm-line)' },
-  { label: 'Who owes me something?', color: 'var(--gold)', bg: 'var(--gold-soft)', line: 'var(--gold-line)' },
-  { label: 'Everything on Acme', color: 'var(--lav)', bg: 'var(--lav-soft)', line: 'var(--lav-line)' },
+  {
+    label: 'What did I decide?',
+    color: 'var(--mint)',
+    bg: 'var(--mint-soft)',
+    line: 'var(--mint-line)',
+  },
+  {
+    label: "What's slipping?",
+    color: 'var(--warm)',
+    bg: 'var(--warm-soft)',
+    line: 'var(--warm-line)',
+  },
+  {
+    label: 'Who owes me something?',
+    color: 'var(--gold)',
+    bg: 'var(--gold-soft)',
+    line: 'var(--gold-line)',
+  },
+  {
+    label: 'Everything on Acme',
+    color: 'var(--lav)',
+    bg: 'var(--lav-soft)',
+    line: 'var(--lav-line)',
+  },
 ];
 
 @Component({

@@ -26,7 +26,9 @@ export class ChecklistBlockComponent {
 
   protected onItemTextInput(index: number, event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-    this.emitItems(this.block().items.map((item, i) => (i === index ? { ...item, text: value } : item)));
+    this.emitItems(
+      this.block().items.map((item, i) => (i === index ? { ...item, text: value } : item)),
+    );
   }
 
   protected onRemoveItem(index: number): void {
