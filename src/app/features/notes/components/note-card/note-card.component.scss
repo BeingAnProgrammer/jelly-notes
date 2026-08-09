@@ -10,7 +10,8 @@
 }
 
 .card {
-  @include interactive-card;
+  @include surface-card;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: var(--space-10);
@@ -20,7 +21,6 @@
   min-height: 172px;
 
   &.pinned {
-    background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 10%, transparent), var(--surface) 55%);
     border-color: var(--accent-line);
   }
 }
