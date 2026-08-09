@@ -1,6 +1,11 @@
 <div class="split">
   <div class="login-side">
     <div class="card">
+      <button type="button" class="back-link" (click)="goBack()">
+        <app-icon name="chevron-right" [size]="14" [strokeWidth]="2" class="back-icon" />
+        Back
+      </button>
+
       <div class="brand">
         <app-icon name="logo" [size]="22" [filled]="true" />
         <span>Jelly Notes</span>
@@ -77,5 +82,22 @@
 
   <div class="jellyfish-side">
     <app-jellyfish />
+
+    <div class="jelly-annotations" aria-hidden="true">
+      <svg class="anno-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path class="anno-line" d="M20,22 Q27,18 34,26" />
+        <path class="anno-line" d="M80,22 Q74,38 58,65" />
+      </svg>
+      <span class="anno-dot dot-project"></span>
+      <span class="anno-dot dot-notes"></span>
+      <span class="anno-label label-project">
+        <span class="anno-label-title">Project</span>
+        <span class="anno-label-sub">the whole bell</span>
+      </span>
+      <span class="anno-label label-notes">
+        <span class="anno-label-title">Notes</span>
+        <span class="anno-label-sub">each tentacle</span>
+      </span>
+    </div>
   </div>
 </div>

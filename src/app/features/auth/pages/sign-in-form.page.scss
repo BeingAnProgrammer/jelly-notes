@@ -24,12 +24,108 @@
 }
 
 .jellyfish-side {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-48);
   min-width: 0;
+}
+
+// A light annotation layer over the jellyfish — two blueprint-style callouts, no card, no
+// paragraph copy. Coordinates are percentages of `.jellyfish-side` itself so the SVG curves
+// (viewBox 0-100, stretched via preserveAspectRatio="none") and the HTML dots/labels
+// (left/top %) share one coordinate space and stay aligned at any panel size. Anchor points
+// were read off the rendered jellyfish scene (a Three.js canvas, so no DOM/SVG geometry to
+// query directly) rather than computed: the bell's outer rim sits around (34%, 26%) and a
+// tentacle just below the bell's margin around (63%, 48%) — see jellyfish-scene.component.ts
+// for the underlying geometry/shader-fade shaping that silhouette.
+.jelly-annotations {
+  position: absolute;
+  // Matches `.jellyfish-side`'s own padding so this layer's 0-100% coordinate space lines up
+  // exactly with `<app-jellyfish>`'s box (it renders inside that padding, not over it) —
+  // with a plain inset:0 the two boxes differ by the padding and every anchor point drifts.
+  inset: var(--space-48);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.anno-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.anno-line {
+  fill: none;
+  stroke: var(--ink-4);
+  stroke-width: 1;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.32;
+}
+
+.anno-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 0 10px 2px color-mix(in srgb, var(--accent) 35%, transparent);
+  transform: translate(-50%, -50%);
+}
+
+.dot-project {
+  left: 34%;
+  top: 26%;
+}
+
+.dot-notes {
+  left: 58%;
+  top: 65%;
+}
+
+.anno-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.anno-label-title {
+  font-size: var(--text-11-5);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.anno-label-sub {
+  font-size: var(--text-11);
+  font-weight: var(--weight-medium);
+  color: var(--ink-4);
+}
+
+// Anchored by the corner nearest the connector line (its bottom-right for project, bottom-left
+// for notes) so the label sits fully in the open space beside the jellyfish and the leader
+// line picks up right where the text ends, instead of the two overlapping.
+.label-project {
+  left: 20%;
+  top: 20%;
+  align-items: flex-end;
+  transform: translate(-100%, -100%);
+}
+
+.label-notes {
+  left: 80%;
+  top: 20%;
+  align-items: flex-start;
+  transform: translate(0, -100%);
 }
 
 @media (max-width: 860px) {
@@ -48,10 +144,41 @@
     order: -1;
     padding: var(--space-16);
   }
+
+  // No room for leader lines on a 200px decorative strip — hide rather than crowd it.
+  .jelly-annotations {
+    display: none;
+  }
 }
 
 .card {
   @include auth-card;
+}
+
+.back-link {
+  position: absolute;
+  top: var(--space-20);
+  left: var(--space-20);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-12-5);
+  color: var(--ink-4);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--ink);
+  }
+
+  @include focus-ring;
+}
+
+.back-icon {
+  transform: rotate(180deg);
 }
 
 .brand {

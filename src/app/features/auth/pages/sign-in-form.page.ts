@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
@@ -15,6 +16,7 @@ import { JellyfishComponent } from '../components/jellyfish/jellyfish.component'
 export class SignInFormPage {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly location = inject(Location);
 
   protected readonly showPassword = signal(false);
   protected readonly showForgotHint = signal(false);
@@ -43,5 +45,9 @@ export class SignInFormPage {
 
   goToGuestName(): void {
     this.router.navigate(['/guest']);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
