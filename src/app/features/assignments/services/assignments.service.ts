@@ -33,12 +33,19 @@ function decorate(assignment: Assignment): DecoratedAssignment {
   const context = CONTEXT_COLORS[assignment.context] ?? DEFAULT_CONTEXT_COLOR;
   const atRisk = assignment.hot && percentComplete < 100;
 
-  // Matches the design's status-pill rule exactly: at-risk always wins, otherwise a
-  // not-yet-started assignment reads neutral (slate) and anything actively moving reads
-  // positive (mint) — status alone (not just the 3-value enum) never determines the color.
-  const statusColor = atRisk ? 'var(--warm)' : status === 'Not started' ? 'var(--slate)' : 'var(--mint)';
-  const statusBg = atRisk ? 'var(--warm-soft)' : status === 'Not started' ? 'var(--slate-soft)' : 'var(--mint-soft)';
-  const statusLine = atRisk ? 'var(--warm-line)' : status === 'Not started' ? 'var(--slate-line)' : 'var(--mint-line)';
+  // Solid pill per status: at-risk always wins, then each of the 3 statuses gets its own
+  // hue (slate/accent/mint) rather than lumping "In progress" in with "Complete" — the fill
+  // is the strong token itself (not the usual -soft tint) with white text on top.
+  const statusHue = atRisk
+    ? 'var(--warm)'
+    : status === 'Not started'
+      ? 'var(--slate)'
+      : status === 'In progress'
+        ? 'var(--accent)'
+        : 'var(--mint)';
+  const statusColor = '#ffffff';
+  const statusBg = statusHue;
+  const statusLine = statusHue;
 
   return {
     ...assignment,
