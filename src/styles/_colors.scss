@@ -60,29 +60,46 @@
   --ink-blue: #5ea8d9;
   --ink-blue-soft: rgb(94 168 217 / 14%);
 
-  // A separate, deliberately more saturated palette for user-picked note colors (see
-  // note-color-menu) — the hues above are muted by design (folder/tag text needs to stay
-  // legible at small sizes), which reads as "dull" for a note's own color tag where legibility
-  // matters less than the color being the point. `--note-X` is the vivid swatch itself, fixed
-  // across themes like --cta-gradient; `--note-X-ink` is a same-hue tone dark/light enough to
-  // read as text (folder label, tag) against that swatch's own tint in each theme — see
-  // note-color-menu.component for how the two pair up.
-  --note-red: #ef4444;
+  // A separate palette for user-picked note colors (see note-color-menu) — the hues above are
+  // muted by design (folder/tag text needs to stay legible at small sizes), which reads as flat
+  // for a note's own color tag where legibility matters less than the color being the point.
+  // Deeper/richer 600-weight tones rather than the brighter 500-weight ones read as more
+  // "premium" jewel tones instead of playground-bright primaries. `--note-X` is the swatch
+  // itself, fixed across themes like --cta-gradient; `--note-X-ink` is a same-hue tone dark/
+  // light enough to read as text (folder label, tag) against that swatch's own tint in each
+  // theme — see note-color-menu.component for how the two pair up.
+  --note-red: #dc2626;
   --note-red-ink: #f87171;
-  --note-orange: #f97316;
+  --note-orange: #ea580c;
   --note-orange-ink: #fb923c;
-  --note-amber: #f59e0b;
+  --note-amber: #d97706;
   --note-amber-ink: #fbbf24;
-  --note-green: #22c55e;
+  --note-green: #16a34a;
   --note-green-ink: #4ade80;
-  --note-teal: #14b8a6;
+  --note-emerald: #059669;
+  --note-emerald-ink: #34d399;
+  --note-teal: #0d9488;
   --note-teal-ink: #2dd4bf;
-  --note-blue: #3b82f6;
+  --note-cyan: #0891b2;
+  --note-cyan-ink: #22d3ee;
+  --note-sky: #0284c7;
+  --note-sky-ink: #38bdf8;
+  --note-blue: #2563eb;
   --note-blue-ink: #60a5fa;
-  --note-violet: #8b5cf6;
+  --note-indigo: #4f46e5;
+  --note-indigo-ink: #818cf8;
+  --note-violet: #7c3aed;
   --note-violet-ink: #a78bfa;
-  --note-pink: #ec4899;
+  --note-purple: #9333ea;
+  --note-purple-ink: #c084fc;
+  --note-fuchsia: #c026d3;
+  --note-fuchsia-ink: #e879f9;
+  --note-pink: #db2777;
   --note-pink-ink: #f472b6;
+  --note-rose: #e11d48;
+  --note-rose-ink: #fb7185;
+  --note-slate: #475569;
+  --note-slate-ink: #94a3b8;
 
   --accent-glow-weak: rgb(59 111 237 / 10%);
   --accent-glow: rgb(59 111 237 / 14%);
@@ -192,10 +209,18 @@
   --note-orange-ink: #c2410c;
   --note-amber-ink: #b45309;
   --note-green-ink: #15803d;
+  --note-emerald-ink: #047857;
   --note-teal-ink: #0f766e;
+  --note-cyan-ink: #0e7490;
+  --note-sky-ink: #0369a1;
   --note-blue-ink: #1d4ed8;
+  --note-indigo-ink: #4338ca;
   --note-violet-ink: #6d28d9;
+  --note-purple-ink: #7e22ce;
+  --note-fuchsia-ink: #a21caf;
   --note-pink-ink: #be185d;
+  --note-rose-ink: #be123c;
+  --note-slate-ink: #334155;
 
   --accent-glow-weak: rgb(47 95 224 / 8%);
   --accent-glow: rgb(47 95 224 / 12%);
