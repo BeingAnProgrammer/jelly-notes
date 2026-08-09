@@ -76,6 +76,19 @@
   --logo-gradient-hover: linear-gradient(150deg, #8fabf7, #3b6fed);
   --cta-gradient: linear-gradient(150deg, #5b8ef5, #2f5fe0);
 
+  // The dashboard hero's fixed backdrop (dashboard.page.scss's `.hero-backdrop`) — deep
+  // near-black canvas with a soft brand-blue glow arced behind where the ask-field sits,
+  // rather than the light theme's bright bottom-anchored gradient below.
+  --hero-backdrop:
+    radial-gradient(
+      65% 55% at 50% 62%,
+      rgb(90 130 245 / 55%) 0%,
+      rgb(59 111 237 / 30%) 32%,
+      rgb(40 70 170 / 12%) 55%,
+      transparent 78%
+    ),
+    var(--canvas);
+
   --shadow: 0 1px 2px rgb(0 0 0 / 50%), 0 10px 28px rgb(0 0 0 / 42%);
   --shadow-lift: 0 2px 6px rgb(0 0 0 / 50%), 0 22px 50px rgb(0 0 0 / 55%);
 }
@@ -155,6 +168,18 @@
 
   --scrollbar-thumb: #d8d8e2;
   --scrollbar-thumb-hover: #c2c2ce;
+
+  // Unchanged from the original v4 export — bright, bottom-anchored brand blue.
+  --hero-backdrop: radial-gradient(
+    125% 125% at 50% 101%,
+    rgb(10 60 245) 10.5%,
+    rgb(20 100 245) 16%,
+    rgb(30 130 248) 17.5%,
+    rgb(90 170 250) 25%,
+    rgb(150 195 245) 40%,
+    rgb(180 205 235) 65%,
+    rgb(214 227 245) 100%
+  );
 
   --shadow: 0 1px 2px rgb(23 22 29 / 5%), 0 8px 24px rgb(23 22 29 / 7%);
   --shadow-lift: 0 2px 6px rgb(23 22 29 / 7%), 0 18px 44px rgb(23 22 29 / 12%);

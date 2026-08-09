@@ -1,9 +1,9 @@
 @use 'mixins' as *;
 
-// Text colors below are hardcoded dark rather than reading var(--ink): this hero sits on
-// dashboard.page's fixed brand-gradient backdrop (not theme-reactive, see dashboard.page.scss),
-// so they need to stay legible against that specific gradient in both light and dark app
-// themes, not adapt to either.
+// Text colors below are hardcoded per-theme (light value first, dark override further down)
+// rather than reading var(--ink)/var(--ink-3): this hero sits on dashboard.page's own
+// var(--hero-backdrop) gradient, which is deliberately its own thing per theme rather than
+// the page canvas, so these need fixed values tuned for THAT specific gradient in each theme.
 :host {
   display: flex;
   flex-direction: column;
@@ -316,6 +316,31 @@ input {
 
 .chip:hover .chip-dot {
   transform: scale(1.6) rotate(15deg);
+}
+
+// Same weight/size relationship as light (bold headline, muted second line, muted stat line)
+// — just lightened for legibility against var(--hero-backdrop)'s dark glow, and the ask-field
+// switches from an opaque white card to translucent + blurred so the glow shows through it
+// like Image 2's glass input, instead of blocking it out with a solid dark rectangle.
+:host-context([data-theme='dark']) {
+  .eyebrow-text {
+    color: rgb(226 228 240 / 65%);
+  }
+
+  h1 {
+    color: #f2f1f8;
+  }
+
+  .dim {
+    color: rgb(226 228 240 / 58%);
+  }
+
+  .ask-field {
+    background: rgb(20 20 30 / 58%);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border-color: rgb(255 255 255 / 10%);
+  }
 }
 
 @media (max-width: 640px) {

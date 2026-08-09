@@ -9,8 +9,9 @@
   animation: m-fade-up var(--duration-slow) var(--ease-standard);
 }
 
-// Fixed brand gradient (not theme-reactive, same reasoning as the auth pages' fixed-dark
-// surface): a deliberate branded backdrop for the whole home screen, not just the hero card.
+// A deliberate branded backdrop for the whole home screen, not just the hero card — now
+// theme-reactive via var(--hero-backdrop) (see _colors.scss): light keeps the original bright
+// bottom-anchored gradient, dark gets a near-black canvas with a soft glow behind the ask-field.
 // `position: fixed` so it spans the full viewport — including behind the sticky nav — rather
 // than just this page's own content box. No z-index: `.shell` is `position: relative` with
 // z-index:auto, which (per the CSS stacking spec) paints at the same tier as any other
@@ -20,14 +21,5 @@
 .hero-backdrop {
   position: fixed;
   inset: 0;
-  background: radial-gradient(
-    125% 125% at 50% 101%,
-    rgb(10 60 245) 10.5%,
-    rgb(20 100 245) 16%,
-    rgb(30 130 248) 17.5%,
-    rgb(90 170 250) 25%,
-    rgb(150 195 245) 40%,
-    rgb(180 205 235) 65%,
-    rgb(214 227 245) 100%
-  );
+  background: var(--hero-backdrop);
 }
