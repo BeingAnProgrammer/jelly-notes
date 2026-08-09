@@ -11,7 +11,7 @@
 
   --nav: #15151e;
   --nav-line: rgb(255 255 255 / 8%);
-  --nav-shadow: 0 18px 44px rgb(0 0 0 / 55%);
+  --nav-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 18px 44px rgb(0 0 0 / 55%);
   --field: rgb(255 255 255 / 5%);
   --field-line: rgb(255 255 255 / 9%);
   --chrome: rgb(255 255 255 / 5%);
@@ -88,7 +88,10 @@
 
   --nav: #ffffff;
   --nav-line: #e6e4ec;
-  --nav-shadow: 0 10px 30px rgb(23 22 29 / 10%);
+  // Two layers (a tight contact shadow + a broad ambient one) so the bar reads as a
+  // distinct floating surface even against dashboard.page's own pale hero gradient, which
+  // is nearly this same off-white right where the nav sits — a single soft shadow disappeared.
+  --nav-shadow: 0 1px 2px rgb(23 22 29 / 6%), 0 16px 40px rgb(23 22 29 / 16%);
   --field: #f4f3f7;
   --field-line: #e6e4ec;
   --chrome: #fafafc;

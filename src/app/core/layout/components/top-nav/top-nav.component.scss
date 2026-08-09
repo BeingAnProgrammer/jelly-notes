@@ -18,11 +18,13 @@
   align-items: center;
   gap: var(--space-16);
   padding: 0 var(--space-14) 0 var(--space-20);
-  background: color-mix(in srgb, var(--nav) 70%, transparent);
+  background: color-mix(in srgb, var(--nav) 84%, transparent);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid var(--nav-line);
-  border-radius: var(--radius-2xl-plus);
+  // A bit tighter than --radius-2xl-plus (18px, shared with other surfaces) — the full token
+  // read as too rounded on a bar this shallow.
+  border-radius: var(--radius-xl-plus);
   box-shadow: var(--nav-shadow);
 }
 
@@ -79,7 +81,10 @@
   width: 0;
   height: 32px;
   border-radius: var(--radius-lg-plus);
-  background: var(--accent);
+  // Same gradient + glow language as the hero's send button / primary-button mixin, not a
+  // flat fill — so the active tab reads as the same "brand accent" material, not a
+  // different, flatter blue.
+  background: var(--cta-gradient);
   box-shadow: 0 4px 14px var(--accent-glow-strong);
   pointer-events: none;
   opacity: 0;
@@ -103,7 +108,8 @@
     right: 0;
     height: 32px;
     border-radius: var(--radius-lg-plus);
-    background: var(--accent);
+    background: var(--cta-gradient);
+    box-shadow: 0 4px 14px var(--accent-glow-strong);
   }
 }
 
@@ -178,16 +184,23 @@
   color: var(--ink-3);
 }
 
+// Fully round + border fades in on hover, rather than a squared, always-bordered "chrome"
+// button — matches the ghost icon buttons in the hero's ask-field (also transparent-until-
+// hover, also var(--radius-full)) instead of a separate, boxier toolbar language.
 .icon-only {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--field-line);
-  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
   background: var(--chrome);
   color: var(--ink-2);
   cursor: pointer;
   text-decoration: none;
+  transition:
+    background var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
 
   @include focus-ring;
 }
@@ -230,12 +243,11 @@
 }
 
 .new-note-btn {
+  // Full mixin, unmodified — same gradient/glow/hover-brightness treatment as the hero's
+  // send button, so this reads as the app's one "primary action" material everywhere.
   @include primary-button;
   height: 36px;
   padding: 0 var(--space-15);
-  border-radius: var(--radius-lg-plus);
-  // Flat, matching the active nav pill's solid var(--accent) — not the mixin's gradient.
-  background: var(--accent);
 }
 
 .theme-btn,
