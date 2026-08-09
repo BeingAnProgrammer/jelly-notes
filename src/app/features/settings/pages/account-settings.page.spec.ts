@@ -27,7 +27,7 @@ describe('AccountSettingsPage', () => {
 
   it('initializes the name control from the current user', () => {
     const page = create();
-    expect(page['nameControl'].value).toBe('Alex Rivera');
+    expect(page['nameControl'].value).toBe('Jelly User');
   });
 
   it('saveName updates the profile and shows a toast', () => {
@@ -44,7 +44,7 @@ describe('AccountSettingsPage', () => {
     page['nameControl'].setValue('');
     page.saveName();
 
-    expect(auth.currentUser()?.displayName).toBe('Alex Rivera');
+    expect(auth.currentUser()?.displayName).toBe('Jelly User');
   });
 
   it('selectAvatar updates the profile avatar and shows a toast', () => {

@@ -15,6 +15,21 @@ export class LocalAssignmentsRepository implements AssignmentsRepository {
     return of(this.storage.get<Assignment[]>(STORAGE_KEY) ?? []);
   }
 
+  create(assignment: Assignment): Observable<Assignment> {
+    const assignments = this.storage.get<Assignment[]>(STORAGE_KEY) ?? [];
+    this.storage.set(STORAGE_KEY, [...assignments, assignment]);
+    return of(assignment);
+  }
+
+  remove(id: string): Observable<void> {
+    const assignments = this.storage.get<Assignment[]>(STORAGE_KEY) ?? [];
+    this.storage.set(
+      STORAGE_KEY,
+      assignments.filter((a) => a.id !== id),
+    );
+    return of(undefined);
+  }
+
   addTask(assignmentId: string, task: Task): Observable<Assignment> {
     return this.mutateAssignment(assignmentId, (assignment) => ({
       ...assignment,

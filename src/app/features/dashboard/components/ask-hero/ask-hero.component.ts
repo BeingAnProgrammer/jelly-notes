@@ -40,7 +40,7 @@ const SUGGESTIONS: SuggestionChip[] = [
     line: 'var(--gold-line)',
   },
   {
-    label: 'Everything on Acme',
+    label: 'What is Jelly Notes?',
     color: 'var(--lav)',
     bg: 'var(--lav-soft)',
     line: 'var(--lav-line)',

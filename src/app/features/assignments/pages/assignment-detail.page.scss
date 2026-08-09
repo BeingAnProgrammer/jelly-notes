@@ -8,11 +8,18 @@
   animation: m-fade-up var(--duration-moderate) var(--ease-standard);
 }
 
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  margin-bottom: var(--space-20);
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-4);
-  margin-bottom: var(--space-20);
   color: var(--ink-4);
   font-size: var(--text-13);
 
@@ -23,6 +30,14 @@
 
 .back-chevron {
   transform: rotate(180deg);
+}
+
+.icon-btn {
+  @include icon-button;
+
+  &.danger:hover {
+    @include icon-button-destructive-hover;
+  }
 }
 
 .header {

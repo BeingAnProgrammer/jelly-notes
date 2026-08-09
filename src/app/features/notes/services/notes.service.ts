@@ -37,7 +37,7 @@ export class NotesService {
     const note: Note = {
       id: generateId(),
       title: 'Untitled note',
-      folder: partial?.folder ?? 'Fundraising',
+      folder: partial?.folder ?? 'General',
       dot: NOTE_COLORS[Math.floor(Math.random() * NOTE_COLORS.length)].dot,
       tags: [],
       excerpt: '',

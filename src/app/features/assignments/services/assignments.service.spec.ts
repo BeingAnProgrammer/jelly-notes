@@ -33,6 +33,16 @@ class FakeAssignmentsRepository extends AssignmentsRepository {
     return of(this.assignments);
   }
 
+  create(assignment: Assignment): Observable<Assignment> {
+    this.assignments = [...this.assignments, assignment];
+    return of(assignment);
+  }
+
+  remove(id: string): Observable<void> {
+    this.assignments = this.assignments.filter((a) => a.id !== id);
+    return of(undefined);
+  }
+
   addTask(assignmentId: string, task: Task): Observable<Assignment> {
     return this.mutate(assignmentId, (a) => ({ ...a, tasks: [...a.tasks, task] }));
   }

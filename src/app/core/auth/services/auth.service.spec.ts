@@ -25,7 +25,7 @@ describe('AuthService', () => {
   it('signIn() signs a default guest user in', () => {
     service.signIn();
     expect(service.isSignedIn()).toBe(true);
-    expect(service.currentUser()?.displayName).toBe('Alex Rivera');
+    expect(service.currentUser()?.displayName).toBe('Jelly User');
   });
 
   it('signOut() clears the session but the profile itself survives for the next sign-in', () => {

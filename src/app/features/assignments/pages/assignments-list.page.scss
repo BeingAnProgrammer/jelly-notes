@@ -1,12 +1,31 @@
+@use 'mixins' as *;
+
 :host {
   display: block;
   animation: m-fade-up var(--duration-moderate) var(--ease-standard);
 }
 
 .header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-20);
   padding-bottom: var(--space-20);
   border-bottom: 1px solid var(--hairline);
   margin-bottom: var(--space-20);
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.new-btn,
+.empty-cta {
+  @include primary-button;
+  height: 36px;
+  padding: 0 var(--space-15);
+  flex-shrink: 0;
 }
 
 h1 {

@@ -111,6 +111,10 @@ export class NoteEditorPage {
     this.notesService.toggleFavorite(this.id());
   }
 
+  togglePinned(): void {
+    this.notesService.togglePinned(this.id());
+  }
+
   toggleArchive(): void {
     const note = this.note();
     if (!note) return;

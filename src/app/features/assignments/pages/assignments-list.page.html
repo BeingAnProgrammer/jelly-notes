@@ -1,6 +1,12 @@
 <div class="header" data-anim>
-  <h1>Assignments</h1>
-  <p class="subtext">{{ openCount() }} open · {{ atRiskCount() }} at risk</p>
+  <div>
+    <h1>Assignments</h1>
+    <p class="subtext">{{ openCount() }} open · {{ atRiskCount() }} at risk</p>
+  </div>
+  <button type="button" class="new-btn" (click)="newAssignmentModalOpen.set(true)">
+    <app-icon name="plus" [size]="14" [strokeWidth]="2.2" />
+    New assignment
+  </button>
 </div>
 
 @if (assignmentsService.assignmentsDecorated().length) {
@@ -22,5 +28,14 @@
     icon="cap"
     title="No assignments yet"
     description="Assignments you create will show up here."
-  />
+  >
+    <button type="button" class="empty-cta" (click)="newAssignmentModalOpen.set(true)">
+      <app-icon name="plus" [size]="14" [strokeWidth]="2.2" />
+      New assignment
+    </button>
+  </app-empty-state>
+}
+
+@if (newAssignmentModalOpen()) {
+  <app-new-assignment-modal (closed)="newAssignmentModalOpen.set(false)" />
 }

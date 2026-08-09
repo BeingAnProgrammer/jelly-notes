@@ -67,8 +67,8 @@
 } @else if (!showPinned()) {
   <app-empty-state
     icon="file"
-    [title]="'No notes in ' + notesTitle()"
-    description="Notes you create will show up here."
+    [title]="emptyState().title"
+    [description]="emptyState().description"
   />
 }
 

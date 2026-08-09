@@ -8,6 +8,7 @@ import {
 } from '../models/assignment.model';
 import { Task, TaskStatus } from '../models/task.model';
 import { generateId } from '../../../shared/utils/id';
+import { ToastService } from '../../../core/services/toast.service';
 
 const NEXT_STATUS: Record<TaskStatus, TaskStatus> = {
   todo: 'progress',
@@ -78,6 +79,7 @@ function decorate(assignment: Assignment): DecoratedAssignment {
 @Injectable({ providedIn: 'root' })
 export class AssignmentsService {
   private readonly repo = inject(AssignmentsRepository);
+  private readonly toast = inject(ToastService);
 
   private readonly _assignments = signal<Assignment[]>([]);
   readonly assignments = this._assignments.asReadonly();
@@ -113,6 +115,29 @@ export class AssignmentsService {
 
   findById(id: string): Assignment | undefined {
     return this._assignments().find((a) => a.id === id);
+  }
+
+  create(title: string, due: string): Assignment {
+    const assignment: Assignment = {
+      id: generateId(),
+      title: title.trim() || 'Untitled assignment',
+      context: '',
+      due,
+      hot: false,
+      tasks: [],
+    };
+    this.repo.create(assignment).subscribe((created) => {
+      this._assignments.update((assignments) => [...assignments, created]);
+      this.toast.show('Assignment created');
+    });
+    return assignment;
+  }
+
+  remove(id: string): void {
+    this.repo.remove(id).subscribe(() => {
+      this._assignments.update((assignments) => assignments.filter((a) => a.id !== id));
+      this.toast.show('Assignment deleted');
+    });
   }
 
   addTask(assignmentId: string, title: string): void {

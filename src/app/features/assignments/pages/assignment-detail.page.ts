@@ -1,9 +1,18 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 import { PillComponent } from '../../../shared/ui/pill/pill.component';
 import { ProgressBarComponent } from '../../../shared/ui/progress-bar/progress-bar.component';
 import { EmptyStateComponent } from '../../../shared/ui/empty-state/empty-state.component';
+import { ConfirmDialogComponent } from '../../../shared/ui/confirm-dialog/confirm-dialog.component';
 import { KanbanColumnComponent } from '../components/kanban-column/kanban-column.component';
 import { AssignmentsService } from '../services/assignments.service';
 import { groupTasksByStatus } from '../utils/group-tasks-by-status';
@@ -19,6 +28,7 @@ const DUE_FORMAT = new Intl.DateTimeFormat(undefined, { month: 'long', day: 'num
     PillComponent,
     ProgressBarComponent,
     EmptyStateComponent,
+    ConfirmDialogComponent,
     KanbanColumnComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,8 +38,11 @@ const DUE_FORMAT = new Intl.DateTimeFormat(undefined, { month: 'long', day: 'num
 export class AssignmentDetailPage {
   private readonly assignmentsService = inject(AssignmentsService);
   private readonly seo = inject(SeoService);
+  private readonly router = inject(Router);
 
   readonly id = input.required<string>();
+
+  protected readonly showDeleteConfirm = signal(false);
 
   protected readonly assignment = computed(() =>
     this.assignmentsService.assignmentsDecorated().find((a) => a.id === this.id()),
@@ -62,5 +75,15 @@ export class AssignmentDetailPage {
 
   advanceTask(taskId: string): void {
     this.assignmentsService.advanceTaskStatus(this.id(), taskId);
+  }
+
+  confirmDelete(): void {
+    this.assignmentsService.remove(this.id());
+    this.showDeleteConfirm.set(false);
+    this.router.navigate(['/app/assignments']);
+  }
+
+  protected deleteMessage(title: string): string {
+    return `"${title}" will be permanently deleted. This can't be undone.`;
   }
 }

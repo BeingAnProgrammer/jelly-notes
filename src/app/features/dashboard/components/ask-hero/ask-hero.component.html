@@ -1,8 +1,10 @@
 <div class="eyebrow">
   <span class="bars" aria-hidden="true"> <span></span><span></span><span></span> </span>
   <span class="eyebrow-text">
-    Jelly has read every note you've written · {{ notesService.totalCount() }} notes ·
-    {{ assignmentsService.assignments().length }} assignments
+    Jelly has read every note you've written · {{ notesService.totalCount() }}
+    {{ notesService.totalCount() === 1 ? 'note' : 'notes' }} ·
+    {{ assignmentsService.assignments().length }}
+    {{ assignmentsService.assignments().length === 1 ? 'assignment' : 'assignments' }}
   </span>
 </div>
 
@@ -34,7 +36,7 @@
     <app-icon name="sparkles" [size]="22" [strokeWidth]="0" [filled]="true" class="sparkle" />
     <input
       type="text"
-      placeholder="What did I decide about the Acme deal?"
+      placeholder="Ask a question about your notes"
       [value]="query()"
       (input)="query.set($any($event.target).value)"
       aria-label="Ask Jelly a question about your notes"

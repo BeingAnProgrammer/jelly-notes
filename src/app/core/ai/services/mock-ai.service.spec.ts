@@ -48,6 +48,12 @@ class EmptyAssignmentsRepository extends AssignmentsRepository {
   getAll(): Observable<Assignment[]> {
     return of(this.assignments);
   }
+  create(): Observable<Assignment> {
+    throw new Error('unused');
+  }
+  remove(): Observable<void> {
+    throw new Error('unused');
+  }
   addTask(): Observable<Assignment> {
     throw new Error('unused');
   }

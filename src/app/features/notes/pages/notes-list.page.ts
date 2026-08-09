@@ -61,6 +61,28 @@ export class NotesListPage {
     }
   });
 
+  protected readonly emptyState = computed(() => {
+    switch (this.filter()) {
+      case 'favorites':
+        return {
+          title: 'No favorites yet',
+          description: 'Favorite a note and it’ll show up here.',
+        };
+      case 'archive':
+        return {
+          title: 'Nothing archived',
+          description: 'Archived notes will appear here when you archive them.',
+        };
+      case 'folder':
+        return {
+          title: `No notes in ${this.folder() || 'this folder'}`,
+          description: 'Notes you add to this folder will show up here.',
+        };
+      default:
+        return { title: 'No notes yet', description: 'Notes you create will show up here.' };
+    }
+  });
+
   protected readonly folderLabel = computed(() =>
     this.filter() === 'folder' ? this.folder() || 'All folders' : 'All folders',
   );

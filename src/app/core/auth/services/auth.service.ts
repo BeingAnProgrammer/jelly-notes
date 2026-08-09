@@ -7,7 +7,7 @@ const SIGNED_IN_KEY = 'auth.signedIn';
 
 const DEFAULT_USER: AppUser = {
   id: 'demo-user',
-  displayName: 'Alex Rivera',
+  displayName: 'Jelly User',
   avatar: 'gradient-1',
   isGuest: false,
 };

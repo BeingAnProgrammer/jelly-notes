@@ -1,8 +1,19 @@
 @if (assignment(); as assignment) {
-  <a routerLink="/app/assignments" class="back-link">
-    <app-icon name="chevron-right" [size]="14" [strokeWidth]="2" class="back-chevron" />
-    All assignments
-  </a>
+  <div class="top-row">
+    <a routerLink="/app/assignments" class="back-link">
+      <app-icon name="chevron-right" [size]="14" [strokeWidth]="2" class="back-chevron" />
+      All assignments
+    </a>
+
+    <button
+      type="button"
+      class="icon-btn danger"
+      title="Delete"
+      (click)="showDeleteConfirm.set(true)"
+    >
+      <app-icon name="trash" [size]="16" [strokeWidth]="1.8" />
+    </button>
+  </div>
 
   <div class="header">
     <div class="header-main">
@@ -58,6 +69,16 @@
       (advance)="advanceTask($event)"
     />
   </div>
+
+  @if (showDeleteConfirm()) {
+    <app-confirm-dialog
+      title="Delete this assignment?"
+      [message]="deleteMessage(assignment.title)"
+      confirmLabel="Delete"
+      (confirmed)="confirmDelete()"
+      (cancelled)="showDeleteConfirm.set(false)"
+    />
+  }
 } @else {
   <div class="not-found">
     <app-empty-state
