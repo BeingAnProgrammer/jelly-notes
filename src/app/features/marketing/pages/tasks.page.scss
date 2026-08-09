@@ -15,8 +15,8 @@
   align-items: flex-start;
   gap: var(--space-12);
   padding: var(--space-16);
-  background: var(--surface-alt);
-  border: 1px solid var(--hairline);
+  background: rgb(255 255 255 / 55%);
+  border: 1px solid var(--face-border, var(--hairline));
   border-radius: var(--radius-lg);
 }
 
@@ -40,7 +40,7 @@
   }
 
   &.status-todo {
-    border: 2px solid var(--hairline);
+    border: 2px solid var(--face-border, var(--hairline));
   }
 }
 
@@ -62,7 +62,7 @@
 .task-title {
   font-size: var(--text-14-5);
   font-weight: var(--weight-medium);
-  color: var(--ink);
+  color: var(--face-ink, var(--ink));
 }
 
 .task-source {
@@ -70,5 +70,5 @@
   align-items: center;
   gap: var(--space-6);
   font-size: var(--text-11-5);
-  color: var(--ink-4);
+  color: var(--face-ink-2, var(--ink-4));
 }

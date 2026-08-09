@@ -238,6 +238,27 @@
     radial-gradient(ellipse 1000px 600px at 50% 38%, rgb(196 181 253 / 30%), transparent 65%);
 }
 
+// Solid per-feature card colors — shared by the welcome-page showcase and the marketing
+// product-window previews so both "same product" surfaces can't drift apart in color.
+@mixin face-theme($id) {
+  @if $id == notes {
+    --face-bg: #c4b5fd;
+    --face-border: #a78bfa;
+    --face-ink: #2e1065;
+    --face-ink-2: #5b21b6;
+  } @else if $id == search {
+    --face-bg: #93c5fd;
+    --face-border: #60a5fa;
+    --face-ink: #172554;
+    --face-ink-2: #1e40af;
+  } @else if $id == assignments {
+    --face-bg: #6ee7b7;
+    --face-border: #34d399;
+    --face-ink: #022c22;
+    --face-ink-2: #065f46;
+  }
+}
+
 @mixin line-clamp($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;

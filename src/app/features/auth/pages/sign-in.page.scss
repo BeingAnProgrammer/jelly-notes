@@ -115,24 +115,15 @@ h1 {
   // The face's own color runs the full card, header included — matching the reference's
   // solid-color treatment rather than a white bar sitting on top of it.
   &[data-theme='notes'] {
-    --face-bg: #c4b5fd;
-    --face-border: #a78bfa;
-    --face-ink: #2e1065;
-    --face-ink-2: #5b21b6;
+    @include face-theme(notes);
   }
 
   &[data-theme='search'] {
-    --face-bg: #93c5fd;
-    --face-border: #60a5fa;
-    --face-ink: #172554;
-    --face-ink-2: #1e40af;
+    @include face-theme(search);
   }
 
   &[data-theme='assignments'] {
-    --face-bg: #6ee7b7;
-    --face-border: #34d399;
-    --face-ink: #022c22;
-    --face-ink-2: #065f46;
+    @include face-theme(assignments);
   }
 }
 

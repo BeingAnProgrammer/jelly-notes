@@ -1,3 +1,5 @@
+@use 'mixins' as *;
+
 :host {
   display: block;
   width: 100%;
@@ -48,11 +50,23 @@
 .window {
   position: relative;
   z-index: 1;
-  background: var(--surface);
+  background: var(--face-bg, var(--surface));
   border: 1px solid var(--hairline);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-lift);
   overflow: hidden;
+
+  &[data-theme='notes'] {
+    @include face-theme(notes);
+  }
+
+  &[data-theme='search'] {
+    @include face-theme(search);
+  }
+
+  &[data-theme='assignments'] {
+    @include face-theme(assignments);
+  }
 }
 
 .window-bar {
@@ -60,7 +74,7 @@
   align-items: center;
   gap: var(--space-10);
   padding: var(--space-12) var(--space-16);
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--face-border, var(--hairline));
 }
 
 .window-dots {
@@ -89,7 +103,7 @@
 .window-title {
   font-size: var(--text-12-5);
   font-weight: var(--weight-semibold);
-  color: var(--ink-3);
+  color: var(--face-ink-2, var(--ink-3));
 }
 
 .window-body {
