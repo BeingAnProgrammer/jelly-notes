@@ -17,6 +17,7 @@
         </button>
 
         <app-folder-move-menu [noteId]="note.id" />
+        <app-note-color-menu [noteId]="note.id" [dot]="note.dot" />
 
         <button type="button" class="icon-btn" title="Archive" (click)="toggleArchive()">
           <app-icon name="archive" [size]="16" [strokeWidth]="1.8" />

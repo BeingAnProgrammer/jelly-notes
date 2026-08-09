@@ -5,6 +5,7 @@ import { PillComponent } from '../../../shared/ui/pill/pill.component';
 import { EmptyStateComponent } from '../../../shared/ui/empty-state/empty-state.component';
 import { ConfirmDialogComponent } from '../../../shared/ui/confirm-dialog/confirm-dialog.component';
 import { FolderMoveMenuComponent } from '../components/folder-move-menu/folder-move-menu.component';
+import { NoteColorMenuComponent } from '../components/note-color-menu/note-color-menu.component';
 import { NoteContentRendererComponent } from '../components/content/note-content-renderer.component';
 import { AddBlockMenuComponent } from '../components/content/add-block-menu.component';
 import { ChecklistToggleEvent } from '../components/content/checklist-block.component';
@@ -21,6 +22,7 @@ import { SeoService } from '../../../core/seo/seo.service';
     EmptyStateComponent,
     ConfirmDialogComponent,
     FolderMoveMenuComponent,
+    NoteColorMenuComponent,
     NoteContentRendererComponent,
     AddBlockMenuComponent,
   ],

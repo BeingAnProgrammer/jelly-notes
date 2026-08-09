@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Note } from '../../models/note.model';
 import { IconComponent } from '../../../../shared/ui/icon/icon.component';
 import { relativeTime } from '../../../../shared/utils/relative-time';
+import { noteColorInk } from '../../models/note-color.model';
 
 @Component({
   selector: 'app-note-card',
@@ -15,4 +16,5 @@ export class NoteCardComponent {
   readonly note = input.required<Note>();
 
   protected readonly relativeTime = relativeTime;
+  protected readonly noteColorInk = noteColorInk;
 }

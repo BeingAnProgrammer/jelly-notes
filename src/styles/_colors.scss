@@ -60,6 +60,30 @@
   --ink-blue: #5ea8d9;
   --ink-blue-soft: rgb(94 168 217 / 14%);
 
+  // A separate, deliberately more saturated palette for user-picked note colors (see
+  // note-color-menu) — the hues above are muted by design (folder/tag text needs to stay
+  // legible at small sizes), which reads as "dull" for a note's own color tag where legibility
+  // matters less than the color being the point. `--note-X` is the vivid swatch itself, fixed
+  // across themes like --cta-gradient; `--note-X-ink` is a same-hue tone dark/light enough to
+  // read as text (folder label, tag) against that swatch's own tint in each theme — see
+  // note-color-menu.component for how the two pair up.
+  --note-red: #ef4444;
+  --note-red-ink: #f87171;
+  --note-orange: #f97316;
+  --note-orange-ink: #fb923c;
+  --note-amber: #f59e0b;
+  --note-amber-ink: #fbbf24;
+  --note-green: #22c55e;
+  --note-green-ink: #4ade80;
+  --note-teal: #14b8a6;
+  --note-teal-ink: #2dd4bf;
+  --note-blue: #3b82f6;
+  --note-blue-ink: #60a5fa;
+  --note-violet: #8b5cf6;
+  --note-violet-ink: #a78bfa;
+  --note-pink: #ec4899;
+  --note-pink-ink: #f472b6;
+
   --accent-glow-weak: rgb(59 111 237 / 10%);
   --accent-glow: rgb(59 111 237 / 14%);
   --accent-glow-strong: rgb(59 111 237 / 24%);
@@ -160,6 +184,18 @@
   // 2.60:1 on white; darkened to clear 4.5:1.
   --ink-blue: #427698;
   --ink-blue-soft: #e6eef4;
+
+  // Light-theme ink for the vivid --note-X swatches declared above (those stay fixed across
+  // themes) — a same-hue shade dark enough to read as small text on that swatch's own pale
+  // tint or on white, same reasoning as mint/warm/lav above.
+  --note-red-ink: #b91c1c;
+  --note-orange-ink: #c2410c;
+  --note-amber-ink: #b45309;
+  --note-green-ink: #15803d;
+  --note-teal-ink: #0f766e;
+  --note-blue-ink: #1d4ed8;
+  --note-violet-ink: #6d28d9;
+  --note-pink-ink: #be185d;
 
   --accent-glow-weak: rgb(47 95 224 / 8%);
   --accent-glow: rgb(47 95 224 / 12%);

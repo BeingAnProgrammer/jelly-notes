@@ -3,6 +3,7 @@ import { NotesRepository } from '../data/notes.repository';
 import { Note } from '../models/note.model';
 import { ToastService } from '../../../core/services/toast.service';
 import { generateId } from '../../../shared/utils/id';
+import { NOTE_COLORS } from '../models/note-color.model';
 
 const byUpdatedDesc = (a: Note, b: Note) => (a.updatedAt < b.updatedAt ? 1 : -1);
 
@@ -37,7 +38,7 @@ export class NotesService {
       id: generateId(),
       title: 'Untitled note',
       folder: partial?.folder ?? 'Fundraising',
-      dot: 'var(--accent)',
+      dot: NOTE_COLORS[Math.floor(Math.random() * NOTE_COLORS.length)].dot,
       tags: [],
       excerpt: '',
       content: [],

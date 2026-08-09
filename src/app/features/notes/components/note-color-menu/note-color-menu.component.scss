@@ -1,0 +1,67 @@
+@use 'mixins' as *;
+
+.wrap {
+  position: relative;
+}
+
+.trigger {
+  @include ghost-button;
+  height: 34px;
+  padding: 0 var(--space-11);
+}
+
+.swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 40;
+  min-width: 186px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6) var(--space-10) var(--space-10);
+  animation: m-pop var(--duration-base) var(--ease-standard);
+}
+
+.menu-label {
+  padding: var(--space-6) var(--space-2) var(--space-8);
+  font-size: var(--text-11);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+
+.swatch-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    transform: scale(1.12);
+  }
+
+  &.active {
+    border-color: var(--ink);
+  }
+
+  @include focus-ring;
+}

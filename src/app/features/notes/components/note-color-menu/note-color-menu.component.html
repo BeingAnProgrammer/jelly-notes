@@ -1,0 +1,26 @@
+<div class="wrap" appClickOutside (clickOutside)="open.set(false)">
+  <button type="button" class="trigger" title="Note color" (click)="open.set(!open())">
+    <span class="swatch" [style.background]="dot()"></span>
+    Color
+  </button>
+
+  @if (open()) {
+    <div class="menu" role="menu">
+      <div class="menu-label">Note color</div>
+      <div class="grid">
+        @for (color of colors; track color.id) {
+          <button
+            type="button"
+            role="menuitem"
+            class="swatch-btn"
+            [class.active]="color.dot === dot()"
+            [style.background]="color.dot"
+            [attr.aria-label]="color.label"
+            [title]="color.label"
+            (click)="pick(color.dot)"
+          ></button>
+        }
+      </div>
+    </div>
+  }
+</div>
